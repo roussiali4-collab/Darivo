@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Free classified ads in Morocco: apartments, villas, houses, rooms and land for rent or sale, plus local services. Contact advertisers directly by WhatsApp or phone.">
+<meta name="keywords" content="Morocco classifieds, apartments for rent Morocco, villas, land for sale Morocco, Agadir, Marrakech, Casablanca, daily rental, annonces Maroc, location appartement Maroc, terrain à vendre Maroc, إعلانات المغرب, كراء شقق المغرب, أراضي للبيع, كراء يومي">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0B2F4A">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Darivo">
+<meta property="og:title" content="Darivo – Homes, Land &amp; Services in Morocco">
+<meta property="og:description" content="Free classified ads in Morocco: apartments, villas, houses, rooms and land for rent or sale, plus local services.">
+<meta name="twitter:card" content="summary">
+<title>Darivo – Homes, Land & Services in Morocco</title>
+<style>
+:root{--ink:#0B2F4A;--sun:#F4A62A;--sea:#0E7C86;--bg:#E9E5D8;--line:#d3cebd;--mut:#5b6877}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+html[dir=rtl] body,html[dir=rtl] button,html[dir=rtl] input,html[dir=rtl] select,html[dir=rtl] textarea{font-family:"Tajawal",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}
+header{background:var(--ink);color:#fff}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-weight:800;font-size:1.25rem}.logo i{color:var(--sun);font-style:normal}
+select,input,textarea{font:inherit;color:inherit}
+#lg{background:#16435f;color:#fff;border:1px solid #2c5f80;border-radius:8px;padding:5px 8px}
+.hero{background:linear-gradient(160deg,#0B2F4A,#0E7C86);color:#fff;padding:28px 0 24px}
+.hero h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.1}
+.hero p{margin-top:10px;max-width:34em;color:#dcecf0}
+#tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--line)}
+.tab{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;padding:8px 16px;border-radius:99px;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding:22px 0 50px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.pic{height:150px;background-size:cover;background-position:center}
+.body{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.body h3{font-size:1.05rem}.meta{color:var(--mut);font-size:.85rem}.body p{font-size:.92rem;color:#33465a}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;gap:8px}
+.price b{font-size:1.2rem}
+.go,.map{background:var(--sun);color:var(--ink);border:0;border-radius:10px;font-weight:700;padding:8px 14px;cursor:pointer;text-decoration:none;font-size:.92rem}
+.map{background:transparent;color:var(--sea);padding:0}
+dialog{border:0;border-radius:18px;padding:20px;width:min(440px,94vw);max-height:92vh;overflow:auto}
+dialog::backdrop{background:rgba(5,20,35,.6)}
+dialog h2{font-size:1.2rem;margin-bottom:10px}
+label{display:block;font-size:.8rem;color:var(--mut);margin-bottom:8px}
+label input,label select,label textarea{display:block;width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-top:2px;background:#fff}
+#tot{font-weight:800;font-size:1.2rem;margin:6px 0 10px}
+#msg{margin-top:8px;font-weight:600;color:var(--sea)}
+.x{float:inline-end;background:none;border:0;font-size:1.3rem;cursor:pointer}
+#adm{display:none;background:#fff;border:2px dashed var(--sun);border-radius:14px;padding:16px;margin:18px 0}
+#adm.on{display:block}
+#adm form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px 10px}
+footer{background:var(--ink);color:#b7c6d3;text-align:center;padding:22px;font-size:.88rem}
+#lb p{margin-bottom:10px;font-size:.93rem;color:#33465a}
+footer a{color:#fff;text-decoration:underline}
+#wa{position:fixed;inset-inline-end:14px;bottom:16px;background:#25D366;color:#fff;font-weight:700;padding:10px 16px;border-radius:99px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.25);z-index:20}
+#wa[hidden],#cb[hidden]{display:none}
+#cb{position:fixed;inset-inline:0;bottom:0;background:#0B2F4A;color:#dcecf0;padding:10px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;font-size:.85rem;z-index:30}
+#cb button{background:var(--sun);border:0;border-radius:8px;font-weight:700;padding:6px 16px;cursor:pointer}
+body.ck #wa{bottom:72px}
+#cs{margin-top:18px;background:#fff;color:var(--ink);border:0;border-radius:12px;padding:10px 14px;font:700 1rem system-ui,sans-serif;min-width:220px;max-width:100%}
+#adv{width:min(640px,96vw);background:#C9E4E3}
+#adv .fg{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+#adv .w{grid-column:1/-1}
+@media(max-width:560px){#adv .fg{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.chips span{background:#eef3f6;color:#33465a;border-radius:99px;padding:1px 8px;font-size:.75rem}
+.chips.big label{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:99px;padding:3px 10px;font-size:.8rem;margin:0;color:var(--ink)}
+.chips.big input{width:auto;display:inline;margin:0;padding:0}
+.go.alt{background:#fff;border:2px solid var(--ink);color:var(--ink)}
+.row2{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap}
+.li{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px;margin-bottom:8px}
+.li .th{width:64px;height:48px;border-radius:8px;flex:none}
+.li small{display:block;color:var(--mut)}
+#fb{padding-top:14px}
+.fr{display:flex;gap:8px;flex-wrap:wrap}
+#q{flex:1 1 200px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+#so{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}
+#fp{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:4px 12px}
+#fp[hidden]{display:none}
+#fp .w{grid-column:1/-1}
+#rc{margin-top:8px}
+.vt{cursor:pointer}.vt:hover{text-decoration:underline}
+.pic[data-v]{cursor:pointer}
+.rt{font-size:.85rem;color:var(--mut)}.rt b{color:#b7791f}
+#det{width:min(720px,96vw);padding:0}
+#det .x{position:absolute;inset-block-start:10px;inset-inline-end:12px;float:none;background:#fff;border-radius:50%;width:34px;height:34px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#detb{padding:16px 20px 22px}
+.gm{height:min(300px,52vw);background-size:cover;background-position:center}
+.gt{display:flex;gap:6px;overflow-x:auto;padding:8px 20px 0}
+.gt button{flex:none;width:64px;height:48px;border-radius:8px;border:2px solid transparent;background-size:cover;background-position:center;cursor:pointer;padding:0}
+.gt button.on{border-color:var(--sun)}
+.rv{border-top:1px solid var(--line);padding:10px 0}.rv small{color:var(--mut)}
+#stars{display:flex;gap:2px;margin:2px 0 8px}
+#stars button{background:none;border:0;font-size:1.7rem;color:#d4cfc0;cursor:pointer;padding:0 2px;line-height:1}
+#stars button.on{color:#F4A62A}
+.hp{position:absolute;left:-9999px}
+.dd{position:relative;display:block}
+.dd>select{display:none!important}
+.dd-b{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:start;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);padding:8px 10px;font:inherit;cursor:pointer}
+label .dd{margin-top:2px}
+.dd-b::after{content:"";width:7px;height:7px;flex:none;border-inline-end:2px solid var(--sea);border-block-end:2px solid var(--sea);transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.dd.open .dd-b::after{transform:rotate(-135deg) translateY(-1px)}
+.dd-b:hover{border-color:var(--sea)}
+.dd-b:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.dd.open .dd-b{border-color:var(--sea);box-shadow:0 0 0 3px rgba(14,124,134,.18)}
+.dd-l{display:none;position:absolute;inset-inline:0;top:calc(100% + 6px);z-index:60;max-height:250px;overflow:auto;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 32px rgba(11,47,74,.2);padding:5px;list-style:none;font-size:.95rem;font-weight:500}
+.dd.open .dd-l{display:block}
+.dd-l li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:9px;cursor:pointer}
+.dd-l li.hl,.dd-l li:hover{background:#e8f3f4}
+.dd-l li[aria-selected=true]{background:var(--ink);color:#fff;font-weight:700}
+.dd-l li[aria-selected=true]::after{content:"✓";color:var(--sun)}
+.dd.hd{display:inline-block;min-width:124px}
+.dd.hd .dd-b{background:#16435f;color:#fff;border-color:#2c5f80;border-radius:8px;padding:5px 10px}
+.dd.hd .dd-b::after{border-color:var(--sun)}
+.dd.hd .dd-l{inset-inline:auto 0;min-width:100%}
+.dd.big{display:inline-block;margin-top:18px;min-width:230px;max-width:100%}
+.dd.big .dd-b{border:0;border-radius:12px;padding:10px 14px;font:700 1rem system-ui,sans-serif}
+.dd.big .dd-l{min-width:100%}
+.dd.so{flex:0 0 auto;min-width:190px}
+.dd.so .dd-b{border-radius:12px;padding:10px 12px}
+#adv{width:min(560px,96vw);padding:0}
+#adv .x{position:absolute;inset-block-start:10px;inset-inline-end:12px;float:none;color:#fff;font-size:1.6rem;z-index:2}
+#advh{position:relative;background:linear-gradient(160deg,#0B2F4A,#0E7C86);color:#fff;padding:22px 22px 18px}
+#advh .logo{font-size:1.05rem}
+#advh h2{font-size:1.5rem;margin:6px 0 2px;color:#fff}
+#advh p{color:#dcecf0;font-size:.92rem;max-width:32em}
+#advh .who{display:flex;align-items:center;gap:12px;margin-top:10px}
+#advh .who h2{margin:0}
+.av{width:48px;height:48px;border-radius:50%;background:var(--sun);color:var(--ink);font-weight:800;font-size:1.3rem;display:grid;place-items:center;flex:none}
+.out{margin-top:12px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:99px;padding:5px 14px;font-weight:700;cursor:pointer}
+#advb2{padding:18px 20px 22px}
+.seg{display:flex;gap:6px;margin-bottom:14px}
+.seg .tab{flex:1;padding:8px 10px;text-align:center}
+.wide{width:100%;padding:11px 14px;font-size:1rem;margin-top:4px}
+.note{background:#fff7e6;border:1px dashed var(--sun);border-radius:12px;padding:8px 12px;font-size:.85rem;margin-bottom:12px}
+label input:focus,label textarea:focus{outline:2px solid var(--sea);outline-offset:1px;border-color:var(--sea)}
+.st{display:inline-block;border-radius:99px;padding:1px 9px;font-size:.72rem;font-weight:700;margin-inline-start:6px;vertical-align:middle}
+.st.p{background:#fff1d6;color:#8a5a00}.st.l{background:#dff3e6;color:#1e6b3a}.st.r{background:#fde3e0;color:#a02a1c}
+.go.wa{background:#25D366;border-color:#25D366;color:#06371c;text-decoration:none}
+.go.wa:hover{filter:brightness(.95)}
+.pic{position:relative}
+.tg{position:absolute;inset-block-start:10px;inset-inline-start:10px;background:var(--ink);color:#fff;border-radius:99px;padding:3px 12px;font-size:.78rem;font-weight:700;z-index:1}
+.tg.s{background:var(--sun);color:var(--ink)}
+.tg.d{background:var(--sea);color:#fff}
+#tm{position:fixed;z-index:30;min-width:210px;max-width:calc(100vw - 16px);max-height:60vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(11,47,74,.22);padding:6px}
+#tm[hidden]{display:none}
+.pgn{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap}
+.pgb{min-width:40px;height:40px;padding:0 10px;border:1px solid var(--line);background:#fff;border-radius:12px;font:inherit;font-weight:700;color:var(--ink);cursor:pointer}
+.pgb:hover{background:#eef3f6}
+.pgb.on{background:var(--sea);color:#fff;border-color:var(--sea)}
+.pgb[disabled]{opacity:.5;cursor:default}
+.pgd{padding:0 4px;color:#7a8a96}
+.tmi{display:block;width:100%;text-align:start;background:none;border:0;border-radius:10px;padding:10px 12px;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
+.tmi:hover,.tmi.on{background:#eef3f6}
+.tmi.on{color:var(--sea)}
+.tg.in{position:static;display:inline-block;margin-bottom:6px}
+#nofw[hidden],#nsvw[hidden],#narw[hidden]{display:none}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.acts .go{padding:8px 12px;font-size:.9rem;text-decoration:none;white-space:nowrap}
+.card .row{flex-wrap:wrap}
+#namw[hidden]{display:none}
+.pic{overflow:hidden}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;height:100%}
+.slides::-webkit-scrollbar{display:none}
+.sl{flex:0 0 100%;height:100%;scroll-snap-align:center;background-size:cover}
+.gw{position:relative}
+.cvb{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:50%;background:rgba(11,47,74,.55);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;z-index:2;display:grid;place-items:center;padding:0 0 3px}
+.cvb.l{inset-inline-start:8px}.cvb.r{inset-inline-end:8px}
+html[dir=rtl] .cvb{transform:translateY(-50%) scaleX(-1)}
+.cvb:hover{background:rgba(11,47,74,.8)}
+.cnt{position:absolute;inset-block-end:8px;inset-inline-end:10px;background:rgba(11,47,74,.65);color:#fff;border-radius:99px;padding:2px 10px;font-size:.75rem;font-weight:700;z-index:2}
+.slides.gm{height:min(300px,52vw)}
+@media (hover:none){.cvb{display:none}}
+
+/* ===== side menu ===== */
+.mb{background:none;border:0;color:#fff;font-size:1.6rem;line-height:1;padding:4px 8px;cursor:pointer;border-radius:8px}.mb:focus-visible,.dx:focus-visible{outline:2px solid var(--sun)}
+.drw{position:fixed;top:0;bottom:0;inset-inline-start:0;width:min(240px,66vw);background:linear-gradient(160deg,#0B2F4A,#0E7C86);color:#fff;z-index:60;display:flex;flex-direction:column;transform:translateX(-102%);visibility:hidden;transition:transform .25s ease,visibility .25s;box-shadow:0 0 30px rgba(0,0,0,.25)}
+html[dir=rtl] .drw{transform:translateX(102%)}
+.drw.on,html[dir=rtl] .drw.on{transform:none;visibility:visible}
+.dro{position:fixed;inset:0;background:rgba(5,20,35,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:59}.dro.on{opacity:1;pointer-events:auto}
+.dtop{background:transparent;border-bottom:1px solid rgba(255,255,255,.18);color:#fff;height:60px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.dx{background:none;border:0;color:#fff;font-size:1.3rem;cursor:pointer;padding:6px 8px;border-radius:8px}
+#dbody{overflow:auto;padding:8px 0 24px;flex:1}
+.di{display:flex;align-items:center;gap:12px;width:100%;padding:10px 16px;background:none;border:0;color:#fff;font:inherit;font-size:.92rem;font-weight:700;text-align:start;cursor:pointer;text-decoration:none}
+.di:hover,.di:focus-visible{background:rgba(255,255,255,.14);outline:0}.di[aria-current=true]{font-weight:800;background:rgba(255,255,255,.22);color:#fff}
+.di .ic{width:24px;text-align:center;flex:none}
+.dh{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#dcecf0;padding:12px 16px 2px}
+.dsep{height:1px;background:rgba(255,255,255,.18);margin:6px 16px}
+.dlg{padding:6px 16px}.dlg label small{color:#dcecf0;font-weight:700}.dlg select{width:100%;font-weight:700}
+body.dlk{overflow:hidden}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><button id="mb" class="mb" type="button" aria-controls="drw" aria-expanded="false" aria-label="Menu">☰</button><span class="logo">Dari<i>vo</i></span></div>
+<div style="display:flex;gap:8px;align-items:center"><select id="lg" aria-label="Language"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="ar">العربية</option></select></div></div></header>
+<div id="dro" class="dro"></div><aside id="drw" class="drw" aria-label="Menu" aria-hidden="true"><div class="dtop"><span class="logo">Dari<i>vo</i></span><button id="dx" class="dx" type="button" aria-label="Close">✕</button></div><div id="dbody"></div></aside>
+<div class="hero"><div class="wrap"><h1 id="h"></h1><p id="s"></p><select id="cs" aria-label="City"></select></div></div>
+<nav id="tabs" aria-label="Categories"></nav>
+<main class="wrap">
+
+<div id="fb"><div class="fr"><input id="q" type="search" autocomplete="off" aria-label="Search"><select id="so"></select><button class="go alt" id="ft" type="button"></button></div><div id="fp" hidden></div><div id="rc" class="meta" role="status"></div></div>
+<div class="grid" id="grid"></div>
+<div id="more" style="text-align:center;margin:16px 0"></div>
+</main>
+<footer><div id="fl" style="margin-bottom:6px"></div>© Darivo · Free classified ads in Morocco</footer>
+<dialog id="adv"><button class="x" id="advx" aria-label="Close">×</button><div id="advh"></div><div id="advb2"></div></dialog>
+<dialog id="lgd"><button class="x" id="lc" aria-label="Close">×</button><h2 id="lt"></h2><div id="lb"></div></dialog>
+<div id="tm" role="menu" hidden></div>
+<a id="wa" target="_blank" rel="noopener" hidden>💬 WhatsApp</a>
+<div id="cb"><span id="ckt"></span><button id="ckb"></button></div>
+
+<dialog id="det"><button class="x" id="detx" aria-label="Close">×</button><div id="detg"></div><div id="detb"></div></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* ============ 1) SETTINGS — EDIT THESE ============ */
+const CONFIG={currency:"MAD",
+adminUid:"YOUR_ADMIN_UID",adminLogin:"admin", // display name of the admin (the admin logs in with an email like everybody else)
+ // your own Supabase user UID (Authentication > Users): shows the moderation UI (the real check is the "admins" table in schema.sql)
+supabase:{url:"https://eofewxkyehcvqtkxbbyy.supabase.co",anonKey:"sb_publishable_luhudHRiIZpPVhiopdaBMw_aLR9fm8k"}, // Supabase > Project Settings > API (anon/public key only, never the service_role key)
+business:{name:"Darivo",email:"you@example.com",whatsapp:"2126XXXXXXXX"}}; // site contact (optional): whatsapp = country code + number, no + or spaces
+
+/* ============ 2) DEMO CONTENT — shown only until Supabase is configured; then manage everything from ?admin ============
+ c: apartments | studio | maison | villas | land | explore (shown as "Services")
+ p: price per night (stays) or per ride (transport); 0 = no price
+ d: description per language (falls back to English) ; img: optional image URL */
+// Photos: Unsplash (free licence). To change a photo, replace the PH("photo-...") value or paste any full image URL in img:"https://..."
+const PH=id=>"https://images.unsplash.com/"+id+"?auto=format&fit=crop&w=1000&q=80";
+const DATA=[
+{id:1,img:PH("photo-1538053367502-742497073841"),c:"apartments",n:"Marina Sea-View Apartment",a:"Marina, Agadir",p:55,d:{en:"2 bedrooms, balcony, fast Wi-Fi, 5 min from the beach.",fr:"2 chambres, balcon, Wi-Fi rapide, à 5 min de la plage."}},
+{id:2,img:PH("photo-1546388613-2fb7213ec9c6"),c:"apartments",n:"Sunny Studio Founty",a:"Founty",p:35,d:{en:"Cosy studio with kitchen, ideal for couples."}},
+{id:3,img:PH("photo-1489749798305-4fea3ae63d43"),c:"villas",n:"Villa Palmiers with Pool",a:"Agadir Bay",p:190,d:{en:"4 bedrooms, private pool, garden, sleeps 8."}},
+{id:7,c:"explore",svc:"delivery",n:"Fast Delivery Service",a:"City center",p:0,d:{en:"Same-day delivery of parcels, groceries and meals."}},
+{id:8,c:"explore",svc:"tourguide",n:"Certified Tourist Guide",a:"Old town",p:0,d:{en:"Guided walks and day tours in several languages."}},
+{id:9,c:"explore",svc:"massage",n:"Relaxing Massage at Home",a:"Marina",p:0,d:{en:"Professional massage therapists, home visits available."}},
+{id:11,img:PH("photo-1568241360857-e23e825c4e08"),c:"villas",city:"marrakech",n:"Villa Palmeraie Oasis",a:"Palmeraie",p:260,d:{en:"Large villa with garden and private pool."}},
+{id:13,img:PH("photo-1559925523-10de9e23cf90"),c:"apartments",city:"rabat",n:"Agdal Modern Apartment",a:"Agdal",p:48,d:{en:"Bright apartment close to the tram and the train station."}},
+{id:15,img:PH("photo-1519594445471-0e5f86b3fb09"),c:"apartments",city:"tangier",n:"Tangier Bay Apartment",a:"Corniche",p:60,d:{en:"Two bedrooms facing the bay."}},
+{id:16,c:"explore",svc:"carrental",city:"tangier",n:"Car Rental Tangier",a:"City center",p:0,d:{en:"Economy and family cars, daily and weekly rates."}},
+];
+
+/* ============ 3) TRANSLATIONS ============ */
+const T={
+en:{apartments:"Apartments",villas:"Villas",hotels:"Hotels",restaurants:"Restaurants",transport:"Transport",explore:"Services",h:"Discover Morocco",s:"Stay, eat, move around and explore Morocco's greatest cities. Book directly and pay securely with PayPal.",night:"night",ride:"ride",book:"Book now",map:"View on map",in:"Check-in",out:"Check-out",date:"Date",guests:"Guests",name:"Full name",email:"Email",total:"Total",fill:"Please fill in all fields correctly.",ok:"Booking confirmed! Thank you, ",empty:"Nothing here yet.",busy:"These dates are not available.",allc:"All cities",terms:"Terms",privacy:"Privacy",cancelp:"Cancellation",wa:"Hello Darivo, I would like some information.",ck:"We only use essential storage (language, security, payments).",okb:"OK"},
+fr:{apartments:"Appartements",villas:"Villas",hotels:"Hôtels",restaurants:"Restaurants",transport:"Transport",explore:"Services",h:"Découvrez le Maroc",s:"Logez, mangez, déplacez-vous et explorez les plus belles villes du Maroc. Réservez directement et payez en toute sécurité avec PayPal.",night:"nuit",ride:"trajet",book:"Réserver",map:"Voir sur la carte",in:"Arrivée",out:"Départ",date:"Date",guests:"Voyageurs",name:"Nom complet",email:"E-mail",total:"Total",fill:"Veuillez remplir correctement tous les champs.",ok:"Réservation confirmée ! Merci, ",empty:"Rien pour le moment.",busy:"Ces dates ne sont pas disponibles.",allc:"Toutes les villes",terms:"Conditions",privacy:"Confidentialité",cancelp:"Annulation",wa:"Bonjour Darivo, je souhaite des informations.",ck:"Nous utilisons uniquement un stockage essentiel (langue, sécurité, paiements).",okb:"OK"},
+es:{apartments:"Apartamentos",villas:"Villas",hotels:"Hoteles",restaurants:"Restaurantes",transport:"Transporte",explore:"Servicios",h:"Descubre Marruecos",s:"Alójate, come, muévete y explora las mejores ciudades de Marruecos. Reserva directamente y paga de forma segura con PayPal.",night:"noche",ride:"trayecto",book:"Reservar",map:"Ver en el mapa",in:"Entrada",out:"Salida",date:"Fecha",guests:"Huéspedes",name:"Nombre completo",email:"Correo electrónico",total:"Total",fill:"Rellena todos los campos correctamente.",ok:"¡Reserva confirmada! Gracias, ",empty:"Aún no hay nada.",busy:"Estas fechas no están disponibles.",allc:"Todas las ciudades",terms:"Condiciones",privacy:"Privacidad",cancelp:"Cancelación",wa:"Hola Darivo, quisiera información.",ck:"Solo usamos almacenamiento esencial (idioma, seguridad, pagos).",okb:"OK"},
+de:{apartments:"Apartments",villas:"Villen",hotels:"Hotels",restaurants:"Restaurants",transport:"Transport",explore:"Dienstleistungen",h:"Entdecke Marokko",s:"Übernachten, essen, unterwegs sein und die schönsten Städte Marokkos erkunden. Direkt buchen und sicher mit PayPal bezahlen.",night:"Nacht",ride:"Fahrt",book:"Jetzt buchen",map:"Auf der Karte ansehen",in:"Anreise",out:"Abreise",date:"Datum",guests:"Gäste",name:"Vollständiger Name",email:"E-Mail",total:"Gesamt",fill:"Bitte alle Felder korrekt ausfüllen.",ok:"Buchung bestätigt! Danke, ",empty:"Noch nichts vorhanden.",busy:"Diese Daten sind nicht verfügbar.",allc:"Alle Städte",terms:"AGB",privacy:"Datenschutz",cancelp:"Stornierung",wa:"Hallo Darivo, ich hätte gern Informationen.",ck:"Wir verwenden nur notwendige Speicherung (Sprache, Sicherheit, Zahlungen).",okb:"OK"},
+it:{apartments:"Appartamenti",villas:"Ville",hotels:"Hotel",restaurants:"Ristoranti",transport:"Trasporti",explore:"Servizi",h:"Scopri il Marocco",s:"Soggiorna, mangia, spostati ed esplora le più belle città del Marocco. Prenota direttamente e paga in sicurezza con PayPal.",night:"notte",ride:"corsa",book:"Prenota ora",map:"Vedi sulla mappa",in:"Check-in",out:"Check-out",date:"Data",guests:"Ospiti",name:"Nome completo",email:"E-mail",total:"Totale",fill:"Compila correttamente tutti i campi.",ok:"Prenotazione confermata! Grazie, ",empty:"Ancora niente.",busy:"Queste date non sono disponibili.",allc:"Tutte le città",terms:"Termini",privacy:"Privacy",cancelp:"Cancellazione",wa:"Ciao Darivo, vorrei delle informazioni.",ck:"Usiamo solo archiviazione essenziale (lingua, sicurezza, pagamenti).",okb:"OK"},
+ar:{apartments:"شقق",villas:"فيلات",hotels:"فنادق",restaurants:"مطاعم",transport:"نقل",explore:"خدمات",h:"اكتشف المغرب",s:"أقم وتناول الطعام وتنقّل واستكشف أجمل مدن المغرب. احجز مباشرة وادفع بأمان عبر PayPal.",night:"ليلة",ride:"رحلة",book:"احجز الآن",map:"عرض على الخريطة",in:"الوصول",out:"المغادرة",date:"التاريخ",guests:"الضيوف",name:"الاسم الكامل",email:"البريد الإلكتروني",total:"المجموع",fill:"يرجى ملء جميع الحقول بشكل صحيح.",ok:"تم تأكيد الحجز! شكراً ",empty:"لا يوجد شيء بعد.",busy:"هذه التواريخ غير متاحة.",allc:"كل المدن",terms:"الشروط",privacy:"الخصوصية",cancelp:"الإلغاء",wa:"مرحباً داريفو، أودّ الحصول على معلومات.",ck:"نستخدم فقط التخزين الضروري (اللغة، الأمان، الدفع).",okb:"حسناً"}
+};
+
+/* ============ 3b) LEGAL TEXTS — TEMPLATES: edit to match your real policy and have a lawyer review them. Shown in English in all languages (add per-language versions if you wish). ============ */
+const LEGAL={
+en:{terms:["{name} is a free classified-ads platform. We do not take part in deals between advertisers and visitors.","Advertisers are solely responsible for their ads: accuracy, prices, photos and the legality of what they offer (licences, permits, taxes).","Visitors contact the advertiser directly by phone or WhatsApp. {name} takes no commission and handles no payments. Never send money in advance to someone you do not know.","Every new or edited ad is reviewed by an administrator before it is published. We may refuse, edit or remove any ad or review that is misleading, illegal, offensive or spam.","Reviews must be honest, respectful and based on a real experience."],
+privacy:["Advertisers create an account with a name, an email address and a password (stored securely, never displayed). A one-time code sent by email confirms the email address and lets you reset a forgotten password. The account email address is never shown on the site; an optional contact email added to an ad is public.","The phone number you put on an ad is public: visitors use it to contact you by phone or WhatsApp.","Reviews contain the name and comment typed by the visitor.","Data is stored with our service providers (Supabase for accounts, ads and photos) and is never sold. To access or delete your data, contact {email}.","The site uses only essential browser storage (language choice and security)."]},
+fr:{terms:["{name} est une plateforme de petites annonces gratuites. Nous ne participons pas aux accords entre annonceurs et visiteurs.","Les annonceurs sont seuls responsables de leurs annonces : exactitude, prix, photos et légalité de ce qu'ils proposent (autorisations, licences, taxes).","Les visiteurs contactent directement l'annonceur par téléphone ou WhatsApp. {name} ne prend aucune commission et ne gère aucun paiement. N'envoyez jamais d'argent à l'avance à quelqu'un que vous ne connaissez pas.","Chaque annonce nouvelle ou modifiée est vérifiée par un administrateur avant sa publication. Nous pouvons refuser, modifier ou supprimer toute annonce ou tout avis trompeur, illégal, offensant ou indésirable.","Les avis doivent être honnêtes, respectueux et fondés sur une expérience réelle."],
+privacy:["Les annonceurs créent un compte avec un nom, une adresse e-mail et un mot de passe (stocké de façon sécurisée, jamais affiché). Un code à usage unique envoyé par e-mail confirme l'adresse et permet de réinitialiser un mot de passe oublié. L'e-mail du compte n'est jamais affiché sur le site ; un e-mail de contact facultatif ajouté à une annonce est public.","Le numéro de téléphone indiqué sur une annonce est public : les visiteurs l'utilisent pour vous contacter par téléphone ou WhatsApp.","Les avis contiennent le nom et le commentaire saisis par le visiteur.","Les données sont stockées chez nos prestataires (Supabase pour les comptes, annonces et photos) et ne sont jamais vendues. Pour accéder à vos données ou les supprimer, contactez {email}.","Le site utilise uniquement le stockage essentiel du navigateur (langue et sécurité)."]},
+ar:{terms:["{name} منصة إعلانات مبوّبة مجانية. لا نتدخل في الاتفاقات بين المعلنين والزوار.","المعلن وحده مسؤول عن إعلانه: صحة المعلومات والأثمنة والصور وقانونية ما يعرضه (التراخيص والضرائب).","يتواصل الزائر مع المعلن مباشرة بالهاتف أو واتساب. {name} لا يأخذ عمولة ولا يتعامل مع أي مدفوعات. لا ترسل مالاً مسبقاً لشخص لا تعرفه.","كل إعلان جديد أو معدّل يراجعه المدير قبل نشره. يحق لنا رفض أو تعديل أو حذف أي إعلان أو رأي مضلّل أو مخالف للقانون أو مسيء أو مزعج.","يجب أن تكون الآراء صادقة ومحترمة ومبنية على تجربة حقيقية."],
+privacy:["آخر تحديث: 15 نوفمبر 2026", "مرحباً بك في {name}، المنصة الإلكترونية المتخصصة في إعلانات العقارات والأراضي والخدمات في المملكة المغربية.", "نحن نحترم خصوصية مستخدمينا ونلتزم بحماية بياناتهم الشخصية، ونعمل على معالجتها وفقاً للقوانين المعمول بها في المملكة المغربية، وخاصة القانون رقم 09-08 المتعلق بحماية الأشخاص الذاتيين تجاه معالجة المعطيات ذات الطابع الشخصي.", "باستخدامك لمنصتنا أو إنشاء حساب فيها، فإنك توافق على أحكام سياسة الخصوصية هذه.", "§ 1. المعلومات التي نقوم بجمعها", "عند استخدام المنصة، قد نقوم بجمع المعلومات التالية:", "¶ أولاً: معلومات الحساب", "• الاسم (الذي يظهر على إعلاناتك).", "• عنوان البريد الإلكتروني (لا يظهر في الموقع للعموم).", "• المدينة ونوع الخدمة التي يختارها المعلن عند إنشاء الحساب.", "• كلمة المرور الخاصة بالحساب (تُحفظ بصيغة مشفّرة آمنة ولا تُعرض لأي مستخدم). ويُرسل رمز تأكيد إلى بريدك عند إنشاء الحساب أو عند استعادة كلمة المرور.", "¶ ثانياً: معلومات الإعلانات", "• نوع العقار أو الخدمة (شقة، منزل، فيلا، غرفة، أرض، خدمات وغيرها).", "• المدينة والمنطقة.", "• السعر المطلوب للبيع أو الكراء.", "• صور الإعلان.", "• وصف الإعلان ومساحته ومواصفاته.", "• رقم الهاتف / واتساب الذي يضعه المعلن في الإعلان، وبريد إلكتروني للتواصل اختياري (يظهر للزوار علناً إن أضافه).", "• الآراء والتعليقات التي يكتبها الزوار، مع الاسم الذي يدخلونه.", "¶ ثالثاً: المعلومات التقنية", "• عنوان IP عند الاقتضاء.", "• نوع الجهاز والمتصفح.", "• بيانات استخدام الموقع.", "• ملفات تعريف الارتباط (Cookies) وفق إعدادات المستخدم.", "§ 2. كيفية استخدام المعلومات", "نستخدم المعلومات التي نجمعها للأغراض التالية:", "• إنشاء حسابات المستخدمين وإدارتها.", "• السماح بنشر الإعلانات.", "• عرض العقارات والخدمات للزوار.", "• تمكين المهتمين من التواصل مع المعلنين.", "• التحقق من الحسابات والحد من الإعلانات الوهمية والاحتيالية.", "• تحسين خدمات المنصة وتجربة الاستخدام.", "• حماية الموقع من الأنشطة غير القانونية أو إساءة الاستخدام.", "• إرسال الإشعارات المتعلقة بالحساب والإعلانات عند الضرورة.", "§ 3. خصوصية أرقام الهواتف", "تتيح منصتنا للمعلنين إمكانية إضافة رقم هاتف للتواصل مع المهتمين بإعلاناتهم. نوضح ما يلي:", "• رقم الهاتف الذي يضعه المعلن في إعلانه يظهر للزوار علناً، ليتمكنوا من التواصل معه بالهاتف أو واتساب.", "• لا يظهر الرقم في أي مكان آخر من الموقع خارج الإعلان. وبريد حسابك لا يظهر للعموم، أما البريد الاختياري الذي تضيفه إلى إعلانك فيظهر لتمكين الزوار من مراسلتك.", "• يتحمل المعلن مسؤولية التأكد من صحة رقم الهاتف المنشور، وألا ينشر رقماً لا يملك الحق في استخدامه.", "• يمكن للمعلن تعديل الرقم أو حذف الإعلان في أي وقت من خلال حسابه.", "لا نقوم بنشر رقم هاتف أي مستخدم إلا ضمن إعلان أدخله بنفسه.", "§ 4. مشاركة المعلومات مع أطراف أخرى", "نحن لا نبيع البيانات الشخصية للمستخدمين ولا نتاجر بها.", "قد تتم مشاركة بعض المعلومات عند الضرورة مع:", "• مزودي خدمات الاستضافة وتشغيل الموقع.", "• مزودي خدمات قواعد البيانات وتخزين الملفات (مثل Supabase).", "• مزودي خدمات الحماية والتحليلات التقنية.", "• الجهات الحكومية والقضائية المختصة عندما يفرض القانون ذلك.", "نحرص على أن تتم معالجة البيانات وفق الضمانات القانونية والأمنية المناسبة.", "§ 5. تخزين البيانات وحمايتها", "نعتمد تدابير تقنية وتنظيمية مناسبة لحماية المعلومات الشخصية من الوصول غير المصرح به أو التعديل أو الفقدان أو الكشف غير المشروع.", "قد نستخدم خدمات استضافة وقواعد بيانات خارج المملكة المغربية لتشغيل المنصة. وفي هذه الحالة، تتم مراعاة المتطلبات القانونية المتعلقة بنقل المعطيات الشخصية إلى الخارج، وفقاً للقانون المغربي رقم 09-08.", "§ 6. ملفات تعريف الارتباط (Cookies)", "قد يستخدم الموقع ملفات تعريف الارتباط أو التخزين في المتصفح لتحسين تجربة المستخدم، ومنها:", "• حفظ تفضيلات المستخدم (مثل اللغة).", "• تسهيل تسجيل الدخول.", "• تحسين أداء الموقع.", "• تحليل الزيارات والاستخدام.", "• عرض الإعلانات عند تفعيل خدمات الإعلانات.", "يمكن للمستخدم التحكم في ملفات تعريف الارتباط من خلال إعدادات المتصفح أو لوحة تفضيلات ملفات الارتباط المتاحة بالموقع.", "§ 7. الإعلانات والخدمات الخارجية", "قد تستخدم المنصة مستقبلاً خدمات إعلانية مثل Google AdSense. يمكن لهذه الخدمات استخدام تقنيات ملفات تعريف الارتباط أو تقنيات مشابهة لتقديم الإعلانات وقياس أدائها وفق إعدادات الموافقة والمتطلبات القانونية المعمول بها.", "تخضع هذه الخدمات أيضاً لسياسات الخصوصية الخاصة بمزوديها.", "§ 8. حقوق المستخدم", "وفقاً للقانون المغربي رقم 09-08، يتمتع المستخدم بالحقوق القانونية المتعلقة بمعطياته الشخصية، بما في ذلك:", "• الحق في معرفة المعلومات التي تتم معالجتها.", "• الحق في الوصول إلى بياناته الشخصية.", "• الحق في طلب تصحيح المعلومات غير الدقيقة.", "• الحق في طلب حذف البيانات عندما تتوفر الشروط القانونية لذلك.", "• الحق في الاعتراض على معالجة بياناته في الحالات التي يسمح بها القانون.", "• الحق في سحب الموافقة عندما تكون المعالجة مبنية عليها، دون التأثير على قانونية المعالجة السابقة للسحب.", "يمكن ممارسة هذه الحقوق من خلال التواصل معنا عبر البريد الإلكتروني الموضح أدناه، مع مراعاة الشروط والاستثناءات القانونية.", "§ 9. حذف الحساب", "يمكن للمستخدم طلب حذف حسابه من المنصة. عند تقديم طلب الحذف، نقوم بمعالجة الطلب وفق الإجراءات المعتمدة، وقد يتم حذف أو إخفاء الإعلانات المرتبطة بالحساب.", "قد نحتفظ ببعض المعلومات عندما يكون ذلك ضرورياً للوفاء بالتزامات قانونية أو لحماية الحقوق والمصالح المشروعة للمنصة، وفقاً للقانون.", "§ 10. مسؤولية المستخدم", "يلتزم المستخدم بما يلي:", "• تقديم معلومات صحيحة عند التسجيل.", "• عدم نشر معلومات شخصية تخص أشخاصاً آخرين دون إذنهم.", "• عدم نشر أرقام هواتف أو صور أو بيانات لا يملك الحق في استخدامها.", "• المحافظة على سرية كلمة المرور ورموز التأكيد التي تصله.", "• عدم استخدام المنصة لأغراض احتيالية أو غير قانونية.", "§ 11. خصوصية الأطفال", "المنصة موجهة للأشخاص الذين يمكنهم قانونياً إنشاء حسابات واستخدام خدماتها. لا نستهدف جمع البيانات الشخصية للأطفال بشكل متعمد دون مراعاة الموافقات والمتطلبات القانونية المتعلقة بهم.", "§ 12. التعديلات على سياسة الخصوصية", "نحتفظ بحق تحديث سياسة الخصوصية عند الحاجة، سواء نتيجة تطوير خدمات المنصة أو التغييرات القانونية. سيتم نشر النسخة الجديدة على هذه الصفحة مع تحديث تاريخ آخر تعديل.", "ننصح المستخدمين بمراجعة هذه الصفحة بشكل دوري.", "§ 13. التواصل معنا", "إذا كانت لديك أسئلة أو طلبات تتعلق بخصوصية بياناتك الشخصية، يمكنك التواصل معنا عبر:", "• اسم المنصة: {name}", "• البريد الإلكتروني: {email}", "• الدولة: المملكة المغربية", "• الموقع الإلكتروني: {site}", "كما يمكن للمستخدم ممارسة حقوقه لدى اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي (CNDP)، وفقاً للإجراءات القانونية المعمول بها.", "¶ {name}", "نهدف إلى توفير بيئة رقمية موثوقة وآمنة لإعلانات العقارات والخدمات في المغرب."]}};
+
+/* ============ 3c) CITIES — add a line "id|English|French|Spanish|German|Italian|Arabic" to add a city ============ */
+const CITIES=`agadir|Agadir|Agadir|Agadir|Agadir|Agadir|أكادير
+marrakech|Marrakech|Marrakech|Marrakech|Marrakesch|Marrakech|مراكش
+casablanca|Casablanca|Casablanca|Casablanca|Casablanca|Casablanca|الدار البيضاء
+rabat|Rabat|Rabat|Rabat|Rabat|Rabat|الرباط
+fes|Fes|Fès|Fez|Fès|Fes|فاس
+tangier|Tangier|Tanger|Tánger|Tanger|Tangeri|طنجة
+essaouira|Essaouira|Essaouira|Esauira|Essaouira|Essaouira|الصويرة
+chefchaouen|Chefchaouen|Chefchaouen|Chauen|Chefchaouen|Chefchaouen|شفشاون
+meknes|Meknes|Meknès|Mequinez|Meknès|Meknes|مكناس
+tetouan|Tetouan|Tétouan|Tetuán|Tétouan|Tetuan|تطوان
+oujda|Oujda|Oujda|Uxda|Oujda|Oujda|وجدة
+ouarzazate|Ouarzazate|Ouarzazate|Uarzazat|Ouarzazate|Ouarzazate|ورزازات
+merzouga|Merzouga|Merzouga|Merzouga|Merzouga|Merzouga|مرزوكة
+dakhla|Dakhla|Dakhla|Dajla|Dakhla|Dakhla|الداخلة`.split("\n").map(r=>{const a=r.split("|");return{id:a[0],n:{en:a[1],fr:a[2],es:a[3],de:a[4],it:a[5],ar:a[6]}}});
+let CITY="all";
+const cname=id=>{const c=CITIES.find(x=>x.id==id);return c?(c.n[L]||c.n.en):""};
+const cen=id=>{const c=CITIES.find(x=>x.id==id);return c?c.n.en:"Morocco"};
+
+/* ============ 4) APP ============ */
+const CATS=["apartments","studio","maison","villas","rooms","land","explore"];
+const TABS=["apartments","studio","maison","villas","rooms","land","daily","explore"]; // category bar: "daily" and "explore" (Services) open a dropdown
+const DAILY_CATS=["apartments","studio","maison","villas","rooms"];
+const SVCS=["delivery","massage","tourtransport","tourguide","carrental"]; // service types (category "explore" = Services)
+const REAL=["apartments","studio","maison","villas","rooms","land"]; // property categories: monthly rent, daily rent (not land) or sale
+const U={apartments:"month",studio:"month",maison:"month",villas:"month",rooms:"month",land:"month"};
+const isSale=i=>REAL.includes(i.c)&&i.offer=="sale";
+const isDaily=i=>REAL.includes(i.c)&&i.c!="land"&&i.offer=="daily";
+const unitOf=i=>isSale(i)?"":(isDaily(i)?"day":(U[i.c]||""));
+const offKey=i=>isSale(i)?"forsale":(isDaily(i)?"fordaily":"forrent");
+const G={apartments:"linear-gradient(135deg,#0E7C86,#8fd3d8)",villas:"linear-gradient(135deg,#c8553d,#f0b27a)",hotels:"linear-gradient(135deg,#0B2F4A,#3a8fb7)",restaurants:"linear-gradient(135deg,#b5532a,#f4a62a)",transport:"linear-gradient(135deg,#4a5568,#a0aec0)",explore:"linear-gradient(135deg,#d9a441,#f6e0a4)",studio:"linear-gradient(135deg,#6a5acd,#b8b0f0)",land:"linear-gradient(135deg,#8a6d3b,#d9c28a)",maison:"linear-gradient(135deg,#2f7d4f,#9fd9b0)",rooms:"linear-gradient(135deg,#c06c84,#f0c3d0)"};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let L="en",C="apartments",cur=null;
+try{L=localStorage.getItem("lang")||(navigator.language||"en").slice(0,2)}catch(e){}
+if(!T[L])L="ar";
+const t=k=>T[L][k]||T.en[k]
+Object.assign(T.en,{emailb:"Email",emsub:"Inquiry about: {n}",embody:"Hello, I am interested in your listing \"{n}\" on Darivo. Is it still available?"});Object.assign(T.fr,{emailb:"E-mail",emsub:"Demande concernant : {n}",embody:"Bonjour, votre annonce « {n} » sur Darivo m'intéresse. Est-elle toujours disponible ?"});Object.assign(T.es,{emailb:"Correo",emsub:"Consulta sobre: {n}",embody:"Hola, me interesa su anuncio «{n}» en Darivo. ¿Sigue disponible?"});Object.assign(T.de,{emailb:"E-Mail",emsub:"Anfrage zu: {n}",embody:"Guten Tag, ich interessiere mich für Ihre Anzeige „{n}“ auf Darivo. Ist sie noch verfügbar?"});Object.assign(T.it,{emailb:"E-mail",emsub:"Richiesta su: {n}",embody:"Buongiorno, sono interessato al suo annuncio «{n}» su Darivo. È ancora disponibile?"});Object.assign(T.ar,{emailb:"بريد",emsub:"استفسار حول: {n}",embody:"مرحباً، أنا مهتم بإعلانك «{n}» على Darivo. هل ما زال متاحاً؟"});
+Object.assign(T.en,{share:"Share",copied:"Link copied"});Object.assign(T.fr,{share:"Partager",copied:"Lien copié"});Object.assign(T.es,{share:"Compartir",copied:"Enlace copiado"});Object.assign(T.de,{share:"Teilen",copied:"Link kopiert"});Object.assign(T.it,{share:"Condividi",copied:"Link copiato"});Object.assign(T.ar,{share:"مشاركة",copied:"تم نسخ الرابط"});
+const SEO={
+en:{t:"Darivo – Homes, Land & Services in Morocco",d:"Free classified ads in Morocco: apartments, villas, houses, rooms and land for rent or sale, plus local services. Contact advertisers directly by WhatsApp or phone."},
+fr:{t:"Darivo – Logements, terrains et services au Maroc",d:"Petites annonces gratuites au Maroc : appartements, villas, maisons, chambres et terrains à louer ou à vendre, et services. Contactez l'annonceur directement par WhatsApp ou téléphone."},
+es:{t:"Darivo – Viviendas, terrenos y servicios en Marruecos",d:"Anuncios gratuitos en Marruecos: apartamentos, villas, casas, habitaciones y terrenos en alquiler o venta, y servicios. Contacta directamente con el anunciante por WhatsApp o teléfono."},
+de:{t:"Darivo – Wohnungen, Grundstücke & Services in Marokko",d:"Kostenlose Kleinanzeigen in Marokko: Wohnungen, Villen, Häuser, Zimmer und Grundstücke zur Miete oder zum Kauf sowie Dienstleistungen. Inserenten direkt per WhatsApp oder Telefon kontaktieren."},
+it:{t:"Darivo – Case, terreni e servizi in Marocco",d:"Annunci gratuiti in Marocco: appartamenti, ville, case, camere e terreni in affitto o vendita, più servizi. Contatta direttamente l'inserzionista su WhatsApp o per telefono."},
+ar:{t:"Darivo – سكن وأراضٍ وخدمات في المغرب",d:"إعلانات مبوّبة مجانية في المغرب: شقق وفيلات ومنازل وغرف وأراضٍ للكراء أو البيع، إضافة إلى الخدمات. تواصل مع المعلن مباشرة عبر واتساب أو الهاتف."}};
+function hm(tag,key,kv,val,attr){let e=document.head.querySelector(tag+"["+key+'="'+kv+'"]');if(!e){e=document.createElement(tag);e.setAttribute(key,kv);document.head.appendChild(e)}e.setAttribute(attr,val)}
+function seo(){try{
+const S=SEO[L]||SEO.en,base=location.origin+location.pathname,o=$("#det")&&$("#det").open&&DET;
+let ti=S.t,de=S.d,url=base,ld={"@context":"https://schema.org","@type":"WebSite",name:"Darivo",url:base,inLanguage:L,description:S.d};
+if(o){const i=DET,d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"";
+ti=i.n+" – "+cname(i.city||"agadir")+" | Darivo";de=(d||S.d).replace(/\s+/g," ").slice(0,155);url=base+"#ad-"+encodeURIComponent(i.id);
+const im=(imgsOf(i)||[]).find(u=>/^https?:/.test(u));
+ld={"@context":"https://schema.org","@type":"Product",name:i.n,description:de,url:url};
+if(im)ld.image=im;
+if(i.p)ld.offers={"@type":"Offer",price:String(i.p),priceCurrency:CONFIG.currency,availability:"https://schema.org/InStock",url:url}}
+document.title=ti;
+hm("meta","name","description",de,"content");
+hm("meta","property","og:title",ti,"content");hm("meta","property","og:description",de,"content");hm("meta","property","og:url",url,"content");
+hm("meta","name","twitter:title",ti,"content");hm("meta","name","twitter:description",de,"content");
+hm("link","rel","canonical",url,"href");
+let sc=document.getElementById("ld");if(!sc){sc=document.createElement("script");sc.type="application/ld+json";sc.id="ld";document.head.appendChild(sc)}
+sc.textContent=JSON.stringify(ld)}catch(e){}}
+function hashOpen(){const m=/^#ad-(.+)$/.exec(location.hash||"");if(!m)return;
+let id;try{id=decodeURIComponent(m[1])}catch(e){return}
+if(DET&&String(DET.id)==id&&$("#det").open)return;
+const i=items().find(x=>String(x.id)==id);if(i)openDet(i.id)}
+async function shareAd(b){if(!DET)return;const url=location.origin+location.pathname+"#ad-"+encodeURIComponent(DET.id);
+try{if(navigator.share){await navigator.share({title:DET.n,url:url})}
+else{await navigator.clipboard.writeText(url);const o=b.innerHTML;b.textContent="✓ "+t("copied");setTimeout(()=>{b.innerHTML=o},1800)}}catch(e){}}
+;
+const money=n=>new Intl.NumberFormat(L=="ar"?"ar-u-nu-latn":L,{style:"currency",currency:CONFIG.currency,maximumFractionDigits:0}).format(n);
+let LIVE=null,db=null,ADMIN=false,USER=null;
+const items=()=>LIVE||DATA;
+/* phone numbers: stored as digits with country code (Morocco: 2126XXXXXXXX), shown as 06 XX XX XX XX */
+function normPhone(raw){let d=String(raw||"").trim();const plus=d.startsWith("+");d=d.replace(/\D/g,"");if(!d)return"";
+if(d.startsWith("00"))d=d.slice(2);
+else if(!plus&&d.length==10&&d[0]=="0")d="212"+d.slice(1);
+else if(!plus&&d.length==9&&/^[5-8]/.test(d))d="212"+d;
+if(d.startsWith("212"))return/^212[5-8]\d{8}$/.test(d)?d:"";
+return/^\d{8,15}$/.test(d)?d:""}
+const nfm=n=>new Intl.NumberFormat(L).format(n);
+const fmtPhone=n=>/^212[5-8]\d{8}$/.test(n||"")?"0"+n.slice(3).replace(/^(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/,"$1 $2 $3 $4 $5"):(n?"+"+n:"");
+const waLink=i=>{const p=normPhone(i.phone);return p?`https://wa.me/${p}?text=${encodeURIComponent(t("wamsg").replace("{n}",i.n))}`:""};
+DATA.forEach(i=>{i.phone="2126000000"+String(i.id).padStart(2,"0")}); // demo numbers (fake)
+const DAR={1:85,2:32,3:420,11:600,13:78,15:92,18:140,19:250,20:85,21:30,22:300,23:500,24:400};
+const DPR={1:4500,2:2800,3:15000,4:950,6:250,10:1200,11:22000,12:1100,13:5500,14:850,15:6000,17:200};
+DATA.forEach(i=>{if(DPR[i.id])i.p=DPR[i.id];if(DAR[i.id])i.area=DAR[i.id]});DATA.find(i=>i.id==2).c="studio";DATA.find(i=>i.id==2).n="Sunny Studio Founty";
+[{id:18,img:PH("photo-1568241360857-e23e825c4e08"),c:"maison",n:"Family House with Garden",a:"Talborjt",p:7000,d:{en:"3 bedrooms, small garden, quiet street. Monthly rent, unfurnished."},am:["parking","kitchen"]},
+{id:19,img:PH("photo-1568241360857-e23e825c4e08"),c:"maison",city:"casablanca",n:"Modern House for Sale",a:"Bouskoura",p:1350000,offer:"sale",d:{en:"4 bedrooms, 250 m² built, garage, title deed available."},am:["parking","ac"]},
+{id:20,img:PH("photo-1559925523-10de9e23cf90"),c:"apartments",city:"rabat",n:"Apartment for Sale in Agdal",a:"Agdal",p:1100000,offer:"sale",d:{en:"85 m², 2 bedrooms, third floor with elevator, ready to move in."},am:["ac","kitchen"]},
+{id:21,img:PH("photo-1546388613-2fb7213ec9c6"),c:"studio",city:"marrakech",n:"Studio near Gueliz",a:"Gueliz",p:2500,d:{en:"Furnished studio, monthly rent, all bills included."},am:["wifi","ac","kitchen"]}].forEach(x=>{x.phone="2126000000"+x.id;DATA.push(x)});
+[{id:22,img:PH("photo-1549140600-78c9b8275e9d"),c:"land",n:"Building Plot in Taddart",a:"Taddart",p:650000,offer:"sale",d:{en:"300 m² titled building plot, flat, close to shops and schools."}},
+{id:23,img:PH("photo-1549140600-78c9b8275e9d"),c:"land",city:"marrakech",n:"Land Plot near Ourika Road",a:"Route d'Ourika",p:1200000,offer:"sale",d:{en:"500 m² plot, water and electricity nearby, title deed available."}},
+{id:24,img:PH("photo-1549140600-78c9b8275e9d"),c:"land",city:"tangier",n:"Fenced Land for Rent",a:"Gzenaya",p:3000,offer:"rent",d:{en:"400 m² fenced plot, suitable for storage or parking. Monthly rent."}}].forEach(x=>{x.phone="2126000000"+x.id;x.am=[];DATA.push(x)});
+[{id:30,img:PH("photo-1546388613-2fb7213ec9c6"),c:"rooms",n:"Private Room near the Beach",a:"Founty",p:150,offer:"daily",d:{en:"Clean private room with shared kitchen, 5 min from the beach."},am:["wifi","ac"]},
+{id:31,img:PH("photo-1546388613-2fb7213ec9c6"),c:"rooms",city:"marrakech",n:"Furnished Room in Gueliz",a:"Gueliz",p:1500,d:{en:"Furnished room, monthly rent, bills included."},am:["wifi"]},
+{id:34,img:PH("photo-1538053367502-742497073841"),c:"apartments",n:"Beachfront Apartment (Daily)",a:"Marina, Agadir",p:450,offer:"daily",d:{en:"Daily rental, 2 bedrooms, balcony and fast Wi-Fi."},am:["wifi","seaview","ac"]},
+{id:35,img:PH("photo-1489749798305-4fea3ae63d43"),c:"villas",n:"Family Villa with Pool (Daily)",a:"Agadir Bay",p:1800,offer:"daily",d:{en:"Daily rental, private pool, sleeps 8."},am:["pool","parking","wifi"]},
+{id:32,c:"explore",svc:"tourtransport",n:"Tourist Transport & Airport Transfers",a:"Agadir",p:0,d:{en:"Comfortable minibuses and cars with driver for tours and airport transfers."}},
+{id:33,c:"explore",svc:"tourguide",city:"marrakech",n:"Medina & Desert Tour Guide",a:"Jemaa el-Fna",p:0,d:{en:"Private guide for the medina, Atlas valleys and desert excursions."}}].forEach(x=>{x.phone="2126000000"+x.id;x.am=x.am||[];DATA.push(x)});
+DATA.forEach(i=>{if(i.c=="explore"&&!i.phone)i.phone="2126000001"+String(i.id).padStart(2,"0")});
+DATA.forEach(i=>{if(DAR[i.id])i.area=DAR[i.id]});
+const DIM={1:["photo-1538053367502-742497073841","photo-1546388613-2fb7213ec9c6","photo-1559925523-10de9e23cf90","photo-1519594445471-0e5f86b3fb09"],3:["photo-1489749798305-4fea3ae63d43","photo-1568241360857-e23e825c4e08","photo-1515386474292-47555758ef2e"],18:["photo-1568241360857-e23e825c4e08","photo-1489749798305-4fea3ae63d43","photo-1559925523-10de9e23cf90"],22:["photo-1549140600-78c9b8275e9d","photo-1547112033-4e3f1c379955"]};
+DATA.forEach(i=>{if(DIM[i.id])i.imgs=DIM[i.id].map(PH)});
+
+function card(i){
+const d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"";
+const bg=i.img?`background:url('${sU(i.img)}') center/cover,${G[i.c]}`:`background:${G[i.c]}`;
+const wl=waLink(i);
+const ph=normPhone(i.phone);
+const act=wl?`<div class="acts"><a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><a class="go alt call" href="tel:+${ph}" dir="ltr" aria-label="${t("callb")} ${fmtPhone(ph)}">📞 ${t("callb")}</a></div>`:`<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")} ↗</a>`;
+const pr=i.p?`<span class="price"><b>${money(i.p)}</b>${unitOf(i)?" / "+t(unitOf(i)):""}</span>`:"<span></span>";
+return `<article class="card"><div class="pic" data-v="${i.id}" role="button" tabindex="0" aria-label="${esc(i.n)}">${slidesHtml(i)}${REAL.includes(i.c)?`<span class="tg ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}</div><div class="body"><h3 class="vt" data-v="${i.id}" tabindex="0">${esc(i.n)}</h3><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div>${rbadge(i.id)}<p>${esc(d)}</p>${chips(i)}<div class="row">${pr}${act}</div>${ADMIN&&LIVE?`<div class="row"><button class="map" data-e="${i.id}">✎ price</button><button class="map" style="color:#c0392b" data-x="${i.id}">🗑 delete</button></div>`:""}</div></article>`}
+
+function render(){
+closeTM();
+document.documentElement.lang=L;$("#lg").value=L;
+document.documentElement.dir=L=="ar"?"rtl":"ltr";document.documentElement.lang=L;
+$("#h").textContent=t("h");$("#s").textContent=t("s");
+const Bz=CONFIG.business;
+$("#fl").innerHTML=["terms","privacy"].map(k=>`<a href="#" data-l="${k}">${t(k)}</a>`).join(" · ");
+const w=$("#wa");w.hidden=Bz.whatsapp.includes("X");w.href=`https://wa.me/${Bz.whatsapp}?text=${encodeURIComponent(t("wa"))}`;
+$("#ckt").textContent=t("ck");$("#ckb").textContent=t("okb");
+
+$("#cs").innerHTML=`<option value="all">${t("allc")}</option>`+CITIES.map(c=>`<option value="${c.id}">${esc(c.n[L]||c.n.en)}</option>`).join("");$("#cs").value=CITY;
+$("#tabs").innerHTML=TABS.map(c=>`<button class="tab" aria-selected="${c==C}" data-c="${c}"${(c=="daily"||c=="explore")?` aria-haspopup="menu"`:""}>${tabLbl(c)}</button>`).join("");
+fpBuild();list();if($("#det").open)detRender();ddAll();if(typeof buildMenu=="function")buildMenu();seo();hashOpen()}
+
+function legal(k){const Bz=CONFIG.business,f=x=>x.replace(/\{name\}/g,Bz.name).replace(/\{email\}/g,Bz.email).replace(/\{site\}/g,location.origin);
+$("#lt").textContent=t(k);$("#lb").innerHTML=((LEGAL[L]&&LEGAL[L][k])||LEGAL.en[k]).map(x=>{const y=esc(f(x));if(y.startsWith("§ "))return`<h3 style="margin:16px 0 4px;font-size:1rem">${y.slice(2)}</h3>`;if(y.startsWith("¶ "))return`<p style="margin:10px 0 2px"><b>${y.slice(2)}</b></p>`;if(y.startsWith("• "))return`<p style="margin:2px 0;padding-inline-start:16px">${y}</p>`;return`<p>${y}</p>`}).join("");$("#lgd").showModal()}
+
+/* events */
+/* category-bar dropdowns: "Daily rent" -> property category, "Services" -> service type */
+const tabLbl=c=>{const m=c=="daily"||c=="explore";let x=t(c);if(m&&c==C&&SUB)x+=" · "+t(c=="daily"?SUB:"sv_"+SUB);return esc(x)+(m?" ▾":"")};
+const tmOpen=()=>!$("#tm").hidden;
+function closeTM(){const m=$("#tm");if(m)m.hidden=true}
+function openTM(k){const m=$("#tm"),tb=$(`#tabs [data-c="${k}"]`);if(!m||!tb)return;
+const opts=k=="daily"?[["",t("allcat")]].concat(DAILY_CATS.map(x=>[x,t(x)])):[["",t("allsvc")]].concat(SVCS.map(x=>[x,t("sv_"+x)]));
+m.innerHTML=opts.map(o=>`<button type="button" role="menuitem" class="tmi${SUB==o[0]?" on":""}" data-sub="${esc(o[0])}">${esc(o[1])}</button>`).join("");
+m.hidden=false;const r=tb.getBoundingClientRect(),w=m.offsetWidth||210,rtl=document.documentElement.dir=="rtl";
+let left=rtl?r.right-w:r.left;left=Math.max(8,Math.min(left,innerWidth-w-8));
+m.style.top=(r.bottom+6)+"px";m.style.left=left+"px"}
+addEventListener("resize",closeTM);addEventListener("scroll",closeTM,{passive:true});
+document.addEventListener("keydown",e=>{if(e.key=="Escape")closeTM()});
+document.addEventListener("click",e=>{
+const c=e.target.closest("[data-c]"),x=e.target.closest("[data-x]"),ed=e.target.closest("[data-e]"),lg=e.target.closest("[data-l]");
+if(lg){e.preventDefault();legal(lg.dataset.l)}
+if(!e.target.closest("#tm,[data-c=daily],[data-c=explore]"))closeTM();
+const pb=e.target.closest("[data-pg]");
+if(pb){const v=pb.dataset.pg;if(v=="more"){WANTP=P+1;loadPub()}else{P=+v;WANTP=0;list();const gb=$("#fb");if(gb&&gb.scrollIntoView)gb.scrollIntoView({block:"start"})}}
+const sb=e.target.closest("[data-sub]");
+if(sb){SUB=sb.dataset.sub;render()}
+if(c){const k=c.dataset.c,mt=(k=="daily"||k=="explore");
+if(mt&&k==C&&tmOpen())closeTM();
+else{if(k!=C||!mt){C=k;SUB="";MAXP=0;OFFER="";AMS.clear();render()}
+if(mt)openTM(k)}}
+if(x&&confirm("Delete this item?")){if(db)db.from("items").delete().eq("id",x.dataset.x).then(reloadPub);else{LIVE=LIVE.filter(i=>i.id!=x.dataset.x);render()}}
+if(ed){const v=prompt("New price",items().find(i=>i.id==ed.dataset.e).p);if(v!==null){const p=+v||0;if(db)db.from("items").update({p}).eq("id",ed.dataset.e).then(reloadPub);else{items().find(i=>i.id==ed.dataset.e).p=p;render()}}}});
+$("#lg").onchange=e=>{L=e.target.value;try{localStorage.setItem("lang",L)}catch(x){}render()};
+
+/* ===== Search, filters, details page & guest reviews ===== */
+Object.assign(T.en,{studio:"Studios",maison:"Houses",month:"month",forrent:"For rent",forsale:"For sale",offl:"Offer"});
+Object.assign(T.fr,{studio:"Studios",maison:"Maisons",month:"mois",forrent:"À louer",forsale:"À vendre",offl:"Offre"});
+Object.assign(T.es,{studio:"Estudios",maison:"Casas",month:"mes",forrent:"En alquiler",forsale:"En venta",offl:"Oferta"});
+Object.assign(T.de,{studio:"Studios",maison:"Häuser",month:"Monat",forrent:"Zu vermieten",forsale:"Zu verkaufen",offl:"Angebot"});
+Object.assign(T.it,{studio:"Monolocali",maison:"Case",month:"mese",forrent:"In affitto",forsale:"In vendita",offl:"Offerta"});
+Object.assign(T.ar,{studio:"استوديوهات",maison:"منازل",month:"شهر",forrent:"للكراء",forsale:"للبيع",offl:"نوع العرض"});
+Object.assign(T.en,{sqm:"m²"});Object.assign(T.fr,{sqm:"m²"});Object.assign(T.es,{sqm:"m²"});Object.assign(T.de,{sqm:"m²"});Object.assign(T.it,{sqm:"m²"});Object.assign(T.ar,{sqm:"م²"});
+Object.assign(T.en,{land:"Land plots"});Object.assign(T.fr,{land:"Terrains"});Object.assign(T.es,{land:"Terrenos"});Object.assign(T.de,{land:"Grundstücke"});Object.assign(T.it,{land:"Terreni"});Object.assign(T.ar,{land:"بقع أرضية"});
+Object.assign(T.en,{callb:"Call"});Object.assign(T.fr,{callb:"Appeler"});Object.assign(T.ar,{callb:"اتصال"});Object.assign(T.es,{callb:"Llamar"});Object.assign(T.de,{callb:"Anrufen"});Object.assign(T.it,{callb:"Chiama"});
+/* ===== Rooms, daily rent and service types ===== */
+/* tab menu labels */
+/* paging labels */
+Object.assign(T.en,{more:"Load more",loaderr:"Could not load listings. Please try again later."});
+Object.assign(T.fr,{more:"Voir plus",loaderr:"Impossible de charger les annonces. Réessayez plus tard."});
+Object.assign(T.es,{more:"Ver más",loaderr:"No se pudieron cargar los anuncios. Inténtalo más tarde."});
+Object.assign(T.de,{more:"Mehr laden",loaderr:"Anzeigen konnten nicht geladen werden. Bitte später erneut versuchen."});
+Object.assign(T.it,{more:"Mostra altri",loaderr:"Impossibile caricare gli annunci. Riprova più tardi."});
+Object.assign(T.ar,{more:"عرض المزيد",loaderr:"تعذّر تحميل الإعلانات. حاول لاحقًا."});
+Object.assign(T.en,{daily:"Daily rent",allcat:"All categories",allsvc:"All services"});
+Object.assign(T.fr,{daily:"Location journalière",allcat:"Toutes les catégories",allsvc:"Tous les services"});
+Object.assign(T.es,{daily:"Alquiler diario",allcat:"Todas las categorías",allsvc:"Todos los servicios"});
+Object.assign(T.de,{daily:"Tagesmiete",allcat:"Alle Kategorien",allsvc:"Alle Dienstleistungen"});
+Object.assign(T.it,{daily:"Affitto giornaliero",allcat:"Tutte le categorie",allsvc:"Tutti i servizi"});
+Object.assign(T.ar,{daily:"كراء يومي",allcat:"كل الفئات",allsvc:"كل الخدمات"});
+Object.assign(T.en,{rooms:"Rooms",forrent:"Monthly rent",fordaily:"Daily rent",day:"day",svct:"Type of service",sv_delivery:"Delivery",sv_massage:"Massage",sv_tourtransport:"Tourist transport",sv_tourguide:"Tourist guide",sv_carrental:"Car rental"});
+Object.assign(T.fr,{rooms:"Chambres",forrent:"Location mensuelle",fordaily:"Location journalière",day:"jour",svct:"Type de service",sv_delivery:"Livraison",sv_massage:"Massage",sv_tourtransport:"Transport touristique",sv_tourguide:"Guide touristique",sv_carrental:"Location de voiture"});
+Object.assign(T.es,{rooms:"Habitaciones",forrent:"Alquiler mensual",fordaily:"Alquiler diario",day:"día",svct:"Tipo de servicio",sv_delivery:"Entrega a domicilio",sv_massage:"Masajes",sv_tourtransport:"Transporte turístico",sv_tourguide:"Guía turístico",sv_carrental:"Alquiler de coches"});
+Object.assign(T.de,{rooms:"Zimmer",forrent:"Monatsmiete",fordaily:"Tagesmiete",day:"Tag",svct:"Art der Dienstleistung",sv_delivery:"Lieferservice",sv_massage:"Massage",sv_tourtransport:"Touristentransport",sv_tourguide:"Reiseführer",sv_carrental:"Autovermietung"});
+Object.assign(T.it,{rooms:"Camere",forrent:"Affitto mensile",fordaily:"Affitto giornaliero",day:"giorno",svct:"Tipo di servizio",sv_delivery:"Consegne",sv_massage:"Massaggi",sv_tourtransport:"Trasporto turistico",sv_tourguide:"Guida turistica",sv_carrental:"Noleggio auto"});
+Object.assign(T.ar,{rooms:"غرف",forrent:"كراء شهري",fordaily:"كراء يومي",day:"يوم",svct:"نوع الخدمة",sv_delivery:"التوصيل",sv_massage:"المساج",sv_tourtransport:"نقل سياحي",sv_tourguide:"الدليل السياحي",sv_carrental:"كراء السيارات"});
+Object.assign(T.en,{s:"Free classified ads in Morocco: homes and land plots to rent or buy, and services. Contact the advertiser directly by WhatsApp or phone.",wabtn:"WhatsApp",wamsg:"Hello, I saw your ad “{n}” on Darivo.",ck:"We only use essential storage (language and security)."});
+Object.assign(T.fr,{s:"Petites annonces gratuites au Maroc : location et vente de logements et de terrains, et services. Contactez l'annonceur directement par WhatsApp ou par téléphone.",wabtn:"WhatsApp",wamsg:"Bonjour, j'ai vu votre annonce « {n} » sur Darivo.",ck:"Nous utilisons uniquement le stockage essentiel (langue et sécurité)."});
+Object.assign(T.ar,{s:"إعلانات مجانية في المغرب: كراء وبيع العقارات والبقع الأرضية، وخدمات. تواصل مع المعلن مباشرة عبر واتساب أو الهاتف.",wabtn:"واتساب",wamsg:"السلام عليكم، شفت إعلانكم «{n}» على Darivo.",ck:"نستعمل فقط التخزين الضروري (اللغة والأمان)."});
+Object.assign(T.es,{s:"Anuncios gratuitos en Marruecos: alquiler y venta de viviendas y terrenos, y servicios. Contacta directamente con el anunciante por WhatsApp o teléfono.",wabtn:"WhatsApp",wamsg:"Hola, vi tu anuncio «{n}» en Darivo.",ck:"Solo usamos almacenamiento esencial (idioma y seguridad)."});
+Object.assign(T.de,{s:"Kostenlose Kleinanzeigen in Marokko: Wohnungen, Häuser und Grundstücke mieten oder kaufen sowie Dienstleistungen. Kontaktiere die Inserenten direkt per WhatsApp oder Telefon.",wabtn:"WhatsApp",wamsg:"Hallo, ich habe Ihre Anzeige „{n}“ auf Darivo gesehen.",ck:"Wir verwenden nur notwendigen Speicher (Sprache und Sicherheit)."});
+Object.assign(T.it,{s:"Annunci gratuiti in Marocco: case e terreni in affitto e in vendita, e servizi. Contatta direttamente l'inserzionista su WhatsApp o per telefono.",wabtn:"WhatsApp",wamsg:"Ciao, ho visto il tuo annuncio «{n}» su Darivo.",ck:"Usiamo solo archiviazione essenziale (lingua e sicurezza)."});
+
+Object.assign(T.en,{search:"Search by name, area or service…",filters:"Filters",sort:"Sort by",sdef:"Recommended",sasc:"Price: low to high",sdesc:"Price: high to low",srate:"Best rated",maxp:"Max price",minr:"Minimum rating",any:"Any",amen:"Amenities",reset:"Reset filters",results:"results",details:"Details",reviews:"Guest reviews",norev:"No reviews yet. Be the first to share your experience.",wr:"Write a review",yn:"Your name",yr:"Your rating",yc:"Your experience",send:"Publish review",thx:"Thank you! Your review is published.",revneed:"Enter your name, a star rating and a comment (5+ characters).",revdone:"You already reviewed this place.",delrev:"Delete",of:"reviews"});
+Object.assign(T.fr,{search:"Rechercher par nom, quartier ou service…",filters:"Filtres",sort:"Trier par",sdef:"Recommandés",sasc:"Prix croissant",sdesc:"Prix décroissant",srate:"Mieux notés",maxp:"Prix max",minr:"Note minimale",any:"Toutes",amen:"Équipements",reset:"Réinitialiser",results:"résultats",details:"Détails",reviews:"Avis des voyageurs",norev:"Aucun avis pour le moment. Soyez le premier à partager votre expérience.",wr:"Donner votre avis",yn:"Votre nom",yr:"Votre note",yc:"Votre expérience",send:"Publier l'avis",thx:"Merci ! Votre avis est publié.",revneed:"Indiquez votre nom, une note en étoiles et un commentaire (5 caractères min.).",revdone:"Vous avez déjà donné votre avis.",delrev:"Supprimer",of:"avis"});
+Object.assign(T.ar,{search:"ابحث بالاسم أو الحي أو الخدمة…",filters:"تصفية",sort:"ترتيب حسب",sdef:"موصى به",sasc:"الثمن: من الأقل",sdesc:"الثمن: من الأعلى",srate:"الأعلى تقييماً",maxp:"أقصى ثمن",minr:"أدنى تقييم",any:"الكل",amen:"المرافق والخدمات",reset:"إعادة الضبط",results:"نتيجة",details:"التفاصيل",reviews:"آراء الضيوف",norev:"لا توجد آراء بعد. كن أول من يشارك تجربته.",wr:"اكتب رأيك",yn:"اسمك",yr:"تقييمك",yc:"تجربتك",send:"نشر الرأي",thx:"شكراً! تم نشر رأيك.",revneed:"أدخل اسمك وتقييماً بالنجوم وتعليقاً (5 أحرف على الأقل).",revdone:"لقد قيّمت هذا المكان من قبل.",delrev:"حذف",of:"رأي"});
+const DAM={1:["wifi","seaview","ac","kitchen"],2:["wifi","kitchen","ac"],3:["pool","parking","wifi","ac","pets"],4:["breakfast","pool","seaview","wifi","parking"],5:["halal","seaview"],6:["airport","ac"],10:["pool","breakfast","wifi","ac"],11:["pool","parking","wifi","pets"],12:["seaview","breakfast","parking","wifi"],13:["wifi","kitchen","ac"],14:["breakfast","wifi"],15:["seaview","wifi","kitchen"],17:["airport","ac"]};
+DATA.forEach(i=>{if(DAM[i.id])i.am=DAM[i.id]});
+const DEMO_REV=[
+{id:"r1",itemId:"1",name:"Sophie L.",rating:5,text:"Spotless apartment and a great view. The host answered every question within minutes.",ts:1760000000000},
+{id:"r2",itemId:"1",name:"Youssef B.",rating:4,text:"موقع ممتاز وقريب من الشاطئ، والشقة نظيفة. الواي فاي كان أبطأ قليلاً مما توقعت.",ts:1758000000000},
+{id:"r3",itemId:"3",name:"Marc D.",rating:5,text:"Villa magnifique, piscine propre et jardin agréable. Parfait pour une famille.",ts:1757000000000},
+{id:"r4",itemId:"3",name:"Anna K.",rating:4,text:"Spacious and quiet. A bit far from the center, so a car is useful.",ts:1755000000000},
+{id:"r5",itemId:"4",name:"Karim A.",rating:4,text:"فندق جميل على الواجهة البحرية والفطور متنوع.",ts:1759000000000},
+{id:"r6",itemId:"5",name:"Lucía M.",rating:5,text:"The freshest grilled fish I have had. Simple, loud, and delicious.",ts:1756000000000},
+{id:"r7",itemId:"10",name:"Emma R.",rating:5,text:"A peaceful riad in the middle of the medina. The rooftop breakfast was the highlight.",ts:1761000000000},
+{id:"r8",itemId:"6",name:"Hassan T.",rating:5,text:"Driver was waiting at arrivals and the price was exactly as agreed.",ts:1754000000000}];
+let P=1,WANTP=0,LSIG="",Q="",OFFER="",SUB="",SORT="def",MAXP=0,MINR=0,AMS=new Set(),FOPEN=false,REV=[],RS={},DET=null,RSEL=0;
+if(CONFIG.supabase.url.startsWith("YOUR")||typeof supabase=="undefined")REV=DEMO_REV.slice();
+const sU=u=>/^(https?:|blob:)/.test(u||"")?String(u).replace(/['"()\\\s<>]/g,c=>"%"+c.charCodeAt(0).toString(16).padStart(2,"0")):"";
+function buildRS(){RS={};REV.forEach(r=>{const k=String(r.itemId),o=RS[k]=RS[k]||{n:0,sum:0};o.n++;o.sum+=+r.rating||0});Object.values(RS).forEach(o=>o.avg=o.sum/o.n)}
+buildRS();
+const stat=id=>RS[String(id)]||{n:0,avg:0};
+const starsTxt=n=>"★".repeat(Math.round(n))+"☆".repeat(5-Math.round(n));
+const rbadge=id=>{const s=stat(id);return s.n?`<div class="rt"><b>★ ${s.avg.toFixed(1)}</b> (${s.n})</div>`:""};
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function filtered(){
+let l=items().filter(i=>(C=="daily"?(isDaily(i)&&(!SUB||i.c==SUB)):(i.c==C&&!isDaily(i)))&&!i.paused&&(i.status||"approved")=="approved"&&(CITY=="all"||(i.city||"agadir")==CITY));
+const q=norm(Q.trim());
+if(q)l=l.filter(i=>norm([i.n,i.a,cname(i.city||"agadir"),cen(i.city||"agadir"),i.d?Object.values(i.d).join(" "):""].join(" ")).includes(q));
+if(OFFER&&REAL.includes(C))l=l.filter(i=>(i.offer||"rent")==OFFER);
+if(SUB&&C=="explore")l=l.filter(i=>i.svc==SUB);
+if(MAXP>0)l=l.filter(i=>!i.p||i.p<=MAXP);
+if(MINR>0)l=l.filter(i=>stat(i.id).n&&stat(i.id).avg>=MINR);
+if(AMS.size)l=l.filter(i=>[...AMS].every(k=>(i.am||[]).includes(k)));
+if(SORT=="asc")l=l.slice().sort((x,y)=>(x.p||1e9)-(y.p||1e9));
+else if(SORT=="desc")l=l.slice().sort((x,y)=>(y.p||-1)-(x.p||-1));
+else if(SORT=="rate")l=l.slice().sort((x,y)=>(stat(y.id).avg-stat(x.id).avg)||(stat(y.id).n-stat(x.id).n));
+return l}
+function list(){pubTick();const l=filtered();
+const sg=pubSig();if(sg!==LSIG){LSIG=sg;P=1;WANTP=0}
+const np=Math.max(1,Math.ceil(l.length/PG));
+if(WANTP&&np>=WANTP){P=WANTP;WANTP=0}else if(WANTP&&!(db&&PUB.busy))WANTP=0;
+if(P>np)P=np;
+const v=l.slice((P-1)*PG,P*PG);
+$("#grid").innerHTML=v.length?v.map(card).join(""):`<p>${db&&PUB.busy?"…":t("empty")}</p>`;lazyImgs();
+$("#rc").textContent=l.length+(db&&!PUB.done&&!PUB.err?"+":"")+" "+t("results");setMore(np)}
+function fmark(){$("#ft").textContent="⚙ "+t("filters")+((MAXP||MINR||OFFER||AMS.size)?" •":"")}
+function fpBuild(){
+$("#q").placeholder=t("search");fmark();
+$("#so").innerHTML=[["def","sdef"],["asc","sasc"],["desc","sdesc"],["rate","srate"]].map(x=>`<option value="${x[0]}">${t(x[1])}</option>`).join("");$("#so").value=SORT;$("#so").setAttribute("aria-label",t("sort"));
+$("#fp").hidden=!FOPEN;
+if($("#fp").contains(document.activeElement))return;
+$("#fp").innerHTML=(REAL.includes(C)?`<label>${t("offl")}<select id="fof"><option value="">${t("any")}</option><option value="rent"${OFFER=="rent"?" selected":""}>${t("forrent")}</option><option value="sale"${OFFER=="sale"?" selected":""}>${t("forsale")}</option></select></label>`:"")+(U[C]||C=="daily"?`<label>${t("maxp")} (${CONFIG.currency})<input id="fmp" type="number" min="0" value="${MAXP||""}"></label>`:"")+`<label>${t("minr")}<select id="fmr">${[0,3,4,4.5].map(v=>`<option value="${v}"${v==MINR?" selected":""}>${v?"★ "+v+"+":t("any")}</option>`).join("")}</select></label>${C=="land"||C=="explore"?"":`<div class="w"><small>${t("amen")}</small><div class="chips big">${Object.keys(AM).map(k=>`<label><input type="checkbox" name="fam" value="${k}"${AMS.has(k)?" checked":""}> ${esc(am(k))}</label>`).join("")}</div></div>`}<div class="w"><button class="go alt" id="frs" type="button">${t("reset")}</button></div>`}
+/* details */
+const imgsOf=i=>(i.imgs&&i.imgs.length)?i.imgs:(i.img?[i.img]:[]);
+/* image carousel: swipe sideways (scroll-snap) + arrows + counter */
+const hyd=el=>{if(el.dataset&&el.dataset.bg){el.style.background=`url('${el.dataset.bg}') center/cover,${el.dataset.g}`;delete el.dataset.bg}};
+const hydAll=s=>s.querySelectorAll(".sl[data-bg]").forEach(hyd);
+const IO=typeof IntersectionObserver!="undefined"?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){hyd(e.target);IO.unobserve(e.target)}}),{rootMargin:"400px"}):null;
+function lazyImgs(){document.querySelectorAll(".slides .sl[data-bg]:first-child").forEach(el=>IO?IO.observe(el):hyd(el))}
+document.addEventListener("pointerdown",e=>{const s=e.target.closest&&e.target.closest(".slides");if(s)hydAll(s)},true);
+document.addEventListener("scroll",e=>{const el=e.target;if(el.classList&&el.classList.contains("slides"))hydAll(el)},true);
+function slidesHtml(i,id){const im=imgsOf(i).slice(0,10);
+return`<div class="slides${id?" gm":""}"${id?` id="${id}"`:""}>${(im.length?im:[""]).map((u,k)=>(u&&!id&&!k&&i.thumb)?(u=i.thumb):u).map(u=>u&&!id?`<div class="sl" data-bg="${esc(sU(u))}" data-g="${esc(G[i.c])}" style="background:${G[i.c]}"></div>`:`<div class="sl" style="background:${u?`url('${sU(u)}') center/cover,`:""}${G[i.c]}"></div>`).join("")}</div>`+(im.length>1?`<button type="button" class="cvb l" data-sl="-1" aria-label="Previous">‹</button><button type="button" class="cvb r" data-sl="1" aria-label="Next">›</button><span class="cnt">1/${im.length}</span>`:"")}
+const rtl=()=>document.documentElement.dir=="rtl";
+function slideTo(el,x){if(el.scrollTo)el.scrollTo({left:x,behavior:"smooth"});else el.scrollLeft=x}
+document.addEventListener("scroll",e=>{const el=e.target;if(!el.classList||!el.classList.contains("slides"))return;
+const n=el.children.length,k=Math.max(0,Math.min(n-1,Math.round(Math.abs(el.scrollLeft)/(el.clientWidth||1))));
+const c=el.parentNode.querySelector(".cnt");if(c)c.textContent=(k+1)+"/"+n;
+if(el.id=="gm")document.querySelectorAll("#detg [data-g]").forEach((b,j)=>b.classList.toggle("on",j==k))},true);
+
+function openDet(id){const i=items().find(x=>x.id==id);if(!i)return;DET=i;RSEL=0;detRender();if(!$("#det").open)$("#det").showModal();try{history.replaceState(null,"","#ad-"+encodeURIComponent(id))}catch(e){}seo();if(db)loadRevs([id]).then(ch=>{if(ch&&$("#det").open){revList();list()}})}
+function detRender(){
+const i=DET&&items().find(x=>x.id==DET.id);if(!i)return;DET=i;
+const im=imgsOf(i),d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"",wl=waLink(i),ph=normPhone(i.phone);
+$("#detg").innerHTML=`<div class="gw">${slidesHtml(i,"gm")}</div>`+(im.length>1?`<div class="gt">${im.slice(0,10).map((u,k)=>`<button type="button" data-g="${k}" class="${k?"":"on"}" style="background-image:url('${sU(u)}')" aria-label="${k+1}"></button>`).join("")}</div>`:"");
+$("#detb").innerHTML=`${REAL.includes(i.c)?`<span class="tg in ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}<h2 style="font-size:1.4rem;margin:0 0 2px">${esc(i.n)}</h2><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div><div id="rsum" class="rt" style="margin:4px 0"></div>${i.p?`<div class="price" style="margin:8px 0"><b style="font-size:1.4rem">${money(i.p)}</b>${unitOf(i)?" / "+t(unitOf(i)):""}</div>`:""}<div class="row2">${wl?`<a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><a class="go alt" href="tel:+${ph}" dir="ltr">📞 ${t("callb")} · ${fmtPhone(ph)}</a>`:""}${i.email?`<a class="go alt" href="mailto:${esc(i.email)}?subject=${encodeURIComponent(t("emsub").replace("{n}",i.n))}&amp;body=${encodeURIComponent(t("embody").replace("{n}",i.n)+"\n\n"+location.origin+location.pathname+"#ad-"+i.id)}">✉️ ${t("emailb")}</a>`:""}<a class="go alt" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")}</a><button type="button" class="go alt" data-share>🔗 ${t("share")}</button></div><p style="margin:10px 0">${esc(d)}</p>${chips(i)}<h3 style="margin:18px 0 6px">${t("reviews")}</h3><div id="rvl"></div><h3 style="margin:18px 0 6px">${t("wr")}</h3><div class="hp" aria-hidden="true"><input id="rv-hp" tabindex="-1" autocomplete="off"></div><label>${t("yn")}<input id="rv-n" maxlength="40" autocomplete="name"></label><div><small>${t("yr")}</small><div id="stars">${[1,2,3,4,5].map(n=>`<button type="button" data-star="${n}" aria-label="${n}">★</button>`).join("")}</div></div><label>${t("yc")}<textarea id="rv-t" rows="3" maxlength="500"></textarea></label><button class="go" id="rv-s" type="button">${t("send")}</button><div id="rv-m" role="status" style="margin-top:8px;font-weight:600;color:var(--sea)"></div>`;
+revList()}
+function gal(k){const el=$("#gm");if(!el)return;slideTo(el,k*el.clientWidth*(rtl()?-1:1))}
+function star(n){RSEL=n;document.querySelectorAll("#stars button").forEach((b,j)=>b.classList.toggle("on",j<n))}
+function revList(){
+if(!DET||!$("#rvl"))return;
+const l=REV.filter(r=>String(r.itemId)==String(DET.id)).sort((x,y)=>y.ts-x.ts),s=stat(DET.id);
+$("#rsum").innerHTML=s.n?`<b>${starsTxt(s.avg)} ${s.avg.toFixed(1)}</b> · ${s.n} ${t("of")}`:t("norev");
+$("#rvl").innerHTML=l.length?l.slice(0,30).map(r=>`<div class="rv"><b>${esc(r.name)}</b> <span class="rt"><b>${starsTxt(r.rating)}</b></span> <small>${new Date(r.ts).toLocaleDateString(L)}</small>${ADMIN?` <button class="map" style="color:#c0392b" data-rd="${esc(r.id)}">${t("delrev")}</button>`:""}<p style="margin-top:2px">${esc(r.text)}</p></div>`).join(""):`<p>${t("norev")}</p>`}
+async function sendRev(){
+const m=$("#rv-m"),name=$("#rv-n").value.trim(),text=$("#rv-t").value.trim(),bad=x=>{m.style.color="#c0392b";m.textContent=x};
+if($("#rv-hp").value)return;
+if(!name||RSEL<1||text.length<5)return bad(t("revneed"));
+try{if(localStorage.getItem("rv_"+DET.id))return bad(t("revdone"))}catch(e){}
+const r={itemId:String(DET.id),name:name.slice(0,40),rating:RSEL,text:text.slice(0,500),lang:L,ts:Date.now()};
+try{if(db){const ref=await sbq(db.from("reviews").insert({item_id:r.itemId,name:r.name,rating:r.rating,text:r.text,lang:r.lang,ts:r.ts}).select("id").single());REV.unshift({...r,id:ref.id});buildRS();revList();list()}else{r.id="r"+Date.now();REV.unshift(r);buildRS();revList();list()}
+try{localStorage.setItem("rv_"+DET.id,"1")}catch(e){}
+$("#rv-n").value=$("#rv-t").value="";star(0);m.style.color="var(--sea)";m.textContent=t("thx")}catch(x){bad("Error: "+x.message)}}
+function delRev(id){if(db)db.from("reviews").delete().eq("id",id).then(({error})=>{if(error)return;REV=REV.filter(r=>String(r.id)!=String(id));buildRS();revList();list()});else{REV=REV.filter(r=>String(r.id)!=String(id));buildRS();revList();list()}}
+document.addEventListener("click",e=>{
+const sb=e.target.closest("[data-sl]");if(sb){const el=sb.parentNode.querySelector(".slides");if(el)hydAll(el);if(el)slideTo(el,el.scrollLeft+(+sb.dataset.sl)*(rtl()?-1:1)*el.clientWidth);return}
+const v=e.target.closest("[data-v]"),g=e.target.closest("[data-g]"),s=e.target.closest("[data-star]"),rd=e.target.closest("[data-rd]");
+if(v)openDet(v.dataset.v);
+if(g)gal(+g.dataset.g);
+if(s)star(+s.dataset.star);
+if(rd&&confirm(t("delrev")+"?"))delRev(rd.dataset.rd);
+if(e.target.id=="rv-s")sendRev()});
+document.addEventListener("keydown",e=>{const v=e.target.closest&&e.target.closest("[data-v]");if(v&&e.key=="Enter"){e.preventDefault();openDet(v.dataset.v)}});
+$("#q").addEventListener("input",e=>{Q=e.target.value;list()});
+$("#so").onchange=e=>{SORT=e.target.value;list()};
+$("#ft").onclick=()=>{FOPEN=!FOPEN;fpBuild()};
+$("#fp").addEventListener("input",e=>{const x=e.target;
+if(x.id=="fmp")MAXP=Math.max(0,+x.value||0);
+else if(x.id=="fmr")MINR=+x.value;
+else if(x.id=="fof")OFFER=x.value;
+else if(x.name=="fam"){x.checked?AMS.add(x.value):AMS.delete(x.value)}
+else return;
+fmark();list()});
+$("#fp").addEventListener("click",e=>{if(e.target.id=="frs"){MAXP=0;MINR=0;OFFER="";AMS.clear();Q="";$("#q").value="";SORT="def";$("#fp").innerHTML="";fpBuild();list()}});
+$("#detx").onclick=()=>$("#det").close();
+
+/* ===== Branded dropdowns: replace every native <select> popup with a styled list ===== */
+const ddSig=s=>s.value+"|"+[...s.options].map(o=>o.value+":"+o.text).join("|");
+const ddSee=el=>{if(el&&el.scrollIntoView)el.scrollIntoView({block:"nearest"})};
+function ddFill(s){const d=s._dd;
+d.u.innerHTML=[...s.options].map(o=>`<li role="option" data-o="${esc(o.value)}" aria-selected="${o.selected}">${esc(o.text)}</li>`).join("");
+d.b.textContent=s.options[s.selectedIndex]?s.options[s.selectedIndex].text:"";s._sig=ddSig(s)}
+function ddClose(){document.querySelectorAll(".dd.open").forEach(w=>{w.classList.remove("open");w.querySelector(".dd-b").setAttribute("aria-expanded","false")})}
+function ddOpen(s){ddClose();const d=s._dd;d.w.classList.add("open");d.b.setAttribute("aria-expanded","true");
+[...d.u.children].forEach(x=>x.classList.toggle("hl",x.getAttribute("aria-selected")=="true"));
+ddSee(d.u.querySelector(".hl"));if(d.w.closest("dialog"))ddSee(d.u)}
+function ddPick(s,v){s.value=v;ddFill(s);ddClose();s._dd.b.focus();s.dispatchEvent(new Event("input",{bubbles:true}));s.dispatchEvent(new Event("change",{bubbles:true}))}
+function ddKey(e,s){const d=s._dd,open=d.w.classList.contains("open"),lis=[...d.u.children];let h=lis.findIndex(x=>x.classList.contains("hl"));
+if(e.key=="Escape"&&open){e.preventDefault();e.stopPropagation();ddClose();return}
+if(e.key=="ArrowDown"||e.key=="ArrowUp"){e.preventDefault();if(!open){ddOpen(s);return}
+h=Math.max(0,Math.min(lis.length-1,h+(e.key=="ArrowDown"?1:-1)));lis.forEach(x=>x.classList.remove("hl"));lis[h].classList.add("hl");ddSee(lis[h]);return}
+if((e.key=="Enter"||e.key==" ")&&open){e.preventDefault();if(lis[h])ddPick(s,lis[h].dataset.o);else ddClose();return}
+if(e.key=="Tab")ddClose()}
+function ddBuild(s){
+if(s._dd){if(s._sig!==ddSig(s))ddFill(s);return}
+const w=document.createElement("div"),b=document.createElement("button"),u=document.createElement("ul");
+w.className="dd"+(s.id=="lg"?" hd":s.id=="cs"?" big":s.id=="so"?" so":"");
+b.type="button";b.className="dd-b";b.setAttribute("aria-haspopup","listbox");b.setAttribute("aria-expanded","false");
+const al=s.getAttribute("aria-label");if(al)b.setAttribute("aria-label",al);
+u.className="dd-l";u.setAttribute("role","listbox");
+s.parentNode.insertBefore(w,s);w.append(s,b,u);s._dd={w,b,u};
+b.onclick=()=>w.classList.contains("open")?ddClose():ddOpen(s);
+b.onkeydown=e=>ddKey(e,s);
+u.onclick=e=>{const li=e.target.closest("li");if(li)ddPick(s,li.dataset.o)};
+ddFill(s)}
+function ddAll(){document.querySelectorAll("select").forEach(ddBuild)}
+let ddQ=false;
+new MutationObserver(()=>{if(ddQ)return;ddQ=true;queueMicrotask(()=>{ddQ=false;ddAll()})}).observe(document.body,{childList:true,subtree:true});
+document.addEventListener("click",e=>{if(!e.target.closest(".dd"))ddClose()});
+ddAll();
+
+/* ===== Advertiser accounts (Supabase Auth + Postgres) ===== */
+const D={
+en:{adv:"Advertise",dash:"My account",intro:"Create a free advertiser account to list your property, restaurant, transport or activity. Your listing appears on the site once approved by the admin.",login:"Log in",user:"Username",signup:"Create account",email:"Email",pass:"Password (min. 6 characters)",reset:"Forgot password?",resetok:"Password reset email sent.",lo:"Log out",newl:"New listing",mine:"My listings",bks:"Bookings",service:"Service",city:"City",title:"Title",addr:"Address / area",price:"Price (per night or ride, 0 if none)",photos:"Photos (up to 6)",desc:"Description",amen:"Amenities & services",pub:"Publish",pubok:"Published! Your listing is now live.",nol:"You have no listings yet.",del:"Delete",pause:"Pause",resume:"Resume",editp:"Edit price",paused:"Paused",nobk:"No bookings yet.",err:"Error: ",need:"Please add a title and at least one photo.",wait:"Publishing…",cancel:"Cancel & free dates",nofb:"The platform is not configured yet."},
+fr:{adv:"Annoncer",dash:"Mon compte",intro:"Créez un compte annonceur gratuit pour publier votre logement, restaurant, transport ou activité. Votre annonce apparaît sur le site après validation.",login:"Connexion",user:"Identifiant",signup:"Créer un compte",email:"E-mail",pass:"Mot de passe (6 caractères min.)",reset:"Mot de passe oublié ?",resetok:"E-mail de réinitialisation envoyé.",lo:"Déconnexion",newl:"Nouvelle annonce",mine:"Mes annonces",bks:"Réservations",service:"Service",city:"Ville",title:"Titre",addr:"Adresse / quartier",price:"Prix (par nuit ou trajet, 0 si aucun)",photos:"Photos (6 max)",desc:"Description",amen:"Équipements et services",pub:"Publier",pubok:"Publié ! Votre annonce est en ligne.",nol:"Vous n'avez pas encore d'annonce.",del:"Supprimer",pause:"Mettre en pause",resume:"Réactiver",editp:"Modifier le prix",paused:"En pause",nobk:"Aucune réservation.",err:"Erreur : ",need:"Ajoutez un titre et au moins une photo.",wait:"Publication…",cancel:"Annuler et libérer les dates",nofb:"La plateforme n'est pas encore configurée."},
+ar:{adv:"أعلن معنا",dash:"حسابي",intro:"أنشئ حساب معلن مجانياً لعرض عقارك أو مطعمك أو خدمة النقل أو نشاطك. يظهر إعلانك في الموقع بعد موافقة الإدارة.",login:"تسجيل الدخول",user:"اسم المستخدم",signup:"إنشاء حساب",email:"البريد الإلكتروني",pass:"كلمة السر (6 أحرف على الأقل)",reset:"نسيت كلمة السر؟",resetok:"أُرسل بريد إعادة تعيين كلمة السر.",lo:"تسجيل الخروج",newl:"إعلان جديد",mine:"إعلاناتي",bks:"الحجوزات",service:"الخدمة",city:"المدينة",title:"العنوان",addr:"العنوان / الحي",price:"الثمن (لليلة أو الرحلة، 0 إن لم يوجد)",photos:"الصور (6 كحد أقصى)",desc:"الوصف",amen:"المرافق والخدمات",pub:"نشر",pubok:"تم النشر! إعلانك الآن ظاهر في الموقع.",nol:"ليس لديك إعلانات بعد.",del:"حذف",pause:"إيقاف مؤقت",resume:"استئناف",editp:"تعديل الثمن",paused:"موقوف",nobk:"لا توجد حجوزات بعد.",err:"خطأ: ",need:"أضف عنواناً وصورة واحدة على الأقل.",wait:"جارٍ النشر…",cancel:"إلغاء وتحرير التواريخ",nofb:"المنصة غير مهيأة بعد."}};
+const a=k=>(D[L]&&D[L][k])||D.en[k];
+const AM={wifi:["Wi-Fi","Wi-Fi","واي فاي"],pool:["Pool","Piscine","مسبح"],parking:["Parking","Parking","موقف سيارات"],ac:["Air conditioning","Climatisation","تكييف"],breakfast:["Breakfast","Petit-déjeuner","فطور"],kitchen:["Kitchen","Cuisine","مطبخ"],seaview:["Sea view","Vue mer","إطلالة بحرية"],pets:["Pets allowed","Animaux acceptés","يسمح بالحيوانات"],airport:["Airport pickup","Transfert aéroport","استقبال من المطار"],halal:["Halal food","Cuisine halal","طعام حلال"]};
+const am=k=>(AM[k]||[k])[L=="fr"?1:L=="ar"?2:0];
+const chips0=i=>(i.am&&i.am.filter(k=>AM[k]).length)?`<div class="chips">${i.am.filter(k=>AM[k]).map(k=>`<span>${esc(am(k))}</span>`).join("")}</div>`:"";
+const svcChip=i=>i.svc&&SVCS.includes(i.svc)?`<div class="chips"><span>🛠 ${esc(t("sv_"+i.svc))}</span></div>`:"";
+const chips=i=>svcChip(i)+chips0(i);
+/* ===== Supabase data layer: public listings are paged (PG per request); reviews load only for the listings shown ===== */
+const PG=24,MINV=12,IT={pub:[],own:[],pend:[]},PUB={gen:0,busy:false,done:false,err:false,last:null,key:"",sig:"",auto:0},PC={},REVL=new Set();
+let unOwn=null,unAll=null;
+const MAPK={ownerId:"owner_id",ownerName:"owner_name",rejectReason:"reject_reason",reviewedAt:"reviewed_at",reviewedBy:"reviewed_by",landType:"land_type"};
+const MAPR=Object.fromEntries(Object.entries(MAPK).map(([k,v])=>[v,k]));
+const toRow=o=>{const r={};for(const k in o){if(o[k]!==undefined)r[MAPK[k]||k]=o[k]}return r};
+const fromRow=r=>{const o={};for(const k in r){const v=r[k];if(v===null)continue;o[MAPR[k]||k]=v}if(Array.isArray(o.imgs)&&!o.imgs.length)delete o.imgs;return o};
+const snapItems=rows=>(rows||[]).map(fromRow);
+const sbq=async p=>{const r=await p;if(r.error)throw r.error;return r.data};
+const pubKey=()=>C=="daily"?"daily":C; // server-side query = one tab; city, search and the other filters run on the loaded pages
+const pubSig=()=>JSON.stringify([C,SUB,CITY,Q,OFFER,MAXP,MINR,SORT,[...AMS]]);
+function rebuildLive(){const m=new Map();IT.pub.concat(IT.own,ADMIN?IT.pend:[]).forEach(x=>m.set(x.id,x));LIVE=[...m.values()].sort((x,y)=>(y.ts||0)-(x.ts||0))}
+function mergeItems(){rebuildLive();render();if($("#adv").open&&USER&&(TAB=="mine"||TAB=="rev"))advRender()}
+function pgList(p,n){if(n<=7)return Array.from({length:n},(_,i)=>i+1);const q=new Set([1,n,p-1,p,p+1]);if(p<=3)[2,3,4].forEach(x=>q.add(x));if(p>=n-2)[n-1,n-2,n-3].forEach(x=>q.add(x));
+const a=[...q].filter(x=>x>=1&&x<=n).sort((x,y)=>x-y),o=[];a.forEach((x,i)=>{if(i&&x-a[i-1]>1)o.push("…");o.push(x)});return o}
+function setMore(np){const e=$("#more");if(!e)return;
+if(db&&PUB.err){e.innerHTML=`<p>${esc(t("loaderr"))}</p>`;return}
+if(!np)np=Math.max(1,Math.ceil(filtered().length/PG));
+const more=!!db&&!PUB.done;
+if(np<=1&&!more){e.innerHTML="";return}
+const r=rtl(),pv=r?"›":"‹",nx=r?"‹":"›";
+e.innerHTML=`<nav class="pgn" aria-label="Pages">`+(P>1?`<button type="button" class="pgb" data-pg="${P-1}" aria-label="Previous">${pv}</button>`:"")
++pgList(P,np).map(x=>x=="…"?`<span class="pgd">…</span>`:`<button type="button" class="pgb${x==P?" on":""}" data-pg="${x}"${x==P?' aria-current="page"':""}>${x}</button>`).join("")
++(P<np?`<button type="button" class="pgb" data-pg="${P+1}" aria-label="Next">${nx}</button>`:(more?`<button type="button" class="pgb" data-pg="more" aria-label="Next"${PUB.busy?" disabled":""}>${PUB.busy?"…":nx}</button>`:""))+`</nav>`}
+function pubTick(){if(!db)return;
+if(PUB.key!==pubKey()){startPub();return}
+const sg=pubSig();if(sg!==PUB.sig){PUB.sig=sg;PUB.auto=0}
+if(!PUB.done&&!PUB.busy&&PUB.auto<5&&filtered().length<MINV){PUB.auto++;loadPub()}}
+function startPub(){if(PUB.key&&!PUB.err)PC[PUB.key]={items:IT.pub,off:PUB.off||0,done:PUB.done};
+PUB.gen++;PUB.busy=false;PUB.err=false;PUB.key=pubKey();PUB.auto=0;PUB.sig=pubSig();
+const c=PC[PUB.key];
+if(c){IT.pub=c.items;PUB.off=c.off||0;PUB.done=c.done;rebuildLive();return}
+IT.pub=[];PUB.off=0;PUB.done=false;loadPub()}
+function reloadPub(){if(!db)return;for(const k in PC)delete PC[k];PUB.gen++;PUB.busy=false;PUB.key="";PUB.err=false;IT.pub=[];PUB.off=0;PUB.done=false;rebuildLive();list()}
+async function loadPub(){if(!db||PUB.busy||PUB.done)return;
+const g=PUB.gen,key=PUB.key;PUB.busy=true;setMore();
+try{let q=db.from("items").select("*").eq("status","approved");
+q=key=="daily"?q.eq("offer","daily"):q.eq("c",key);
+const rows=await sbq(q.order("ts",{ascending:false}).range(PUB.off||0,(PUB.off||0)+PG-1));if(g!==PUB.gen)return;
+const got=snapItems(rows);PUB.off=(PUB.off||0)+rows.length;if(rows.length<PG)PUB.done=true;
+const seen=new Set(IT.pub.map(x=>x.id));IT.pub=IT.pub.concat(got.filter(x=>!seen.has(x.id)));
+await loadRevs(got.map(x=>x.id));if(g!==PUB.gen)return}
+catch(e){if(g!==PUB.gen)return;console.error("Supabase:",e);PUB.err=true;PUB.done=true}
+PUB.busy=false;mergeItems()}
+async function loadRevs(ids){if(!db)return false;
+ids=[...new Set(ids.map(String))].filter(i=>!REVL.has(i));if(!ids.length)return false;ids.forEach(i=>REVL.add(i));
+try{const have=new Set(REV.map(r=>r.id));
+for(let k=0;k<ids.length;k+=30){const rows=await sbq(db.from("reviews").select("*").in("item_id",ids.slice(k,k+30)).limit(300));
+rows.forEach(d=>{if(!have.has(d.id)){have.add(d.id);REV.push({id:d.id,itemId:d.item_id,name:d.name,rating:d.rating,text:d.text,lang:d.lang,ts:d.ts})}})}
+buildRS();return true}
+catch(e){console.error("Supabase:",e);ids.forEach(i=>REVL.delete(i));return false}}
+const isAdmin=u=>!!u&&CONFIG.adminUid!=="YOUR_ADMIN_UID"&&u.uid===CONFIG.adminUid;
+let TAB="new",FBOK=false,MODE="login",EDIT=null,PROFILE=null,OTP=null;
+async function loadOwn(){IT.own=[];IT.pend=[];
+if(db&&USER){try{IT.own=snapItems(await sbq(db.from("items").select("*").eq("owner_id",USER.uid)));
+if(ADMIN)IT.pend=snapItems(await sbq(db.from("items").select("*").eq("status","pending")))}catch(e){console.error("Supabase:",e)}}
+mergeItems();if($("#adv").open)advRender()}
+const FB=CONFIG.supabase;
+if(typeof supabase!=="undefined"&&!FB.url.startsWith("YOUR")){
+FBOK=true;db=supabase.createClient(FB.url,FB.anonKey);LIVE=[];
+db.auth.onAuthStateChange((ev,ses)=>{setTimeout(()=>{
+if(ev=="PASSWORD_RECOVERY"){const np=prompt({ar:"كلمة السر الجديدة (6 أحرف على الأقل):",fr:"Nouveau mot de passe (6 caractères min.) :"}[L]||"New password (min. 6 characters):");if(np&&np.length>=6)db.auth.updateUser({password:np}).then(r=>alert(r.error?r.error.message:"OK"))}
+const su=ses&&ses.user,u=su?{uid:su.id,email:su.email,displayName:(su.user_metadata||{}).name||""}:null;
+if(ev=="TOKEN_REFRESHED"&&USER&&u&&USER.uid==u.uid)return;
+USER=u;ADMIN=isAdmin(u);if(!u){PROFILE=null;EDIT=null}
+loadOwn();
+if(u&&!ADMIN)db.from("profiles").select("*").eq("id",u.uid).maybeSingle().then(x=>{if(x.data){PROFILE=x.data;if($("#adv").open)advRender()}})},0)});
+}
+/* shrink photos in the browser: max 1200px, WebP/JPEG (≈100–250 KB instead of several MB) */
+async function shrinkImg(f,MX=1200,Q=.78){
+if(!/^image\/(jpeg|png|webp)$/.test(f.type)||!window.createImageBitmap)return f;
+try{const bmp=await createImageBitmap(f),k=Math.min(1,MX/Math.max(bmp.width,bmp.height)),w=Math.round(bmp.width*k),h=Math.round(bmp.height*k);
+const cv=document.createElement("canvas");cv.width=w;cv.height=h;cv.getContext("2d").drawImage(bmp,0,0,w,h);if(bmp.close)bmp.close();
+const tb=(ty,q)=>new Promise(r=>cv.toBlob(r,ty,q));
+let b=await tb("image/webp",Q);if(!b||b.type!="image/webp")b=await tb("image/jpeg",Q+.02);
+if(b&&b.size<f.size)return b}catch(e){}
+return f}
+async function upImg(f,MX,pre){
+if(!FBOK)return URL.createObjectURL(f);
+if(f.size>25e6)throw new Error("Image too large (max 25 MB)");
+f=await shrinkImg(f,MX||1200,MX?.7:.78);
+if(f.size>8e6)throw new Error("Image too large (max 8 MB)");
+const ty=f.type||"image/jpeg",ext=ty=="image/webp"?"webp":ty=="image/png"?"png":ty=="image/gif"?"gif":"jpg";
+const path=USER.uid+"/"+(pre||"")+Date.now()+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+const r=await db.storage.from("listings").upload(path,f,{contentType:ty,cacheControl:"31536000"});
+if(r.error)throw r.error;
+return db.storage.from("listings").getPublicUrl(path).data.publicUrl}
+const T_AD={
+en:{uname:"Name (you will use it to log in)",sublg:"Log in to manage your listings.",subsu:"Create a free advertiser account. Your listings go live after review.",badmin:"Administrator",save:"Save changes",saved:"Changes saved.",edit:"Edit",canceledit:"Cancel editing",keepph:"leave empty to keep current photos",editing:"Edit listing",e_cred:"Wrong name or password.",e_taken:"This name is already taken. Choose another one.",e_name:"Enter a name of 3 to 30 characters.",e_email:"Enter a valid email address.",e_pass:"The password must have at least 6 characters.",e_res:"This name is reserved.",e_fill:"Enter your name and password.",e_many:"Too many attempts. Try again later.",e_off:"Email/password sign-up is not enabled in Supabase.",e_confirm:"Check your inbox and confirm your email address, then log in.",demo:"Test mode (no Supabase): accounts you create last until you reload the page."},
+fr:{uname:"Nom (pour vous connecter)",sublg:"Connectez-vous pour gérer vos annonces.",subsu:"Créez un compte annonceur gratuit. Vos annonces sont publiées après validation.",badmin:"Administrateur",save:"Enregistrer",saved:"Modifications enregistrées.",edit:"Modifier",canceledit:"Annuler la modification",keepph:"laissez vide pour garder les photos actuelles",editing:"Modifier l'annonce",e_cred:"Nom ou mot de passe incorrect.",e_taken:"Ce nom est déjà utilisé. Choisissez-en un autre.",e_name:"Saisissez un nom de 3 à 30 caractères.",e_email:"Saisissez une adresse e-mail valide.",e_pass:"Le mot de passe doit contenir au moins 6 caractères.",e_res:"Ce nom est réservé.",e_fill:"Saisissez votre nom et votre mot de passe.",e_many:"Trop de tentatives. Réessayez plus tard.",e_off:"L'inscription par e-mail/mot de passe n'est pas activée dans Supabase.",e_confirm:"Vérifiez votre boîte mail et confirmez votre adresse e-mail, puis connectez-vous.",demo:"Mode test (sans Supabase) : les comptes créés durent jusqu'au rechargement de la page."},
+ar:{uname:"الاسم (تستعمله لتسجيل الدخول)",sublg:"سجّل الدخول لإدارة إعلاناتك.",subsu:"أنشئ حساب معلن مجانياً. تظهر إعلاناتك بعد مراجعة الإدارة.",badmin:"المدير",save:"حفظ التعديلات",saved:"تم حفظ التعديلات.",edit:"تعديل",canceledit:"إلغاء التعديل",keepph:"اتركه فارغاً للاحتفاظ بالصور الحالية",editing:"تعديل الإعلان",e_cred:"الاسم أو كلمة السر غير صحيحة.",e_taken:"هذا الاسم مستعمل. اختر اسماً آخر.",e_name:"أدخل اسماً من 3 إلى 30 حرفاً.",e_email:"أدخل بريداً إلكترونياً صحيحاً.",e_pass:"يجب ألا تقل كلمة السر عن 6 أحرف.",e_res:"هذا الاسم محجوز.",e_fill:"أدخل الاسم وكلمة السر.",e_many:"محاولات كثيرة. حاول لاحقاً.",e_off:"التسجيل بالبريد وكلمة السر غير مفعّل في Supabase.",e_confirm:"تحقق من بريدك وأكّد عنوانك الإلكتروني ثم سجّل الدخول.",demo:"وضع التجربة (بدون Supabase): الحسابات التي تنشئها تبقى حتى تعيد تحميل الصفحة."}};
+Object.keys(T_AD).forEach(k=>Object.assign(D[k],T_AD[k]));
+const T_RV={
+en:{revtab:"Review",pending:"Pending review",live:"Live",rejected:"Rejected",approve:"Approve",reject:"Reject",reason:"Reason for rejection (shown to the advertiser):",nopend:"No listings waiting for review.",subm:"Submitted! Your listing will go live after the admin approves it.",resubm:"Saved. Your listing will be reviewed again before it goes live.",appr:"Approved. The listing is now live.",rejd:"Rejected. The advertiser will see your reason.",by:"By",reasonl:"Reason"},
+fr:{revtab:"Modération",pending:"En attente de validation",live:"En ligne",rejected:"Refusée",approve:"Approuver",reject:"Refuser",reason:"Motif du refus (visible par l'annonceur) :",nopend:"Aucune annonce en attente.",subm:"Envoyée ! Votre annonce sera en ligne après validation par l'administrateur.",resubm:"Enregistré. Votre annonce sera revérifiée avant publication.",appr:"Approuvée. L'annonce est en ligne.",rejd:"Refusée. L'annonceur verra le motif.",by:"Par",reasonl:"Motif"},
+ar:{revtab:"المراجعة",pending:"قيد المراجعة",live:"منشور",rejected:"مرفوض",approve:"قبول",reject:"رفض",reason:"سبب الرفض (يراه المعلن):",nopend:"لا توجد إعلانات بانتظار المراجعة.",subm:"تم الإرسال! سيظهر إعلانك بعد موافقة المدير.",resubm:"تم الحفظ. ستتم مراجعة إعلانك من جديد قبل نشره.",appr:"تم القبول. الإعلان منشور الآن.",rejd:"تم الرفض. سيرى المعلن السبب.",by:"من",reasonl:"السبب"}};
+Object.keys(T_RV).forEach(k=>Object.assign(D[k],T_RV[k]));
+Object.assign(D.en,{photos:"Photos (up to 6)"});Object.assign(D.fr,{photos:"Photos (6 maximum)"});Object.assign(D.ar,{photos:"الصور (6 كحد أقصى)"});
+Object.assign(D.en,{area:"Area (m²)"});Object.assign(D.fr,{area:"Surface (m²)"});Object.assign(D.ar,{area:"المساحة (م²)"});
+Object.assign(D.en,{intro:"Create a free advertiser account to post a home or a land plot for rent or sale, or a service. Your ad goes live after the admin approves it."});
+Object.assign(D.fr,{intro:"Créez un compte annonceur gratuit pour publier un logement ou un terrain à louer ou à vendre, ou un service. Votre annonce est en ligne après validation par l'administrateur."});
+Object.assign(D.ar,{intro:"أنشئ حساب معلن مجانياً لنشر عقار أو بقعة أرضية للكراء أو للبيع، أو خدمة. يظهر إعلانك بعد موافقة المدير."});
+Object.assign(D.en,{ofr:"Offer type (properties)",ofrent:"For rent (monthly)",ofsale:"For sale",price:"Price in MAD (monthly for rentals, total for sales, 0 if none)"});
+Object.assign(D.fr,{ofr:"Type d'offre (biens immobiliers)",ofrent:"À louer (par mois)",ofsale:"À vendre",price:"Prix en MAD (par mois pour une location, total pour une vente, 0 si aucun)"});
+Object.assign(D.ar,{ofr:"نوع العرض (العقارات)",ofrent:"للكراء (شهرياً)",ofsale:"للبيع",price:"الثمن بالدرهم (شهري للكراء، والثمن الكامل للبيع، 0 إن لم يوجد)"});
+Object.assign(D.en,{ofdaily:"Daily rent",price:"Price in MAD (per month or per day for rentals, total for sales, 0 if none)"});
+Object.assign(D.fr,{ofdaily:"Location journalière",price:"Prix en MAD (par mois ou par jour pour une location, total pour une vente, 0 si aucun)"});
+Object.assign(D.ar,{ofdaily:"كراء يومي",price:"الثمن بالدرهم (شهري أو يومي للكراء، والثمن الكامل للبيع، 0 إن لم يوجد)"});
+Object.assign(D.en,{uname:"Your name (shown on your listings)",sublg:"Log in with your email to manage your listings.",e_cred:"Wrong email or password.",e_taken:"This email is already registered. Log in or reset your password.",e_fill:"Please fill in all the fields.",resetsub:"Enter your email and we will send you a 6-digit code to choose a new password.",sendreset:"Send me a code",backlogin:"Back to log in",resetok:"If an account exists for this email, a reset link has been sent. Check your spam folder too.",resetdemo:"Test mode: no email is sent."});
+Object.assign(D.fr,{uname:"Votre nom (affiché sur vos annonces)",sublg:"Connectez-vous avec votre e-mail pour gérer vos annonces.",e_cred:"E-mail ou mot de passe incorrect.",e_taken:"Cet e-mail est déjà enregistré. Connectez-vous ou réinitialisez votre mot de passe.",e_fill:"Remplissez tous les champs.",resetsub:"Saisissez votre e-mail, nous vous enverrons un code à 6 chiffres pour choisir un nouveau mot de passe.",sendreset:"Envoyer le code",backlogin:"Retour à la connexion",resetok:"Si un compte existe pour cet e-mail, un lien de réinitialisation a été envoyé. Vérifiez aussi vos spams.",resetdemo:"Mode test : aucun e-mail n'est envoyé."});
+Object.assign(D.ar,{uname:"اسمك (يظهر على إعلاناتك)",sublg:"سجّل الدخول ببريدك الإلكتروني لإدارة إعلاناتك.",e_cred:"البريد الإلكتروني أو كلمة السر غير صحيحة.",e_taken:"هذا البريد مسجّل مسبقاً. سجّل الدخول أو أعد تعيين كلمة السر.",e_fill:"املأ كل الحقول.",resetsub:"أدخل بريدك الإلكتروني وسنرسل لك رمزاً من 6 أرقام لاختيار كلمة سر جديدة.",sendreset:"أرسل لي الرمز",backlogin:"العودة إلى تسجيل الدخول",resetok:"إن وُجد حساب بهذا البريد فقد أُرسل رابط الاستعادة. تحقق أيضاً من البريد غير المرغوب فيه.",resetdemo:"وضع التجربة: لا يُرسل أي بريد."});
+Object.assign(D.en,{sendcode:"Send me a code",code:"6-digit code",verify:"Verify and continue",codesent:"We sent a 6-digit code to {e}. Enter it below (check your spam folder too).",resend:"Resend code",resent:"A new code has been sent.",chgemail:"Change email",e_code:"Enter the 6-digit code.",e_nouser:"No account with this email. Create an account first."});
+Object.assign(D.fr,{sendcode:"Envoyer le code",code:"Code à 6 chiffres",verify:"Valider et continuer",codesent:"Nous avons envoyé un code à 6 chiffres à {e}. Saisissez-le ci-dessous (vérifiez aussi vos spams).",resend:"Renvoyer le code",resent:"Un nouveau code a été envoyé.",chgemail:"Changer d'e-mail",e_code:"Saisissez le code à 6 chiffres.",e_nouser:"Aucun compte avec cet e-mail. Créez d'abord un compte."});
+Object.assign(D.ar,{sendcode:"أرسل لي الرمز",code:"الرمز المكوّن من 6 أرقام",verify:"تأكيد ومتابعة",codesent:"أرسلنا رمزاً من 6 أرقام إلى {e}. أدخله أدناه (تحقق أيضاً من البريد غير المرغوب فيه).",resend:"إعادة إرسال الرمز",resent:"تم إرسال رمز جديد.",chgemail:"تغيير البريد",e_code:"أدخل الرمز المكوّن من 6 أرقام.",e_nouser:"لا يوجد حساب بهذا البريد. أنشئ حساباً أولاً."});
+Object.assign(D.en,{newpass:"New password (min. 6 characters)",resetpass:"Reset password and log in",e_badcode:"Wrong or expired code. Request a new one."});Object.assign(D.fr,{newpass:"Nouveau mot de passe (6 caractères min.)",resetpass:"Réinitialiser et se connecter",e_badcode:"Code incorrect ou expiré. Demandez-en un nouveau."});Object.assign(D.ar,{newpass:"كلمة السر الجديدة (6 أحرف على الأقل)",resetpass:"إعادة تعيين كلمة السر ودخول",e_badcode:"الرمز غير صحيح أو منتهي الصلاحية. اطلب رمزاً جديداً."});
+Object.assign(D.en,{adem:"Contact email (optional – shown publicly)"});Object.assign(D.fr,{adem:"E-mail de contact (facultatif – affiché publiquement)"});Object.assign(D.ar,{adem:"بريد للتواصل (اختياري – يظهر للعموم)"});
+Object.assign(D.en,{phone:"Phone / WhatsApp number",e_phone:"Enter a valid phone number (for example 06 12 34 56 78)."});
+Object.assign(D.fr,{phone:"Numéro de téléphone / WhatsApp",e_phone:"Saisissez un numéro valide (par exemple 06 12 34 56 78)."});
+Object.assign(D.ar,{phone:"رقم الهاتف / واتساب",e_phone:"أدخل رقم هاتف صحيحاً (مثال 06 12 34 56 78)."});
+function pend(){return(LIVE||[]).filter(i=>i.status==="pending").length}
+const stp=i=>{const s=i.status||"approved";return`<span class="st ${s=="pending"?"p":s=="rejected"?"r":"l"}">${a(s=="pending"?"pending":s=="rejected"?"rejected":"live")}</span>`};
+/* accounts: the advertiser logs in with EMAIL + password (the real email is the Supabase identity, so "Forgot password?" works).
+   The name is only the display name shown on listings. The admin is recognised by CONFIG.adminUid, not by email. */
+const normName=n=>String(n||"").normalize("NFKC").toLowerCase().trim().replace(/\s+/g," ");
+const DEMO_USERS={};
+const myName=()=>ADMIN?CONFIG.adminLogin:((PROFILE&&PROFILE.name)||(USER&&USER.displayName)||"");
+const catOpts=sel=>CATS.map(c=>`<option value="${c}"${c==sel?" selected":""}>${t(c)}</option>`).join("");
+const cityOpts=sel=>CITIES.map(c=>`<option value="${c.id}"${c.id==sel?" selected":""}>${esc(c.n[L]||c.n.en)}</option>`).join("");
+function authErr(x){const c=(x&&x.code||"")+" "+(x&&x.message||"");
+if(/invalid_credentials|invalid login/i.test(c))return a("e_cred");
+if(/user_already_exists|already registered/i.test(c))return a("e_taken");
+if(/weak_password|at least 6/i.test(c))return a("e_pass");
+if(/rate_limit|too many/i.test(c))return a("e_many");
+if(/email_not_confirmed|not confirmed/i.test(c))return a("e_confirm");
+if(/otp_expired|expired|token/i.test(c))return a("e_badcode");
+if(/provider_disabled|signups? (not allowed|disabled)/i.test(c))return a("e_off");
+return a("err")+(x&&x.message||c)}
+function advRender(){
+const box=$("#advb2"),hd=$("#advh"),logo='<span class="logo">Dari<i>vo</i></span>';
+if(!USER){
+const su=MODE=="signup",rs=MODE=="reset";
+hd.innerHTML=`${logo}<h2>${a(rs?"reset":su?"signup":"login")}</h2><p>${a(rs?"resetsub":su?"subsu":"sublg")}</p>`;
+if(FBOK&&OTP){const rsk=OTP.kind=="reset";
+box.innerHTML=`<p class="note">${esc(a("codesent").replace("{e}",OTP.email))}</p><form id="af" class="fg" novalidate><label class="w">${a("code")}<input id="ao" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" style="letter-spacing:.4em;font-size:1.3rem;text-align:center"></label>${rsk?`<label class="w">${a("newpass")}<input id="anp" type="password" autocomplete="new-password"></label>`:""}<button class="go wide w" data-do="verify" type="submit">${rsk?a("resetpass"):a("verify")}</button></form><p style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap"><button type="button" class="map" data-do="resend">${a("resend")}</button><button type="button" class="map" data-do="otpback">${a("chgemail")}</button></p><div id="am2" role="status" style="margin-top:10px;font-weight:600;color:#c0392b"></div>`;return}
+box.innerHTML=`${FBOK?"":`<div class="note">${esc(a("demo"))}</div>`}${rs?"":`<div class="seg"><button class="tab" aria-selected="${!su}" data-do="mode" data-m="login">${a("login")}</button><button class="tab" aria-selected="${su}" data-do="mode" data-m="signup">${a("signup")}</button></div>`}<form id="af" class="fg" novalidate>${su?`<label class="w">${a("uname")}<input id="an" maxlength="30" autocomplete="name"></label>`:""}<label class="w">${a("email")}<input id="ae" type="email" autocomplete="email" autocapitalize="none" inputmode="email"></label>${su?`<label>${a("city")}<select id="ac">${cityOpts("agadir")}</select></label><label>${a("service")}<select id="ak">${catOpts("apartments")}</select></label>`:""}${rs?"":`<label class="w">${a("pass")}<input id="ap2" type="password" autocomplete="${su?"new-password":"current-password"}"></label>`}<button class="go wide w" data-do="${rs?"reset":su?"signup":"login"}" type="submit">${a(rs?"sendreset":su?"signup":"login")}</button></form>${MODE=="login"?`<p style="margin-top:12px"><button type="button" class="map" data-do="mode" data-m="reset">${a("reset")}</button></p>`:""}${rs?`<p style="margin-top:12px"><button type="button" class="map" data-do="mode" data-m="login">${a("backlogin")}</button></p>`:""}<div id="am2" role="status" style="margin-top:10px;font-weight:600;color:#c0392b"></div>`;
+return}
+const nm=myName(),pf=PROFILE||{};
+hd.innerHTML=`${logo}<div class="who"><div class="av">${esc((nm.charAt(0)||"?").toUpperCase())}</div><div><h2>${esc(nm)}</h2><p>${ADMIN?a("badmin"):esc([pf.city?cname(pf.city):"",pf.cat?t(pf.cat):""].filter(Boolean).join(" · "))}</p></div></div><button class="out" data-do="out">${a("lo")}</button>`;
+const ed=EDIT?(LIVE||[]).find(x=>x.id==EDIT):null;if(EDIT&&!ed)EDIT=null;
+const tl=[["new",ed?"editing":"newl"],["mine","mine"]];if(ADMIN)tl.push(["rev","revtab"]);
+const tabs=tl.map(x=>`<button class="tab" aria-selected="${TAB==x[0]}" data-do="tab" data-t="${x[0]}">${a(x[1])}${x[0]=="rev"&&pend()?` (${pend()})`:""}</button>`).join("");
+let body="";
+if(TAB=="new"){
+const lastPhone=(()=>{const x=(LIVE||[]).find(i=>i.ownerId===USER.uid&&i.phone);return x?fmtPhone(x.phone):""})();
+const selC=ed?ed.c:(pf.cat||"apartments");
+const v=ed||{},dsc=ed&&ed.d?(ed.d[L]||ed.d.en||Object.values(ed.d).find(Boolean)||""):"";
+body=`<form class="fg" novalidate><label>${a("service")}<select id="nc">${catOpts(ed?ed.c:(pf.cat||"apartments"))}</select></label><label>${a("city")}<select id="nci">${cityOpts(ed?(ed.city||"agadir"):(pf.city||"agadir"))}</select></label><label class="w" id="nofw"${REAL.includes(selC)?"":" hidden"}>${a("ofr")}<select id="nof"><option value="rent">${a("ofrent")}</option><option value="daily"${v.offer=="daily"?" selected":""}>${a("ofdaily")}</option><option value="sale"${(v.offer||(selC=="land"?"sale":"rent"))=="sale"?" selected":""}>${a("ofsale")}</option></select></label><label class="w" id="nsvw"${selC=="explore"?"":" hidden"}>${t("svct")}<select id="nsv">${SVCS.map(k=>`<option value="${k}"${v.svc==k?" selected":""}>${t("sv_"+k)}</option>`).join("")}</select></label><label class="w">${a("title")}<input id="nt" maxlength="100" value="${esc(v.n||"")}"></label><label>${a("addr")}<input id="na" maxlength="120" value="${esc(v.a||"")}"></label><label>${a("price")}<input id="np" type="number" min="0" max="1000000000" value="${+v.p||0}"></label><label>${a("phone")}<input id="nphn" type="tel" inputmode="tel" dir="ltr" maxlength="20" placeholder="06 12 34 56 78" value="${esc(v.phone?fmtPhone(v.phone):lastPhone)}"></label><label>${a("adem")}<input id="nem" type="email" inputmode="email" dir="ltr" maxlength="80" autocapitalize="none" placeholder="name@example.com" value="${esc(v.email||"")}"></label><label id="narw"${selC=="explore"?" hidden":""}>${a("area")}<input id="nar" type="number" min="0" max="10000000" inputmode="numeric" value="${+v.area||""}"></label><label class="w">${a("photos")}${ed?" ("+a("keepph")+")":""}<input id="nph" type="file" accept="image/*" multiple></label><label class="w">${a("desc")}<textarea id="nd" rows="3" maxlength="600">${esc(dsc)}</textarea></label><div class="w" id="namw"${selC=="land"||selC=="explore"?" hidden":""}><small>${a("amen")}</small><div class="chips big">${Object.keys(AM).map(k=>`<label><input type="checkbox" name="am" value="${k}"${(v.am||[]).includes(k)?" checked":""}> ${esc(am(k))}</label>`).join("")}</div></div><button class="go wide w" data-do="publish" type="submit">${a(ed?"save":"pub")}</button>${ed?`<button class="go alt wide w" data-do="canceledit" type="button">${a("canceledit")}</button>`:""}</form>`}
+else if(TAB=="mine"){
+const mine=(LIVE||[]).filter(i=>ADMIN||i.ownerId===USER.uid);
+body=mine.length?mine.map(i=>`<div class="li"><div class="th" style="background:${i.img?`url('${sU(i.thumb||i.img)}') center/cover`:G[i.c]}"></div><div style="flex:1;min-width:0"><b>${esc(i.n)}</b>${stp(i)}${i.paused?` · ${a("paused")}`:""}<small>${t(i.c)} · ${esc(cname(i.city||"agadir"))}${i.p?" · "+money(i.p):""}${ADMIN&&i.ownerName?" · "+esc(i.ownerName):""}</small>${i.status=="rejected"&&i.rejectReason?`<small style="color:#a02a1c">${a("reasonl")}: ${esc(i.rejectReason)}</small>`:""}<div class="row2" style="margin:4px 0 0"><button class="map" data-do="edit" data-id="${esc(i.id)}">${a("edit")}</button><button class="map" data-do="pause" data-id="${esc(i.id)}">${i.paused?a("resume"):a("pause")}</button><button class="map" style="color:#c0392b" data-do="del" data-id="${esc(i.id)}">${a("del")}</button></div></div></div>`).join(""):`<p>${a("nol")}</p>`}
+else if(TAB=="rev"){
+const pl=(LIVE||[]).filter(i=>i.status==="pending");
+body=pl.length?pl.map(i=>{const d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"";return`<div class="li" style="align-items:flex-start"><div class="th" style="background:${i.img?`url('${sU(i.img)}') center/cover`:G[i.c]}"></div><div style="flex:1;min-width:0"><b class="vt" data-v="${esc(i.id)}" tabindex="0">${esc(i.n)}</b>${stp(i)}<small>${t(i.c)} · ${esc(cname(i.city||"agadir"))}${i.p?" · "+money(i.p):""}${i.ownerName?" · "+a("by")+" "+esc(i.ownerName):""}</small>${i.a?`<small>${esc(i.a)}</small>`:""}<p style="font-size:.88rem;margin:4px 0">${esc(d)}</p>${chips(i)}<div class="row2" style="margin:8px 0 0"><button class="go" data-do="approve" data-id="${esc(i.id)}">${a("approve")}</button><button class="go alt" style="color:#c0392b;border-color:#c0392b" data-do="reject" data-id="${esc(i.id)}">${a("reject")}</button></div></div></div>`}).join(""):`<p>${a("nopend")}</p>`}
+else body="";
+box.innerHTML=`<div class="seg">${tabs}</div>${body}<div id="am2" role="status" style="margin-top:10px;font-weight:600"></div>`;
+}
+$("#adv").addEventListener("click",async e=>{
+const b=e.target.closest("[data-do]");if(!b)return;e.preventDefault();
+const k=b.dataset.do,id=b.dataset.id,m=(x,ok)=>{const el=$("#am2");if(el){el.textContent=x;el.style.color=ok?"var(--sea)":"#c0392b"}};
+try{
+if(k=="mode"){MODE=b.dataset.m;advRender();return}
+if(k=="tab"){TAB=b.dataset.t;if(TAB!="new")EDIT=null;advRender();return}
+if(k=="reset"){const em=$("#ae").value.trim();
+if(!/^\S+@\S+\.\S+$/.test(em))return m(a("e_email"));
+if(!FBOK)return m(a("resetdemo"),true);
+b.disabled=true;
+try{const r=await db.auth.signInWithOtp({email:em,options:{shouldCreateUser:false}});
+if(r.error){if(/not allowed|not found/i.test(r.error.message||""))return m(a("e_nouser"));throw r.error}
+OTP={kind:"reset",email:em};advRender()}
+finally{b.disabled=false}
+return}
+if(k=="otpback"){OTP=null;advRender();return}
+if(k=="resend"){if(!OTP||!FBOK)return;b.disabled=true;
+try{const r=OTP.kind=="reset"?await db.auth.signInWithOtp({email:OTP.email,options:{shouldCreateUser:false}}):await db.auth.resend({type:"signup",email:OTP.email});if(r.error)throw r.error;m(a("resent"),true)}
+finally{b.disabled=false}
+return}
+if(k=="verify"){const tok=(($("#ao")||{}).value||"").replace(/\D/g,"");
+if(tok.length!=6)return m(a("e_code"));
+if(!OTP||!FBOK)return;
+const rsk=OTP.kind=="reset",np=rsk?(($("#anp")||{}).value||""):"";
+if(rsk&&np.length<6)return m(a("e_pass"));
+b.disabled=true;
+try{const r=await db.auth.verifyOtp({email:OTP.email,token:tok,type:rsk?"email":"signup"});if(r.error)throw r.error;
+if(rsk){const u=await db.auth.updateUser({password:np});if(u.error)throw u.error}
+const was=OTP;OTP=null;TAB=was.kind=="signup"?"new":"mine";EDIT=null;if(was.kind=="signup"&&was.name)PROFILE={name:was.name,email:was.email,city:was.city,cat:was.cat}}
+finally{b.disabled=false}
+render();advRender();return}
+if(k=="login"||k=="signup"){
+const su=k=="signup",em=$("#ae").value.trim(),ek=em.toLowerCase(),pw=$("#ap2").value,name=su?$("#an").value.trim():"",isAdm=normName(name)==CONFIG.adminLogin.toLowerCase();
+if(!em||!pw||(su&&!name))return m(a("e_fill"));
+let city="",cat="";
+if(su){city=$("#ac").value;cat=$("#ak").value;
+if(name.length<3||name.length>30)return m(a("e_name"));
+if(isAdm)return m(a("e_res"));
+if(pw.length<6)return m(a("e_pass"))}
+if((FBOK||su)&&!/^\S+@\S+\.\S+$/.test(em))return m(a("e_email"));
+b.disabled=true;
+try{
+if(FBOK){
+if(su){const r=await db.auth.signUp({email:em,password:pw,options:{data:{name,city,cat}}});if(r.error)throw r.error;
+if(r.data.user&&r.data.user.identities&&!r.data.user.identities.length)throw{code:"user_already_exists"};
+if(!r.data.session){OTP={kind:"signup",email:em,name,city,cat};advRender();return}
+PROFILE={name,email:em,city,cat}}
+else{const r=await db.auth.signInWithPassword({email:em,password:pw});if(r.error){if(r.error.code=="email_not_confirmed"||/not confirmed/i.test(r.error.message||"")){await db.auth.resend({type:"signup",email:em});OTP={kind:"signup",email:em,name:"",city:"",cat:""};advRender();return}throw r.error}}}
+else{
+if(su){if(DEMO_USERS[ek])return m(a("e_taken"));const uid="u"+Date.now();DEMO_USERS[ek]={uid,name,email:em,city,cat,pass:pw};USER={uid,email:em,displayName:name};ADMIN=false;PROFILE={name,email:em,city,cat}}
+else{const u=DEMO_USERS[ek];if(!u||u.pass!==pw)return m(a("e_cred"));USER={uid:u.uid,email:u.email,displayName:u.name};ADMIN=false;PROFILE={name:u.name,email:u.email,city:u.city,cat:u.cat}}
+LIVE=LIVE||DATA.map(x=>({...x,ownerId:"demo"}))}
+}finally{b.disabled=false}
+TAB=su?"new":"mine";EDIT=null;render();advRender();return}
+if(k=="out"){MODE="login";EDIT=null;if(db)await db.auth.signOut();else{USER=null;ADMIN=false;PROFILE=null;render();advRender()}return}
+if(k=="publish"){
+const files=[...$("#nph").files].slice(0,6),title=$("#nt").value.trim(),ed=EDIT?(LIVE||[]).find(x=>x.id==EDIT):null;
+const phone=normPhone($("#nphn").value);
+if(!title||(!ed&&!files.length)){m(a("need"));return}
+if(!phone){m(a("e_phone"));return}
+const adEm=($("#nem")?$("#nem").value.trim().toLowerCase():"");
+if(adEm&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(adEm)){m(a("e_email"));return}
+b.disabled=true;m(a("wait"),true);
+try{const urls=await Promise.all(files.map(f=>upImg(f)));let thumb="";if(urls.length){try{thumb=FBOK?await upImg(files[0],400,"t-"):urls[0]}catch(_){thumb=""}}
+const desc=$("#nd").value.trim(),core={c:$("#nc").value,city:$("#nci").value,n:title,phone,email:adEm||null,offer:(c=>{const o=REAL.includes(c)&&$("#nof")?$("#nof").value:"rent";return c=="land"&&o=="daily"?"rent":o})($("#nc").value),area:$("#nc").value=="explore"?0:Math.max(0,Math.min(10000000,+$("#nar").value||0)),a:$("#na").value.trim(),p:Math.max(0,+$("#np").value||0),am:$("#nc").value=="land"||$("#nc").value=="explore"?[]:[...document.querySelectorAll("input[name=am]:checked")].map(x=>x.value)};
+if(core.c=="explore"){core.svc=$("#nsv")?$("#nsv").value:SVCS[0]}else if(ed){if(db)core.svc=null;else delete ed.svc}
+if(urls.length){core.img=urls[0];core.imgs=urls;core.thumb=thumb||null}
+if(ed){if(!ADMIN&&ed.ownerId!==USER.uid)throw new Error("Not allowed");
+const nd={...(ed.d||{})};if(desc)nd[L]=desc;else delete nd[L];core.d=nd;
+if(!ADMIN){core.status="pending";if(db){core.rejectReason=null;core.reviewedAt=null;core.reviewedBy=null}else{delete ed.rejectReason;delete ed.reviewedAt;delete ed.reviewedBy}}
+if(db)await sbq(db.from("items").update(toRow(core)).eq("id",String(ed.id)));else Object.assign(ed,core)}
+else{const NI={...core,d:desc?{[L]:desc}:{},ownerId:USER.uid,ownerName:myName(),status:ADMIN?"approved":"pending",paused:false,ts:Date.now()};
+if(db)await sbq(db.from("items").insert(toRow(NI)));else LIVE.unshift({...NI,id:"d"+Date.now()})}
+if(db){await loadOwn();if(ADMIN)reloadPub()}
+C=core.offer=="daily"?"daily":core.c;SUB="";CITY="all";TAB="mine";const was=!!ed;EDIT=null;advRender();m(a(ADMIN?(was?"saved":"pubok"):(was?"resubm":"subm")),true);render()}finally{b.disabled=false}
+return}
+const it=(LIVE||[]).find(x=>x.id==id);
+if(k=="edit"){if(!it)return;EDIT=it.id;TAB="new";advRender();$("#adv").scrollTop=0;return}
+if(k=="canceledit"){EDIT=null;TAB="mine";advRender();return}
+if(k=="approve"||k=="reject"){if(!ADMIN||!it)return;let upd;
+if(k=="approve")upd={status:"approved",reviewedAt:Date.now(),reviewedBy:myName(),rejectReason:null};
+else{const r=prompt(a("reason"),"");if(r===null)return;upd={status:"rejected",rejectReason:r.trim().slice(0,200),reviewedAt:Date.now(),reviewedBy:myName()}}
+if(db){await sbq(db.from("items").update(toRow(upd)).eq("id",String(id)));reloadPub();await loadOwn()}else{Object.assign(it,upd);if(k=="approve")delete it.rejectReason;render()}
+advRender();m(a(k=="approve"?"appr":"rejd"),true);return}
+if(it&&!ADMIN&&it.ownerId!==USER.uid&&(k=="pause"||k=="del"))throw new Error("Not allowed");
+if(k=="pause"){if(db){await sbq(db.from("items").update({paused:!it.paused}).eq("id",String(id)));reloadPub();await loadOwn()}else it.paused=!it.paused}
+if(k=="del"&&confirm(a("del")+"?")){if(db){await sbq(db.from("items").delete().eq("id",String(id)));reloadPub();await loadOwn()}else LIVE=LIVE.filter(x=>x.id!=id)}
+if(!db&&k!="cancel"){render();advRender()}
+}catch(x){if($("#am2")){$("#am2").textContent=authErr(x);$("#am2").style.color="#c0392b"}}});
+$("#advb2").addEventListener("input",e=>{if(e.target.id=="nc"){const v=e.target.value,w=$("#nofw"),am=$("#namw"),of=$("#nof");if(w)w.hidden=!REAL.includes(v);if(am)am.hidden=v=="land"||v=="explore";const sw=$("#nsvw"),aw=$("#narw");if(sw)sw.hidden=v!="explore";if(aw)aw.hidden=v=="explore";if(v=="land"&&of){of.value="sale";ddAll()}}});
+
+$("#advx").onclick=()=>$("#adv").close();
+$("#cs").onchange=e=>{CITY=e.target.value;render()};
+$("#lc").onclick=()=>$("#lgd").close();
+$("#ckb").onclick=()=>{$("#cb").hidden=true;document.body.classList.remove("ck");try{localStorage.setItem("ck","1")}catch(e){}};
+try{if(localStorage.getItem("ck"))$("#cb").hidden=true}catch(e){}
+document.body.classList.toggle("ck",!$("#cb").hidden);
+/* ===== side menu ===== */
+const M={en:{home:"Home",cats:"Categories",menu:"Menu",contact:"Contact us",lang:"Language",close:"Close",more:"Information"},
+fr:{home:"Accueil",cats:"Catégories",menu:"Menu",contact:"Contactez-nous",lang:"Langue",close:"Fermer",more:"Informations"},
+es:{home:"Inicio",cats:"Categorías",menu:"Menú",contact:"Contáctenos",lang:"Idioma",close:"Cerrar",more:"Información"},
+de:{home:"Startseite",cats:"Kategorien",menu:"Menü",contact:"Kontakt",lang:"Sprache",close:"Schließen",more:"Informationen"},
+it:{home:"Home",cats:"Categorie",menu:"Menu",contact:"Contattaci",lang:"Lingua",close:"Chiudi",more:"Informazioni"},
+ar:{home:"الرئيسية",cats:"الفئات",menu:"القائمة",contact:"اتصل بنا",lang:"اللغة",close:"إغلاق",more:"معلومات"}};
+const mm=k=>(M[L]&&M[L][k])||M.en[k];
+const CATIC={apartments:"🏢",studio:"🛏️",maison:"🏠",villas:"🏡",rooms:"🚪",land:"🌳",daily:"📅",explore:"🛠️"};
+function buildMenu(){const B=CONFIG.business,wa=!B.whatsapp.includes("X"),em=!B.email.includes("example");
+$("#mb").setAttribute("aria-label",mm("menu"));$("#dx").setAttribute("aria-label",mm("close"));$("#drw").setAttribute("aria-label",mm("menu"));
+const it=(act,ic,txt,cur)=>`<button class="di" type="button" data-a="${act}"${cur?` aria-current="true"`:""}><span class="ic">${ic}</span>${esc(txt)}</button>`;
+$("#dbody").innerHTML=it("home","🏠",mm("home"))
++`<div class="dh">${esc(mm("cats"))}</div>`+TABS.map(c=>it("cat:"+c,CATIC[c]||"•",t(c),c==C)).join("")
++`<div class="dsep"></div>`+it("pub","✏️",a("adv"))+it("login","👤",a(USER?"dash":"login")+(ADMIN&&pend()?" ("+pend()+")":""))
++`<div class="dsep"></div>`
++(wa?`<a class="di" href="https://wa.me/${B.whatsapp}?text=${encodeURIComponent(t("wa"))}" target="_blank" rel="noopener"><span class="ic">💬</span>${esc(mm("contact"))}</a>`:em?`<a class="di" href="mailto:${esc(B.email)}"><span class="ic">✉️</span>${esc(mm("contact"))}</a>`:"")
++["terms","privacy"].map(k=>it("legal:"+k,"📄",t(k))).join("")
++`<div class="dsep"></div><div class="dlg"><label><small>🌐 ${esc(mm("lang"))}</small><select id="lg2" aria-label="${esc(mm("lang"))}">${[...$("#lg").options].map(o=>`<option value="${o.value}"${o.value==L?" selected":""}>${esc(o.text)}</option>`).join("")}</select></label></div>`}
+let drLast=null;
+function drOpen(){drLast=document.activeElement;$("#drw").classList.add("on");$("#dro").classList.add("on");$("#drw").setAttribute("aria-hidden","false");$("#mb").setAttribute("aria-expanded","true");document.body.classList.add("dlk");setTimeout(()=>$("#dx").focus(),50)}
+function drClose(back){if(!$("#drw").classList.contains("on"))return;$("#drw").classList.remove("on");$("#dro").classList.remove("on");$("#drw").setAttribute("aria-hidden","true");$("#mb").setAttribute("aria-expanded","false");document.body.classList.remove("dlk");if(back!==false&&drLast&&drLast.focus)drLast.focus()}
+$("#mb").onclick=drOpen;$("#dx").onclick=()=>drClose();$("#dro").onclick=()=>drClose();
+document.addEventListener("keydown",e=>{if(e.key=="Escape"&&$("#drw").classList.contains("on")&&!document.querySelector("dialog[open]"))drClose()});
+$("#drw").addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b){if(e.target.closest("a.di"))drClose(false);return}
+const [k,v]=b.dataset.a.split(":");drClose(false);
+if(k=="home"){C=TABS[0];SUB="";CITY="all";MAXP=0;MINR=0;OFFER="";AMS.clear();Q="";$("#q").value="";SORT="def";render();window.scrollTo({top:0,behavior:"smooth"})}
+else if(k=="cat"){C=v;SUB="";MAXP=0;OFFER="";AMS.clear();render();$("#tabs").scrollIntoView({behavior:"smooth",block:"start"})}
+else if(k=="pub"){if(USER){TAB="new";EDIT=null}else MODE="signup";advRender();$("#adv").showModal()}
+else if(k=="login"){if(!USER)MODE="login";advRender();$("#adv").showModal()}
+else if(k=="legal")legal(v)});
+$("#drw").addEventListener("change",e=>{if(e.target.id=="lg2"){L=e.target.value;try{localStorage.setItem("lang",L)}catch(x){}drClose(false);render()}});
+
+$("#det").addEventListener("close",()=>{if(/^#ad-/.test(location.hash)){try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}seo()});
+$("#detb").addEventListener("click",e=>{const b=e.target.closest("[data-share]");if(b)shareAd(b)});
+window.addEventListener("hashchange",hashOpen);
+render();
+</script>
+</body>
+</html>

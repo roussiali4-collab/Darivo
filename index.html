@@ -189,6 +189,20 @@ html[dir=rtl] .drw{transform:translateX(102%)}
 .dsep{height:1px;background:rgba(255,255,255,.18);margin:6px 16px}
 .dlg{padding:6px 16px}.dlg label small{color:#dcecf0;font-weight:700}.dlg select{width:100%;font-weight:700}
 body.dlk{overflow:hidden}
+.tst{position:fixed;left:12px;right:12px;bottom:16px;z-index:99999;max-width:520px;margin:0 auto;background:#0b2e4a;color:#fff;border-radius:12px;padding:14px 16px;font-weight:700;font-size:.95rem;box-shadow:0 8px 24px rgba(0,0,0,.35);border-inline-start:6px solid #2ecc71;cursor:pointer}.tst.bad{border-inline-start-color:#e74c3c}
+/* compact cards: bigger photo, smaller details */
+.grid .pic{height:235px}
+.grid .body{padding:9px 11px 10px;gap:2px}
+.grid .body h3{font-size:.92rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grid .meta{font-size:.74rem}
+.grid .body p{font-size:.76rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.grid .chips{gap:3px;margin-top:2px;max-height:1.5rem;overflow:hidden}
+.grid .chips span{font-size:.66rem;padding:0 7px}
+.grid .row{padding-top:6px}
+.grid .price b{font-size:1rem}
+.grid .acts{gap:4px}
+.grid .acts .go{padding:5px 9px;font-size:.74rem;border-radius:8px}
+.grid .tg{font-size:.7rem;padding:2px 10px}
 </style>
 </head>
 <body>
@@ -370,7 +384,8 @@ const d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"";
 const bg=i.img?`background:url('${sU(i.img)}') center/cover,${G[i.c]}`:`background:${G[i.c]}`;
 const wl=waLink(i);
 const ph=normPhone(i.phone);
-const act=wl?`<div class="acts"><a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><a class="go alt call" href="tel:+${ph}" dir="ltr" aria-label="${t("callb")} ${fmtPhone(ph)}">📞 ${t("callb")}</a></div>`:`<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")} ↗</a>`;
+const eml=i.email?`<a class="go alt" href="mailto:${esc(i.email)}?subject=${encodeURIComponent(t("emsub").replace("{n}",i.n))}&amp;body=${encodeURIComponent(t("embody").replace("{n}",i.n)+"\n\n"+location.origin+location.pathname+"#ad-"+i.id)}" aria-label="${t("emailb")}">✉️ ${t("emailb")}</a>`:"";
+const act=wl?`<div class="acts"><a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><a class="go alt call" href="tel:+${ph}" dir="ltr" aria-label="${t("callb")} ${fmtPhone(ph)}">📞 ${t("callb")}</a>${eml}</div>`:`<div class="acts">${eml}<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")} ↗</a></div>`;
 const pr=i.p?`<span class="price"><b>${money(i.p)}</b>${unitOf(i)?" / "+t(unitOf(i)):""}</span>`:"<span></span>";
 return `<article class="card"><div class="pic" data-v="${i.id}" role="button" tabindex="0" aria-label="${esc(i.n)}">${slidesHtml(i)}${REAL.includes(i.c)?`<span class="tg ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}</div><div class="body"><h3 class="vt" data-v="${i.id}" tabindex="0">${esc(i.n)}</h3><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div>${rbadge(i.id)}<p>${esc(d)}</p>${chips(i)}<div class="row">${pr}${act}</div>${ADMIN&&LIVE?`<div class="row"><button class="map" data-e="${i.id}">✎ price</button><button class="map" style="color:#c0392b" data-x="${i.id}">🗑 delete</button></div>`:""}</div></article>`}
 
@@ -676,6 +691,18 @@ async function loadOwn(){IT.own=[];IT.pend=[];
 if(db&&USER){try{IT.own=snapItems(await sbq(db.from("items").select("*").eq("owner_id",USER.uid)));
 if(ADMIN)IT.pend=snapItems(await sbq(db.from("items").select("*").eq("status","pending")))}catch(e){console.error("Supabase:",e)}}
 mergeItems();if($("#adv").open)advRender()}
+/* ===== Approval notices: instant (Supabase Realtime) + catch-up when the advertiser logs in ===== */
+let RTCH=null;
+const SEEN={get(i){try{return localStorage.getItem("seen_"+i)}catch(e){return null}},set(i,v){try{localStorage.setItem("seen_"+i,String(v))}catch(e){}}};
+function tst(msg,ok){const h=document.querySelector("dialog[open]")||document.body,e=document.createElement("div");e.className="tst"+(ok?"":" bad");e.setAttribute("role","status");e.textContent=msg;h.appendChild(e);e.style.bottom=(16+(h.querySelectorAll(".tst").length-1)*72)+"px";try{navigator.vibrate&&navigator.vibrate(150)}catch(x){}e.onclick=()=>e.remove();setTimeout(()=>e.remove(),10000)}
+function noticeFor(it){if(!it||!it.reviewedAt||!USER)return;if(it.status!=="approved"&&it.status!=="rejected")return;if(String(SEEN.get(it.id))===String(it.reviewedAt))return;SEEN.set(it.id,it.reviewedAt);
+if(it.status==="approved")tst(a("apok").replace("{n}",it.n),true);else tst(a("aprej").replace("{n}",it.n)+(it.rejectReason?" — "+it.rejectReason:""),false)}
+function checkNew(){const lim=Date.now()-14*864e5;(IT.own||[]).filter(i=>+i.reviewedAt>lim).forEach(noticeFor)}
+function watchOwn(){try{if(RTCH){db.removeChannel(RTCH);RTCH=null}if(!db||!USER)return;
+RTCH=db.channel("own-"+USER.uid).on("postgres_changes",{event:"UPDATE",schema:"public",table:"items",filter:"owner_id=eq."+USER.uid},async p=>{const it=fromRow(p.new);await loadOwn();if($("#adv").open)advRender();reloadPub();noticeFor(it)}).subscribe()}catch(e){console.error("Realtime:",e)}}
+Object.assign(D.en,{apok:"✅ Good news! Your listing “{n}” has been approved and is now online.",aprej:"Your listing “{n}” was not approved"});
+Object.assign(D.fr,{apok:"✅ Bonne nouvelle ! Votre annonce « {n} » a été approuvée et est maintenant en ligne.",aprej:"Votre annonce « {n} » n’a pas été approuvée"});
+Object.assign(D.ar,{apok:"✅ خبر سار! تمت الموافقة على إعلانك «{n}» وهو الآن منشور على الموقع.",aprej:"لم تتم الموافقة على إعلانك «{n}»"});
 const FB=CONFIG.supabase;
 if(typeof supabase!=="undefined"&&!FB.url.startsWith("YOUR")){
 FBOK=true;db=supabase.createClient(FB.url,FB.anonKey);LIVE=[];
@@ -684,7 +711,7 @@ if(ev=="PASSWORD_RECOVERY"){const np=prompt({ar:"كلمة السر الجديد�
 const su=ses&&ses.user,u=su?{uid:su.id,email:su.email,displayName:(su.user_metadata||{}).name||""}:null;
 if(ev=="TOKEN_REFRESHED"&&USER&&u&&USER.uid==u.uid)return;
 USER=u;ADMIN=isAdmin(u);if(!u){PROFILE=null;EDIT=null}
-loadOwn();
+loadOwn().then(()=>{checkNew();watchOwn()});
 if(u&&!ADMIN)db.from("profiles").select("*").eq("id",u.uid).maybeSingle().then(x=>{if(x.data){PROFILE=x.data;if($("#adv").open)advRender()}})},0)});
 }
 /* shrink photos in the browser: max 1200px, WebP/JPEG (≈100–250 KB instead of several MB) */
@@ -730,7 +757,7 @@ Object.assign(D.ar,{ofdaily:"كراء يومي",price:"الثمن بالدرهم
 Object.assign(D.en,{uname:"Your name (shown on your listings)",sublg:"Log in with your email to manage your listings.",e_cred:"Wrong email or password.",e_taken:"This email is already registered. Log in or reset your password.",e_fill:"Please fill in all the fields.",resetsub:"Enter your email and we will send you a Verification code to choose a new password.",sendreset:"Send me a code",backlogin:"Back to log in",resetok:"If an account exists for this email, a reset link has been sent. Check your spam folder too.",resetdemo:"Test mode: no email is sent."});
 Object.assign(D.fr,{uname:"Votre nom (affiché sur vos annonces)",sublg:"Connectez-vous avec votre e-mail pour gérer vos annonces.",e_cred:"E-mail ou mot de passe incorrect.",e_taken:"Cet e-mail est déjà enregistré. Connectez-vous ou réinitialisez votre mot de passe.",e_fill:"Remplissez tous les champs.",resetsub:"Saisissez votre e-mail, nous vous enverrons un code de vérification pour choisir un nouveau mot de passe.",sendreset:"Envoyer le code",backlogin:"Retour à la connexion",resetok:"Si un compte existe pour cet e-mail, un lien de réinitialisation a été envoyé. Vérifiez aussi vos spams.",resetdemo:"Mode test : aucun e-mail n'est envoyé."});
 Object.assign(D.ar,{uname:"اسمك (يظهر على إعلاناتك)",sublg:"سجّل الدخول ببريدك الإلكتروني لإدارة إعلاناتك.",e_cred:"البريد الإلكتروني أو كلمة السر غير صحيحة.",e_taken:"هذا البريد مسجّل مسبقاً. سجّل الدخول أو أعد تعيين كلمة السر.",e_fill:"املأ كل الحقول.",resetsub:"أدخل بريدك الإلكتروني وسنرسل لك رمزاً لاختيار كلمة سر جديدة.",sendreset:"أرسل لي الرمز",backlogin:"العودة إلى تسجيل الدخول",resetok:"إن وُجد حساب بهذا البريد فقد أُرسل رابط الاستعادة. تحقق أيضاً من البريد غير المرغوب فيه.",resetdemo:"وضع التجربة: لا يُرسل أي بريد."});
-Object.assign(D.en,{sendcode:"Send me a code",code:"Verification code",verify:"Verify and continue",codesent:"We sent a Verification code to {e}. Enter it below (check your spam folder too).",resend:"Resend code",resent:"A new code has been sent.",chgemail:"Change email",e_code:"Enter the Verification code.",e_nouser:"No account with this email. Create an account first."});
+Object.assign(D.en,{sendcode:"Send me a code",code:"Verification code",verify:"Verify and continue",codesent:"We sent a verification code to {e}. Enter it below (check your spam folder too).",resend:"Resend code",resent:"A new code has been sent.",chgemail:"Change email",e_code:"Enter the Verification code.",e_nouser:"No account with this email. Create an account first."});
 Object.assign(D.fr,{sendcode:"Envoyer le code",code:"Code de vérification",verify:"Valider et continuer",codesent:"Nous avons envoyé un code de vérification à {e}. Saisissez-le ci-dessous (vérifiez aussi vos spams).",resend:"Renvoyer le code",resent:"Un nouveau code a été envoyé.",chgemail:"Changer d'e-mail",e_code:"Saisissez le code de vérification.",e_nouser:"Aucun compte avec cet e-mail. Créez d'abord un compte."});
 Object.assign(D.ar,{sendcode:"أرسل لي الرمز",code:"رمز التأكيد",verify:"تأكيد ومتابعة",codesent:"أرسلنا رمزاً إلى {e}. أدخله أدناه (تحقق أيضاً من البريد غير المرغوب فيه).",resend:"إعادة إرسال الرمز",resent:"تم إرسال رمز جديد.",chgemail:"تغيير البريد",e_code:"أدخل رمز التأكيد.",e_nouser:"لا يوجد حساب بهذا البريد. أنشئ حساباً أولاً."});
 Object.assign(D.en,{newpass:"New password (min. 6 characters)",resetpass:"Reset password and log in",e_badcode:"Wrong or expired code. Request a new one."});Object.assign(D.fr,{newpass:"Nouveau mot de passe (6 caractères min.)",resetpass:"Réinitialiser et se connecter",e_badcode:"Code incorrect ou expiré. Demandez-en un nouveau."});Object.assign(D.ar,{newpass:"كلمة السر الجديدة (6 أحرف على الأقل)",resetpass:"إعادة تعيين كلمة السر ودخول",e_badcode:"الرمز غير صحيح أو منتهي الصلاحية. اطلب رمزاً جديداً."});

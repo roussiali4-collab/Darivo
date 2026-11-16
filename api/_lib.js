@@ -26,6 +26,21 @@ month|month|mois|mes|Monat|mese|شهر
 day|day|jour|día|Tag|giorno|يوم
 wa|WhatsApp|WhatsApp|WhatsApp|WhatsApp|WhatsApp|واتساب
 call|Call|Appeler|Llamar|Anrufen|Chiama|اتصال
+showphone|Show number|Afficher le numéro|Mostrar número|Nummer anzeigen|Mostra numero|إظهار الرقم
+back|Back|Retour|Volver|Zurück|Indietro|رجوع
+lang|Language|Langue|Idioma|Sprache|Lingua|اللغة
+prev|Previous|Précédent|Anterior|Zurück|Precedente|السابق
+next|Next|Suivant|Siguiente|Weiter|Successivo|التالي
+openonly|Open in the app|Ouvrir dans l'appli|Abrir en la app|In der App öffnen|Apri nell'app|افتح في التطبيق
+rvwrite|Write a review|Écrire un avis|Escribir una opinión|Bewertung schreiben|Scrivi una recensione|اكتب رأيك
+rvname|Your name|Votre nom|Tu nombre|Ihr Name|Il tuo nome|اسمك
+rvtext|Your review (min. 5 characters)|Votre avis (5 caractères min.)|Tu opinión (mín. 5 caracteres)|Ihre Bewertung (mind. 5 Zeichen)|La tua recensione (min. 5 caratteri)|رأيك (5 أحرف على الأقل)
+rvsend|Send review|Envoyer l'avis|Enviar opinión|Bewertung senden|Invia recensione|إرسال الرأي
+rvpick|Please choose a rating|Veuillez choisir une note|Elige una puntuación|Bitte Bewertung wählen|Scegli una valutazione|اختر تقييماً
+rvthanks|Thank you! Your review was added.|Merci ! Votre avis a été ajouté.|¡Gracias! Tu opinión fue añadida.|Danke! Ihre Bewertung wurde hinzugefügt.|Grazie! La tua recensione è stata aggiunta.|شكراً! تمت إضافة رأيك.
+rvdup|You already reviewed this listing.|Vous avez déjà donné votre avis sur cette annonce.|Ya opinaste sobre este anuncio.|Sie haben diese Anzeige bereits bewertet.|Hai già recensito questo annuncio.|سبق أن قيّمت هذا الإعلان.
+rvlimit|Too many reviews, please try later.|Trop d'avis, réessayez plus tard.|Demasiadas opiniones, inténtalo más tarde.|Zu viele Bewertungen, bitte später erneut versuchen.|Troppe recensioni, riprova più tardi.|عدد كبير من الآراء، حاول لاحقاً.
+rverr|Something went wrong. Please try again.|Une erreur est survenue. Réessayez.|Algo salió mal. Inténtalo de nuevo.|Etwas ist schiefgelaufen. Bitte erneut versuchen.|Qualcosa è andato storto. Riprova.|حدث خطأ. حاول مرة أخرى.
 mail|Email|E-mail|Correo|E-Mail|E-mail|بريد
 home|Home|Accueil|Inicio|Startseite|Home|الرئيسية
 sqm|m²|m²|m²|m²|m²|م²
@@ -195,13 +210,22 @@ html[lang=ar] body{font-family:"Tajawal",system-ui,sans-serif}a{color:inherit}
 .w{max-width:1100px;margin:auto;padding:0 16px}
 header{background:var(--ink);color:#fff}header .w{display:flex;justify-content:space-between;align-items:center;min-height:60px;gap:12px;flex-wrap:wrap}
 .logo{font-weight:800;font-size:1.25rem;text-decoration:none;color:#fff}.logo i{color:var(--sun);font-style:normal}
-.lg a{color:#dcecf0;font-size:.85rem;margin-inline-start:10px;text-decoration:none}.lg a[aria-current]{color:var(--sun);font-weight:700}
+.hl{display:flex;align-items:center;gap:10px}
+.bkr .w{display:flex;justify-content:flex-end;padding-top:10px}
+.bkb{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:var(--ink);text-decoration:none;flex:none}.bkb svg{width:30px;height:30px}html[dir=rtl] .bkb svg{transform:scaleX(-1)}
+.lg{position:relative}.lg summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:6px 12px;color:#fff;font-weight:700;font-size:.85rem;user-select:none}.lg summary::-webkit-details-marker{display:none}
+.lg svg{width:18px;height:18px;flex:none}.lg .cv{width:12px;height:12px;transition:transform .15s}.lg[open] .cv{transform:rotate(180deg)}
+.lg .lgm{position:absolute;inset-inline-end:0;top:calc(100% + 6px);background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);padding:6px;min-width:160px;z-index:20;display:flex;flex-direction:column}
+.lg .lgm a{color:var(--ink);padding:8px 12px;border-radius:8px;text-decoration:none;font-size:.92rem;display:flex;justify-content:space-between;gap:12px}.lg .lgm a:hover{background:var(--bg)}.lg .lgm a[aria-current]{background:var(--ink);color:#fff;font-weight:700}
 .bc{padding:14px 0 4px;font-size:.88rem;color:var(--mut)}.bc a{color:var(--sea)}
 h1{font-size:clamp(1.4rem,4.5vw,2.1rem);line-height:1.2;margin:8px 0}h2{font-size:1.2rem;margin:22px 0 8px}
 .m{color:var(--mut);font-size:.92rem}
-.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0}
-.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:#ddd}
-.gal img:first-child{grid-column:1/-1;aspect-ratio:16/10;border-radius:16px}
+.gw{position:relative;max-width:520px;margin:14px 0}
+.gal{direction:ltr;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:16px;background:#ddd}.gal::-webkit-scrollbar{display:none}
+.gal img{flex:0 0 100%;width:100%;aspect-ratio:4/3;object-fit:cover;scroll-snap-align:start}
+.gb{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(11,47,74,.72);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 0 3px}.gb:hover{background:var(--ink)}.gb.l{left:8px}.gb.r{right:8px}
+.gc{position:absolute;bottom:10px;inset-inline-end:10px;background:rgba(11,47,74,.75);color:#fff;border-radius:99px;padding:2px 10px;font-size:.8rem;font-weight:700;direction:ltr}
+.ad h1{font-size:clamp(1.9rem,6.2vw,2.7rem);font-weight:800;line-height:1.2;margin:10px 0 6px}
 .pr{font-size:1.1rem;margin:8px 0}.pr b{font-size:1.6rem}
 .acts{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
 .btn{display:inline-block;background:var(--sun);color:var(--ink);font-weight:700;border-radius:10px;padding:10px 16px;text-decoration:none}
@@ -214,10 +238,18 @@ h1{font-size:clamp(1.4rem,4.5vw,2.1rem);line-height:1.2;margin:8px 0}h2{font-siz
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .card .pic{display:block;position:relative;aspect-ratio:4/3;background:#ddd}.card .pic img{width:100%;height:100%;object-fit:cover}
 .card .tg{position:absolute;inset-block-start:10px;inset-inline-start:10px}
-.card .b{padding:12px}.card h3{font-size:1rem}.card h3 a{text-decoration:none}
+.card .dt{color:var(--mut);font-size:.8rem}.card .b{padding:12px}.card h3{font-size:1rem}.card h3 a{text-decoration:none}
 .nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.nav a{background:#fff;border:1px solid var(--line);border-radius:99px;padding:6px 14px;text-decoration:none;font-weight:700;font-size:.9rem}.nav a[aria-current]{background:var(--ink);color:#fff}
 .pgn{display:flex;gap:10px;justify-content:center;margin:10px 0 30px}
 .doc{max-width:46em;padding-bottom:20px}.doc p{margin:8px 0}.doc h2{margin:20px 0 6px;font-size:1.1rem}.doc .li{padding-inline-start:16px;margin:2px 0}.doc .co a{font-weight:700}
+.rvf{margin:16px 0;background:#fff;border:1px solid var(--line);border-radius:14px;max-width:560px}
+.rvf summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:700}.rvf summary::-webkit-details-marker{display:none}
+.rvf form{padding:0 16px 16px;display:grid;gap:10px}
+.rvf input,.rvf textarea{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}.rvf textarea{min-height:90px;resize:vertical}
+.rvf .btn{border:0;cursor:pointer;font:inherit;font-weight:700}.rvf .btn[disabled]{opacity:.6;cursor:wait}
+.stars{direction:ltr;display:flex;gap:4px}.stars button{background:none;border:0;font-size:2rem;line-height:1;color:#c9c4b3;cursor:pointer;padding:0 2px}.stars button.on{color:var(--sun)}
+.msg{font-size:.92rem;font-weight:700;margin:6px 0}.msg.ok{color:var(--sea)}.msg.er{color:#b3261e}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 footer{background:var(--ink);color:#b7c6d3;text-align:center;padding:22px;font-size:.88rem;margin-top:30px}footer a{color:#fff}`;
 
 function shell(o) {
@@ -227,7 +259,12 @@ function shell(o) {
   const img = o.image ? `<meta property="og:image" content="${esc(o.image)}"><meta name="twitter:image" content="${esc(o.image)}">` : "";
   const ld = (o.ld || []).map(x => `<script type="application/ld+json">${JSON.stringify(x).replace(/</g, "\\u003c")}</script>`).join("");
   const fonts = l === "ar" ? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">` : "";
-  const sw = o.pathFor ? LANGS.map(x => `<a href="${o.pathFor(x)}" hreflang="${x}"${x === l ? " aria-current=\"true\"" : ""}>${x.toUpperCase()}</a>`).join("") : "";
+  const LN = { ar: "العربية", fr: "Français", en: "English", es: "Español", de: "Deutsch", it: "Italiano" };
+  const GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
+  const CHEV = '<svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+  const sw = o.pathFor ? `<details class="lg"><summary aria-label="${esc(tr("lang", l))}">${GLOBE}<span>${l.toUpperCase()}</span>${CHEV}</summary><div class="lgm">`
+    + LANGS.map(x => `<a href="${o.pathFor(x)}" hreflang="${x}"${x === l ? ' aria-current="true"' : ""}><span>${LN[x]}</span><span>${x.toUpperCase()}</span></a>`).join("") + `</div></details>` : "";
+  const bk = o.back ? `<a class="bkb" id="bk" href="${esc(o.back)}" aria-label="${esc(tr("back", l))}" title="${esc(tr("back", l))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>` : "";
   return `<!DOCTYPE html>
 <html lang="${l}" dir="${l === "ar" ? "rtl" : "ltr"}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -241,12 +278,14 @@ function shell(o) {
 <meta name="twitter:card" content="${o.image ? "summary_large_image" : "summary"}">
 ${fonts}<style>${CSS}</style>${ld}
 </head><body>
-<header><div class="w"><a class="logo" href="/">Dari<i>vo</i></a><nav class="lg" aria-label="Language">${sw}</nav></div></header>
+<header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div>${sw}</div></header>${bk ? `<div class="bkr"><div class="w">${bk}</div></div>` : ""}
 <main class="w">${o.body}</main>
 <footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">© Darivo · ${esc(tr("tag", l))}</div></footer>
+<script>document.addEventListener("click",function(e){document.querySelectorAll("details.lg[open]").forEach(function(d){if(!d.contains(e.target))d.removeAttribute("open")})});var bk=document.getElementById("bk");if(bk)bk.addEventListener("click",function(e){try{if(history.length>1&&document.referrer&&new URL(document.referrer).host===location.host){e.preventDefault();history.back()}}catch(x){}});</script>
 </body></html>`;
 }
 
+const adDate = (i, l) => { const ts = +(i && i.ts); if (!(ts > 0)) return ""; try { return new Intl.DateTimeFormat(nl(l), { day: "numeric", month: "short", year: "numeric", timeZone: "Africa/Casablanca" }).format(new Date(ts)); } catch (e) { return ""; } };
 function card(i, l) {
   const im = imgsOf(i)[0];
   const th = /^https?:\/\//.test(i.thumb || "") ? i.thumb : im;
@@ -254,7 +293,7 @@ function card(i, l) {
   const tag = REAL.includes(i.c) ? `<span class="tg ${isSale(i) ? "s" : isDaily(i) ? "d" : ""}">${esc(tr(offKey(i), l))}</span>` : "";
   const un = unitOf(i);
   const meta = [cityName(i.city || "agadir", l), i.a].filter(Boolean).join(" · ") + (i.area > 0 ? ` · ${nfm(i.area, l)} ${tr("sqm", l)}` : "");
-  return `<article class="card"><a class="pic" href="${u}">${th ? `<img src="${esc(th)}" alt="${esc(i.n)}" loading="lazy" width="400" height="300">` : ""}${tag}</a><div class="b"><h3><a href="${u}">${esc(i.n)}</a></h3><div class="m">${esc(meta)}</div>${i.p > 0 ? `<div class="pr"><b>${esc(money(i.p, l))}</b>${un ? " / " + esc(tr(un, l)) : ""}</div>` : ""}</div></article>`;
+  return `<article class="card"><a class="pic" href="${u}">${th ? `<img src="${esc(th)}" alt="${esc(i.n)}" loading="lazy" width="400" height="300">` : ""}${tag}</a><div class="b"><h3><a href="${u}">${esc(i.n)}</a></h3><div class="m">${esc(meta)}</div>${adDate(i, l) ? `<div class="dt">🗓 ${esc(adDate(i, l))}</div>` : ""}${i.p > 0 ? `<div class="pr"><b>${esc(money(i.p, l))}</b>${un ? " / " + esc(tr(un, l)) : ""}</div>` : ""}</div></article>`;
 }
 
 function send(res, status, body, cache, type) {
@@ -275,5 +314,5 @@ function notFound(res, lang, S) {
     body: `<h1>${esc(tr("nf", l))}</h1><p><a class="btn" href="/">${esc(tr("home", l))}</a></p>` }), "s-maxage=60");
 }
 
-module.exports = { facets, sumN, LANGS, TABS, PAGES, BUSINESS, CITIES, CITY_IDS, COLS, REAL, ACTS, SVCS, TXT, tr, cityName, esc, slug, parseId, site, sb, q,
+module.exports = { SB, KEY, facets, sumN, LANGS, TABS, PAGES, BUSINESS, CITIES, CITY_IDS, COLS, REAL, ACTS, SVCS, TXT, tr, cityName, esc, slug, parseId, site, sb, q,
   isSale, isDaily, offKey, unitOf, tabOf, dOf, imgsOf, money, nfm, fmtPhone, adPath, listPath, shell, card, send, notFound, unavailable, SALE_CATS };

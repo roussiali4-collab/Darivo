@@ -194,7 +194,7 @@ body.dlk{overflow:hidden}
 .grid .pic{height:235px}
 .grid .body{padding:9px 11px 10px;gap:2px}
 .grid .body h3{font-size:.92rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.grid .meta{font-size:.74rem}
+.grid .meta{font-size:.74rem}.card .dt{color:var(--mut);font-size:.78rem;margin-top:2px}
 .grid .body p{font-size:.76rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .grid .chips{gap:3px;margin-top:2px;max-height:1.5rem;overflow:hidden}
 .grid .chips span{font-size:.66rem;padding:0 7px}
@@ -352,6 +352,7 @@ else if(!plus&&d.length==9&&/^[5-8]/.test(d))d="212"+d;
 if(d.startsWith("212"))return/^212[5-8]\d{8}$/.test(d)?d:"";
 return/^\d{8,15}$/.test(d)?d:""}
 const nfm=n=>new Intl.NumberFormat(L).format(n);
+const adDate=i=>{const ts=+(i&&i.ts);if(!(ts>0))return "";try{return new Intl.DateTimeFormat(L=="ar"?"ar-u-nu-latn":L,{day:"numeric",month:"short",year:"numeric",timeZone:"Africa/Casablanca"}).format(new Date(ts))}catch(e){return ""}};
 const fmtPhone=n=>/^212[5-8]\d{8}$/.test(n||"")?"0"+n.slice(3).replace(/^(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/,"$1 $2 $3 $4 $5"):(n?"+"+n:"");
 const waLink=i=>{const p=normPhone(i.phone);return p?`https://wa.me/${p}?text=${encodeURIComponent(t("wamsg").replace("{n}",i.n))}`:""};
 
@@ -363,7 +364,7 @@ const ph=normPhone(i.phone);
 const eml=i.email?`<a class="go alt" href="mailto:${esc(i.email)}?subject=${encodeURIComponent(t("emsub").replace("{n}",i.n))}&amp;body=${encodeURIComponent(t("embody").replace("{n}",i.n)+"\n\n"+adUrl(i))}" aria-label="${t("emailb")}">✉️ ${t("emailb")}</a>`:"";
 const act=wl?`<div class="acts"><a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><a class="go alt call" href="tel:+${ph}" dir="ltr" aria-label="${t("callb")} ${fmtPhone(ph)}">📞 ${t("callb")}</a>${eml}</div>`:`<div class="acts">${eml}<a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")} ↗</a></div>`;
 const pr=i.p?`<span class="price"><b>${money(i.p)}</b>${unitOf(i)?" / "+t(unitOf(i)):""}</span>`:"<span></span>";
-return `<article class="card"><div class="pic" data-v="${i.id}" role="button" tabindex="0" aria-label="${esc(i.n)}">${slidesHtml(i)}${REAL.includes(i.c)?`<span class="tg ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}</div><div class="body"><h3 class="vt" data-v="${i.id}" tabindex="0"><a href="${adUrl(i)}">${esc(i.n)}</a></h3><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div>${rbadge(i.id)}<p>${esc(d)}</p>${chips(i)}<div class="row">${pr}${act}</div>${ADMIN&&LIVE?`<div class="row"><button class="map" data-e="${i.id}">✎ price</button><button class="map" style="color:#c0392b" data-x="${i.id}">🗑 delete</button></div>`:""}</div></article>`}
+return `<article class="card"><div class="pic" data-v="${i.id}" role="button" tabindex="0" aria-label="${esc(i.n)}">${slidesHtml(i)}${REAL.includes(i.c)?`<span class="tg ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}</div><div class="body"><h3 class="vt" data-v="${i.id}" tabindex="0"><a href="${adUrl(i)}">${esc(i.n)}</a></h3><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div>${adDate(i)?`<div class="dt">🗓 ${esc(adDate(i))}</div>`:""}${rbadge(i.id)}<p>${esc(d)}</p>${chips(i)}<div class="row">${pr}${act}</div>${ADMIN&&LIVE?`<div class="row"><button class="map" data-e="${i.id}">✎ price</button><button class="map" style="color:#c0392b" data-x="${i.id}">🗑 delete</button></div>`:""}</div></article>`}
 
 function render(){
 closeTM();

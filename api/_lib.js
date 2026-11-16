@@ -253,7 +253,7 @@ h1{font-size:clamp(1.4rem,4.5vw,2.1rem);line-height:1.2;margin:8px 0}h2{font-siz
 .msg{font-size:.92rem;font-weight:700;margin:6px 0}.msg.ok{color:var(--sea)}.msg.er{color:#b3261e}
 .adc{max-width:560px;margin:0 auto;text-align:center}.adc .gw{margin:14px auto}.adc .acts,.adc .chips{justify-content:center}.adc .desc,.adc .rv{text-align:start}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-footer{background:var(--ink);color:#b7c6d3;text-align:center;padding:22px;font-size:.88rem;margin-top:30px}footer a{color:#fff}`;
+footer{background:var(--ink);color:#b7c6d3;text-align:center;padding:10px 16px;font-size:.76rem;line-height:1.45;margin-top:20px}footer a{color:#fff}`;
 
 function shell(o) {
   const l = o.lang, S = o.site, url = S + o.path;
@@ -283,7 +283,7 @@ ${fonts}<style>${CSS}</style>${ld}
 </head><body>
 <header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div><div class="hr">${bk}${sw}</div></div></header>
 <main class="w">${o.body}</main>
-<footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">© Darivo · ${esc(tr("tag", l))}</div></footer>
+<footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:2px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:2px">© Darivo · ${esc(tr("tag", l))}</div></footer>
 <script>document.addEventListener("click",function(e){document.querySelectorAll("details.lg[open]").forEach(function(d){if(!d.contains(e.target))d.removeAttribute("open")})});var bk=document.getElementById("bk");if(bk)bk.addEventListener("click",function(e){try{if(history.length>1&&document.referrer&&new URL(document.referrer).host===location.host){e.preventDefault();history.back()}}catch(x){}});</script>
 </body></html>`;
 }

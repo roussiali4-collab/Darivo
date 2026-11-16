@@ -212,7 +212,7 @@ header{background:var(--ink);color:#fff}header .w{display:flex;justify-content:s
 .logo{font-weight:800;font-size:1.25rem;text-decoration:none;color:#fff}.logo i{color:var(--sun);font-style:normal}
 .hl{display:flex;align-items:center;gap:10px}
 .bkr .w{display:flex;justify-content:flex-end;padding-top:10px}
-.bkb{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;flex:none;box-shadow:0 1px 3px rgba(0,0,0,.12)}.bkb svg{width:20px;height:20px}html[dir=rtl] .bkb svg{transform:scaleX(-1)}
+.bkb{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:var(--ink);text-decoration:none;flex:none}.bkb svg{width:30px;height:30px}html[dir=rtl] .bkb svg{transform:scaleX(-1)}
 .lg{position:relative}.lg summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:6px 12px;color:#fff;font-weight:700;font-size:.85rem;user-select:none}.lg summary::-webkit-details-marker{display:none}
 .lg svg{width:18px;height:18px;flex:none}.lg .cv{width:12px;height:12px;transition:transform .15s}.lg[open] .cv{transform:rotate(180deg)}
 .lg .lgm{position:absolute;inset-inline-end:0;top:calc(100% + 6px);background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);padding:6px;min-width:160px;z-index:20;display:flex;flex-direction:column}

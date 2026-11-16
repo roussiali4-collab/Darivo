@@ -87,7 +87,9 @@ body.ck #wa{bottom:72px}
 #det .x{position:absolute;inset-block-start:10px;inset-inline-end:12px;float:none;background:#fff;border-radius:50%;width:34px;height:34px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 #detb{padding:16px 20px 22px}
 .gm{height:min(300px,52vw);background-size:cover;background-position:center}
-.gt{display:flex;gap:6px;overflow-x:auto;padding:8px 20px 0}
+.gt{display:flex;gap:6px;overflow-x:auto;padding:8px 20px 0;max-width:480px;margin:0 auto}
+#detg{padding-top:54px}#detg .gw{max-width:480px;margin:0 auto;border-radius:16px;overflow:hidden}#det .slides.gm,#det .gm{height:min(250px,58vw)}
+#det .bk{position:absolute;inset-block-start:10px;inset-inline-start:12px;background:none;border:0;border-radius:0;width:40px;height:40px;z-index:2;box-shadow:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);padding:0}#det .bk svg{width:30px;height:30px}html[dir=rtl] #det .bk svg{transform:scaleX(-1)}
 .gt button{flex:none;width:64px;height:48px;border-radius:8px;border:2px solid transparent;background-size:cover;background-position:center;cursor:pointer;padding:0}
 .gt button.on{border-color:var(--sun)}
 .rv{border-top:1px solid var(--line);padding:10px 0}.rv small{color:var(--mut)}
@@ -233,7 +235,7 @@ body.dlk{overflow:hidden}
 <a id="wa" target="_blank" rel="noopener" hidden>💬 WhatsApp</a>
 <div id="cb"><span id="ckt"></span><button id="ckb"></button></div>
 
-<dialog id="det"><button class="x" id="detx" aria-label="Close">×</button><div id="detg"></div><div id="detb"></div></dialog>
+<dialog id="det"><button class="bk" id="detbk" type="button" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button class="x" id="detx" aria-label="Close">×</button><div id="detg"></div><div id="detb"></div></dialog>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
@@ -432,6 +434,7 @@ Object.assign(T.ar,{studio:"استوديوهات",maison:"منازل",month:"ش�
 Object.assign(T.en,{sqm:"m²"});Object.assign(T.fr,{sqm:"m²"});Object.assign(T.es,{sqm:"m²"});Object.assign(T.de,{sqm:"m²"});Object.assign(T.it,{sqm:"m²"});Object.assign(T.ar,{sqm:"م²"});
 Object.assign(T.en,{land:"Land plots"});Object.assign(T.fr,{land:"Terrains"});Object.assign(T.es,{land:"Terrenos"});Object.assign(T.de,{land:"Grundstücke"});Object.assign(T.it,{land:"Terreni"});Object.assign(T.ar,{land:"بقع أرضية"});
 Object.assign(T.en,{callb:"Call"});Object.assign(T.fr,{callb:"Appeler"});Object.assign(T.ar,{callb:"اتصال"});Object.assign(T.es,{callb:"Llamar"});Object.assign(T.de,{callb:"Anrufen"});Object.assign(T.it,{callb:"Chiama"});
+Object.assign(T.en,{showph:"Show number",backb:"Back"});Object.assign(T.fr,{showph:"Afficher le numéro",backb:"Retour"});Object.assign(T.ar,{showph:"إظهار الرقم",backb:"رجوع"});Object.assign(T.es,{showph:"Mostrar número",backb:"Volver"});Object.assign(T.de,{showph:"Nummer anzeigen",backb:"Zurück"});Object.assign(T.it,{showph:"Mostra numero",backb:"Indietro"});
 /* ===== Rooms, daily rent and service types ===== */
 /* tab menu labels */
 /* paging labels */
@@ -526,7 +529,7 @@ function detRender(){
 const i=DET&&items().find(x=>x.id==DET.id);if(!i)return;DET=i;
 const im=imgsOf(i),d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"",wl=waLink(i),ph=normPhone(i.phone);
 $("#detg").innerHTML=`<div class="gw">${slidesHtml(i,"gm")}</div>`+(im.length>1?`<div class="gt">${im.slice(0,10).map((u,k)=>`<button type="button" data-g="${k}" class="${k?"":"on"}" style="background-image:url('${sU(u)}')" aria-label="${k+1}"></button>`).join("")}</div>`:"");
-$("#detb").innerHTML=`${REAL.includes(i.c)?`<span class="tg in ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}<h2 style="font-size:1.4rem;margin:0 0 2px">${esc(i.n)}</h2><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div><div id="rsum" class="rt" style="margin:4px 0"></div>${i.p?`<div class="price" style="margin:8px 0"><b style="font-size:1.4rem">${money(i.p)}</b>${unitOf(i)?" / "+t(unitOf(i)):""}</div>`:""}<div class="row2">${wl?`<a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><a class="go alt" href="tel:+${ph}" dir="ltr">📞 ${t("callb")} · ${fmtPhone(ph)}</a>`:""}${i.email?`<a class="go alt" href="mailto:${esc(i.email)}?subject=${encodeURIComponent(t("emsub").replace("{n}",i.n))}&amp;body=${encodeURIComponent(t("embody").replace("{n}",i.n)+"\n\n"+adUrl(i))}">✉️ ${t("emailb")}</a>`:""}<a class="go alt" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")}</a><button type="button" class="go alt" data-share>🔗 ${t("share")}</button></div><p style="margin:10px 0">${esc(d)}</p>${chips(i)}<h3 style="margin:18px 0 6px">${t("reviews")}</h3><div id="rvl"></div><h3 style="margin:18px 0 6px">${t("wr")}</h3><div class="hp" aria-hidden="true"><input id="rv-hp" tabindex="-1" autocomplete="off"></div><label>${t("yn")}<input id="rv-n" maxlength="40" autocomplete="name"></label><div><small>${t("yr")}</small><div id="stars">${[1,2,3,4,5].map(n=>`<button type="button" data-star="${n}" aria-label="${n}">★</button>`).join("")}</div></div><label>${t("yc")}<textarea id="rv-t" rows="3" maxlength="500"></textarea></label><button class="go" id="rv-s" type="button">${t("send")}</button><div id="rv-m" role="status" style="margin-top:8px;font-weight:600;color:var(--sea)"></div>`;
+$("#detb").innerHTML=`${REAL.includes(i.c)?`<span class="tg in ${isSale(i)?"s":(isDaily(i)?"d":"r")}">${t(offKey(i))}</span>`:""}<h2 style="font-size:clamp(1.7rem,6vw,2.3rem);line-height:1.2;margin:2px 0 4px">${esc(i.n)}</h2><div class="meta">${esc([cname(i.city||"agadir"),i.a].filter(Boolean).join(" · "))}${i.area>0?` <b>· 📐 ${nfm(i.area)} ${t("sqm")}</b>`:""}</div><div id="rsum" class="rt" style="margin:4px 0"></div>${i.p?`<div class="price" style="margin:8px 0"><b style="font-size:1.4rem">${money(i.p)}</b>${unitOf(i)?" / "+t(unitOf(i)):""}</div>`:""}<div class="row2">${wl?`<a class="go wa" href="${wl}" target="_blank" rel="noopener">💬 ${t("wabtn")}</a><button type="button" class="go alt" data-ph="${btoa(ph)}" data-pf="${btoa(fmtPhone(ph))}">📞 ${t("showph")}</button>`:""}${i.email?`<a class="go alt" href="mailto:${esc(i.email)}?subject=${encodeURIComponent(t("emsub").replace("{n}",i.n))}&amp;body=${encodeURIComponent(t("embody").replace("{n}",i.n)+"\n\n"+adUrl(i))}">✉️ ${t("emailb")}</a>`:""}<a class="go alt" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.n+" "+cen(i.city||"agadir"))}">${t("map")}</a><button type="button" class="go alt" data-share>🔗 ${t("share")}</button></div><p style="margin:10px 0">${esc(d)}</p>${chips(i)}<h3 style="margin:18px 0 6px">${t("reviews")}</h3><div id="rvl"></div><h3 style="margin:18px 0 6px">${t("wr")}</h3><div class="hp" aria-hidden="true"><input id="rv-hp" tabindex="-1" autocomplete="off"></div><label>${t("yn")}<input id="rv-n" maxlength="40" autocomplete="name"></label><div><small>${t("yr")}</small><div id="stars">${[1,2,3,4,5].map(n=>`<button type="button" data-star="${n}" aria-label="${n}">★</button>`).join("")}</div></div><label>${t("yc")}<textarea id="rv-t" rows="3" maxlength="500"></textarea></label><button class="go" id="rv-s" type="button">${t("send")}</button><div id="rv-m" role="status" style="margin-top:8px;font-weight:600;color:var(--sea)"></div>`;
 revList()}
 function gal(k){const el=$("#gm");if(!el)return;slideTo(el,k*el.clientWidth*(rtl()?-1:1))}
 function star(n){RSEL=n;document.querySelectorAll("#stars button").forEach((b,j)=>b.classList.toggle("on",j<n))}
@@ -565,7 +568,7 @@ else if(x.name=="fam"){x.checked?AMS.add(x.value):AMS.delete(x.value)}
 else return;
 fmark();list()});
 $("#fp").addEventListener("click",e=>{if(e.target.id=="frs"){MAXP=0;MINR=0;OFFER="";AMS.clear();Q="";$("#q").value="";SORT="def";$("#fp").innerHTML="";fpBuild();list()}});
-$("#detx").onclick=()=>$("#det").close();
+$("#detx").onclick=()=>$("#det").close();$("#detbk").onclick=()=>$("#det").close();
 
 /* ===== Branded dropdowns: replace every native <select> popup with a styled list ===== */
 const ddSig=s=>s.value+"|"+[...s.options].map(o=>o.value+":"+o.text+(o.hidden?":h":"")).join("|");
@@ -940,7 +943,7 @@ $("#advb").addEventListener("click",()=>{if(USER){TAB="new";EDIT=null}else MODE=
 $("#drw").addEventListener("change",e=>{if(e.target.id=="lg2"){L=e.target.value;try{localStorage.setItem("lang",L)}catch(x){}drClose(false);render()}});
 
 $("#det").addEventListener("close",()=>{if(/^#ad-/.test(location.hash)){try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}seo()});
-$("#detb").addEventListener("click",e=>{const b=e.target.closest("[data-share]");if(b)shareAd(b)});
+$("#detb").addEventListener("click",e=>{const b=e.target.closest("[data-share]");if(b)shareAd(b);const p=e.target.closest("[data-ph]");if(p){try{const a=document.createElement("a");a.className="go alt";a.href="tel:+"+atob(p.dataset.ph);a.setAttribute("dir","ltr");a.textContent="📞 "+atob(p.dataset.pf);p.replaceWith(a)}catch(x){}}});
 window.addEventListener("hashchange",hashOpen);
 render();
 </script>

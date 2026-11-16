@@ -68,7 +68,7 @@ module.exports = async (req, res) => {
   const E = L.esc;
   const amen = (Array.isArray(it.am) ? it.am : []).filter(k => L.TXT[k]);
   const body = `<nav class="bc" aria-label="Breadcrumb"><a href="/">${E(L.tr("home", lang))}</a> › <a href="${L.listPath(lang, tab)}">${E(L.tr(tab, lang))}</a> › <a href="${L.listPath(lang, tab, city)}">${E(cn)}</a></nav>
-<article>
+<article class="adc">
 <h1>${E(it.n)}</h1>
 <div class="m">${L.REAL.includes(it.c) ? `<span class="tg ${L.isSale(it) ? "s" : L.isDaily(it) ? "d" : ""}">${E(kind)}</span> ` : ""}${E([L.tr(it.c, lang), cn, it.a].filter(Boolean).join(" · "))}${it.area > 0 ? ` · ${E(L.nfm(it.area, lang))} ${E(L.tr("sqm", lang))}` : ""}</div>
 ${imgs.length ? `<div class="gw"><div class="gal" id="gal">${imgs.map((u, k) => `<img src="${E(u)}" alt="${E(it.n)}${k ? " " + (k + 1) : ""}" ${k ? 'loading="lazy"' : 'fetchpriority="high"'}>`).join("")}</div>${imgs.length > 1 ? `<button type="button" class="gb l" data-gs="-1" aria-label="${E(L.tr("prev", lang))}">‹</button><button type="button" class="gb r" data-gs="1" aria-label="${E(L.tr("next", lang))}">›</button><span class="gc">1/${imgs.length}</span><script>(function(){var g=document.getElementById("gal"),c=document.querySelector(".gc");if(!g)return;g.addEventListener("scroll",function(){var k=Math.round(g.scrollLeft/(g.clientWidth||1));if(c)c.textContent=(k+1)+"/"+g.children.length},{passive:true});document.querySelectorAll("[data-gs]").forEach(function(b){b.addEventListener("click",function(){g.scrollBy({left:(+b.dataset.gs)*g.clientWidth,behavior:"smooth"})})})})();</script>` : ""}</div>` : ""}

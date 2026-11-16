@@ -209,10 +209,12 @@ const CSS = `:root{--ink:#0B2F4A;--sun:#F4A62A;--sea:#0E7C86;--bg:#E9E5D8;--line
 html[lang=ar] body{font-family:"Tajawal",system-ui,sans-serif}a{color:inherit}
 .w{max-width:1100px;margin:auto;padding:0 16px}
 header{background:var(--ink);color:#fff}header .w{display:flex;justify-content:space-between;align-items:center;min-height:60px;gap:12px;flex-wrap:wrap}
-.logo{font-weight:800;font-size:1.25rem;text-decoration:none;color:#fff}.logo i{color:var(--sun);font-style:normal}
+.logo{font-weight:800;font-size:1.6rem;text-decoration:none;color:#fff}.logo i{color:var(--sun);font-style:normal}
 .hl{display:flex;align-items:center;gap:10px}
 .bkr .w{display:flex;justify-content:flex-end;padding-top:10px}
 .bkb{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:var(--ink);text-decoration:none;flex:none}.bkb svg{width:30px;height:30px}html[dir=rtl] .bkb svg{transform:scaleX(-1)}
+.bkb.h{color:#fff;width:36px;height:36px}.bkb.h svg{width:26px;height:26px}.hr{display:flex;align-items:center;gap:10px}
+.lgw{display:flex;align-items:center;gap:8px}.lgw>svg{width:22px;height:22px;color:#fff;flex:none}.lg summary{min-width:124px;justify-content:space-between}
 .lg{position:relative}.lg summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:6px 12px;color:#fff;font-weight:700;font-size:.85rem;user-select:none}.lg summary::-webkit-details-marker{display:none}
 .lg svg{width:18px;height:18px;flex:none}.lg .cv{width:12px;height:12px;transition:transform .15s}.lg[open] .cv{transform:rotate(180deg)}
 .lg .lgm{position:absolute;inset-inline-end:0;top:calc(100% + 6px);background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);padding:6px;min-width:160px;z-index:20;display:flex;flex-direction:column}
@@ -262,9 +264,9 @@ function shell(o) {
   const LN = { ar: "العربية", fr: "Français", en: "English", es: "Español", de: "Deutsch", it: "Italiano" };
   const GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
   const CHEV = '<svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
-  const sw = o.pathFor ? `<details class="lg"><summary aria-label="${esc(tr("lang", l))}">${GLOBE}<span>${l.toUpperCase()}</span>${CHEV}</summary><div class="lgm">`
-    + LANGS.map(x => `<a href="${o.pathFor(x)}" hreflang="${x}"${x === l ? ' aria-current="true"' : ""}><span>${LN[x]}</span><span>${x.toUpperCase()}</span></a>`).join("") + `</div></details>` : "";
-  const bk = o.back ? `<a class="bkb" id="bk" href="${esc(o.back)}" aria-label="${esc(tr("back", l))}" title="${esc(tr("back", l))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>` : "";
+  const sw = o.pathFor ? `<div class="lgw">${GLOBE}<details class="lg"><summary aria-label="${esc(tr("lang", l))}"><span>${LN[l]}</span>${CHEV}</summary><div class="lgm">`
+    + LANGS.map(x => `<a href="${o.pathFor(x)}" hreflang="${x}"${x === l ? ' aria-current="true"' : ""}><span>${LN[x]}</span><span>${x.toUpperCase()}</span></a>`).join("") + `</div></details></div>` : "";
+  const bk = o.back ? `<a class="bkb h" id="bk" href="${esc(o.back)}" aria-label="${esc(tr("back", l))}" title="${esc(tr("back", l))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>` : "";
   return `<!DOCTYPE html>
 <html lang="${l}" dir="${l === "ar" ? "rtl" : "ltr"}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -278,7 +280,7 @@ function shell(o) {
 <meta name="twitter:card" content="${o.image ? "summary_large_image" : "summary"}">
 ${fonts}<style>${CSS}</style>${ld}
 </head><body>
-<header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div>${sw}</div></header>${bk ? `<div class="bkr"><div class="w">${bk}</div></div>` : ""}
+<header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div><div class="hr">${bk}${sw}</div></div></header>
 <main class="w">${o.body}</main>
 <footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">© Darivo · ${esc(tr("tag", l))}</div></footer>
 <script>document.addEventListener("click",function(e){document.querySelectorAll("details.lg[open]").forEach(function(d){if(!d.contains(e.target))d.removeAttribute("open")})});var bk=document.getElementById("bk");if(bk)bk.addEventListener("click",function(e){try{if(history.length>1&&document.referrer&&new URL(document.referrer).host===location.host){e.preventDefault();history.back()}}catch(x){}});</script>

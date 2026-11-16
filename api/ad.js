@@ -71,9 +71,9 @@ module.exports = async (req, res) => {
 <article>
 <h1>${E(it.n)}</h1>
 <div class="m">${L.REAL.includes(it.c) ? `<span class="tg ${L.isSale(it) ? "s" : L.isDaily(it) ? "d" : ""}">${E(kind)}</span> ` : ""}${E([L.tr(it.c, lang), cn, it.a].filter(Boolean).join(" · "))}${it.area > 0 ? ` · ${E(L.nfm(it.area, lang))} ${E(L.tr("sqm", lang))}` : ""}</div>
-${imgs.length ? `<div class="gal">${imgs.map((u, k) => `<img src="${E(u)}" alt="${E(it.n)}${k ? " " + (k + 1) : ""}" ${k ? 'loading="lazy"' : 'fetchpriority="high"'}>`).join("")}</div>` : ""}
+${imgs.length ? `<div class="gw"><div class="gal" id="gal">${imgs.map((u, k) => `<img src="${E(u)}" alt="${E(it.n)}${k ? " " + (k + 1) : ""}" ${k ? 'loading="lazy"' : 'fetchpriority="high"'}>`).join("")}</div>${imgs.length > 1 ? `<button type="button" class="gb l" data-gs="-1" aria-label="${E(L.tr("prev", lang))}">‹</button><button type="button" class="gb r" data-gs="1" aria-label="${E(L.tr("next", lang))}">›</button><span class="gc">1/${imgs.length}</span><script>(function(){var g=document.getElementById("gal"),c=document.querySelector(".gc");if(!g)return;g.addEventListener("scroll",function(){var k=Math.round(g.scrollLeft/(g.clientWidth||1));if(c)c.textContent=(k+1)+"/"+g.children.length},{passive:true});document.querySelectorAll("[data-gs]").forEach(function(b){b.addEventListener("click",function(){g.scrollBy({left:(+b.dataset.gs)*g.clientWidth,behavior:"smooth"})})})})();</script>` : ""}</div>` : ""}
 ${it.p > 0 ? `<div class="pr"><b>${E(L.money(it.p, lang))}</b>${un ? " / " + E(L.tr(un, lang)) : ""}</div>` : ""}
-<div class="acts">${wa ? `<a class="btn wa" href="${E(wa)}" target="_blank" rel="noopener">💬 ${E(L.tr("wa", lang))}</a>` : ""}${phone ? `<a class="btn alt" href="tel:+${phone}" dir="ltr">📞 ${E(L.tr("call", lang))} · ${E(L.fmtPhone(phone))}</a>` : ""}${mail ? `<a class="btn alt" href="${E(mail)}">✉️ ${E(L.tr("mail", lang))}</a>` : ""}</div>
+<div class="acts">${wa ? `<a class="btn wa" href="${E(wa)}" target="_blank" rel="noopener">💬 ${E(L.tr("wa", lang))}</a>` : ""}${phone ? `<a class="btn alt" href="tel:+${phone}" dir="ltr" aria-label="${E(L.tr("call", lang))} ${E(L.fmtPhone(phone))}">📞 ${E(L.tr("call", lang))}</a>` : ""}${mail ? `<a class="btn alt" href="${E(mail)}">✉️ ${E(L.tr("mail", lang))}</a>` : ""}</div>
 ${d ? `<p class="desc">${E(d).replace(/\n/g, "<br>")}</p>` : ""}
 ${amen.length ? `<h2>${E(L.tr("amen", lang))}</h2><div class="chips">${amen.map(k => `<span>${E(L.tr(k, lang))}</span>`).join("")}</div>` : ""}
 <h2>${E(L.tr("reviews", lang))}${revs.length ? ` · ${stars(avg)} ${avg.toFixed(1)} (${revs.length})` : ""}</h2>
@@ -83,5 +83,5 @@ ${revs.slice(0, 10).map(r => `<div class="rv"><b>${E(r.name)}</b> <span>${stars(
 ${rel.rows.length ? `<h2>${E(L.tr("similar", lang))} · ${E(L.tr(it.c === "explore" ? (it.svc || "explore") : it.c, lang))}</h2><div class="grid">${rel.rows.map(x => L.card(x, lang)).join("")}</div>` : ""}`;
 
   L.send(res, 200, L.shell({ lang, site: S, path: L.adPath(it, lang), pathFor: x => L.adPath(it, x), title, desc,
-    image: imgs[0], ogType: "article", ld, body }), "s-maxage=300, stale-while-revalidate=3600");
+    image: imgs[0], ogType: "article", ld, body, back: L.listPath(lang, tab, city) }), "s-maxage=300, stale-while-revalidate=3600");
 };

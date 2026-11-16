@@ -1,0 +1,36 @@
+{
+ "rewrites": [
+  {
+   "source": "/:lang(ar|fr|en|es|de|it)/:page(about|contact|terms|privacy)",
+   "destination": "/api/page?lang=:lang&page=:page"
+  },
+  {
+   "source": "/:lang(ar|fr|en|es|de|it)/ad/:slug",
+   "destination": "/api/ad?lang=:lang&slug=:slug"
+  },
+  {
+   "source": "/:lang(ar|fr|en|es|de|it)/:tab(rent|sale|services|activities)",
+   "destination": "/api/list?lang=:lang&tab=:tab"
+  },
+  {
+   "source": "/:lang(ar|fr|en|es|de|it)/:city(agadir|marrakech|casablanca|rabat|fes|tangier|essaouira|chefchaouen|meknes|tetouan|oujda|ouarzazate|merzouga|dakhla)/:tab(rent|sale|services|activities)",
+   "destination": "/api/list?lang=:lang&city=:city&tab=:tab"
+  },
+  {
+   "source": "/sitemap.xml",
+   "destination": "/api/sitemap"
+  },
+  {
+   "source": "/sitemaps/:lang(ar|fr|en|es|de|it)/:p(\\d+)",
+   "destination": "/api/sitemap?lang=:lang&p=:p"
+  },
+  {
+   "source": "/sitemaps/:lang(ar|fr|en|es|de|it)",
+   "destination": "/api/sitemap?lang=:lang&p=0"
+  },
+  {
+   "source": "/robots.txt",
+   "destination": "/api/robots"
+  }
+ ]
+}

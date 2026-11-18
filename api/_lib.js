@@ -85,7 +85,8 @@ halal|Halal food|Cuisine halal|Comida halal|Halal-Essen|Cibo halal|طعام حل
 about|About us|À propos|Sobre nosotros|Über uns|Chi siamo|من نحن
 contact|Contact us|Contactez-nous|Contáctenos|Kontakt|Contattaci|اتصل بنا
 terms|Terms|Conditions|Condiciones|AGB|Termini|الشروط
-privacy|Privacy|Confidentialité|Privacidad|Datenschutz|Privacy|الخصوصية`
+privacy|Privacy|Confidentialité|Privacidad|Datenschutz|Privacy|الخصوصية
+rights|All rights reserved|Tous droits réservés|Todos los derechos reservados|Alle Rechte vorbehalten|Tutti i diritti riservati|جميع الحقوق محفوظة`
   .split("\n").forEach(r => { const a = r.split("|"); TXT[a[0]] = a.slice(1); });
 const tr = (k, l) => { const r = TXT[k]; return r ? (r[LI[l]] || r[0]) : k; };
 
@@ -280,7 +281,7 @@ ${fonts}<style>${CSS}</style>${ld}
 </head><body>
 <header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div>${sw}</div></header>${bk ? `<div class="bkr"><div class="w">${bk}</div></div>` : ""}
 <main class="w">${o.body}</main>
-<footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">© Darivo · ${esc(tr("tag", l))}</div></footer>
+<footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${esc(tr("rights", l))} Darivo</div></footer>
 <script>document.addEventListener("click",function(e){document.querySelectorAll("details.lg[open]").forEach(function(d){if(!d.contains(e.target))d.removeAttribute("open")})});var bk=document.getElementById("bk");if(bk)bk.addEventListener("click",function(e){try{if(history.length>1&&document.referrer&&new URL(document.referrer).host===location.host){e.preventDefault();history.back()}}catch(x){}});</script>
 </body></html>`;
 }

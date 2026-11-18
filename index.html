@@ -211,7 +211,7 @@ body.dlk{overflow:hidden}
 .hero{padding:14px 0 12px}.hero h1{font-size:clamp(1.35rem,4.6vw,2.1rem)}.hero p{margin-top:6px;font-size:.88rem;line-height:1.4}
 .ic{object-fit:contain;vertical-align:middle}#tabs .tab .ic{width:40px;height:40px}#tabs .tab .ti{height:60px;display:flex;align-items:center;justify-content:center}#tabs .tab[data-c="explore"] .ic{width:60px;height:60px}#tabs .tab[data-c="act"] .ic{width:70px;height:auto}.tmi{display:flex;align-items:center;gap:8px}
 .advb{background:#F4A62A;color:#0B2F4A;border:0;border-radius:999px;font-weight:800;padding:8px 14px;font-size:.86rem;cursor:pointer;white-space:nowrap}.advb:hover{background:#ffb94a}@media(max-width:400px){.advb{padding:6px 9px;font-size:.76rem}#lg{max-width:92px}}
-.pw{position:relative;display:block;margin-top:4px}.pw input{margin:0!important;padding-inline-end:46px}.eye{position:absolute;inset-inline-end:4px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--mut);line-height:0;cursor:pointer;padding:9px}.eye:hover{color:var(--ink)}.eye svg{display:block}
+.pw{position:relative;display:block;margin-top:4px}.pw input{margin:0!important;padding-inline-end:46px}.eye{position:absolute;inset-inline-end:4px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--mut);line-height:0;cursor:pointer;padding:9px}.eye:hover{color:var(--ink)}.acr{display:flex;justify-content:flex-end;margin:0 0 12px}.acb{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 14px 4px 4px;font:inherit;font-weight:700;font-size:.9rem;cursor:pointer}[dir=rtl] .acb{padding:4px 4px 4px 14px}.acb:hover{background:rgba(255,255,255,.28)}.acv{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-weight:800}.dz{margin-top:22px;padding:14px;border:1px solid #e8c3bd;border-radius:12px;background:#fdf3f1}.dz h3{color:#a02a1c;margin:0 0 6px;font-size:1rem}.dz p{margin:0 0 10px;font-size:.9rem}.eye svg{display:block}
 #adv{font-weight:600}#adv label,#adv input,#adv select,#adv textarea,#adv p,#adv button{font-weight:600}#adv ::placeholder{font-weight:500}
 #adv :where(label,input,select,textarea,p,button,span,li,small,div,a,summary){font-weight:600}#adv .dd-l li[aria-selected=true]{font-weight:700}
 </style>
@@ -220,7 +220,7 @@ body.dlk{overflow:hidden}
 <header><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><button id="mb" class="mb" type="button" aria-controls="drw" aria-expanded="false" aria-label="Menu">☰</button><span class="logo">Dari<i>vo</i></span></div>
 <div style="display:flex;gap:8px;align-items:center"><button id="advb" class="advb" type="button"></button><select id="lg" aria-label="Language"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="ar">العربية</option></select></div></div></header>
 <div id="dro" class="dro"></div><aside id="drw" class="drw" aria-label="Menu" aria-hidden="true"><div class="dtop"><span class="logo">Dari<i>vo</i></span><button id="dx" class="dx" type="button" aria-label="Close">✕</button></div><div id="dbody"></div></aside>
-<div class="hero"><div class="wrap"><h1 id="h"></h1><p id="s"></p><select id="cs" aria-label="City"></select></div></div>
+<div class="hero"><div class="wrap"><div class="acr"><button id="acb" class="acb" type="button"></button></div><h1 id="h"></h1><p id="s"></p><select id="cs" aria-label="City"></select></div></div>
 <nav id="tabs" aria-label="Categories"></nav>
 <main class="wrap">
 
@@ -381,7 +381,7 @@ $("#ckt").textContent=t("ck");$("#ckb").textContent=t("okb");
 
 $("#cs").innerHTML=`<option value="all">${t("allc")}</option>`+CITIES.map(c=>`<option value="${c.id}">${esc(c.n[L]||c.n.en)}</option>`).join("");$("#cs").value=CITY;
 $("#tabs").innerHTML=TABS.map(c=>`<button class="tab" aria-selected="${c==C}" data-c="${c}"aria-haspopup="menu"><span class="ti">${ico("tab-"+c,TI[c],40)}</span><span>${tabLbl(c)}</span></button>`).join("");
-fpBuild();list();if($("#det").open)detRender();ddAll();if(typeof buildMenu=="function")buildMenu();seo();hashOpen()}
+acctBtn();fpBuild();list();if($("#det").open)detRender();ddAll();if(typeof buildMenu=="function")buildMenu();seo();hashOpen()}
 
 function contactsHtml(){const B=CONFIG.business,ph=String(B.whatsapp||"").replace(/\D/g,""),ok=/^\d{9,15}$/.test(ph);return `<p style="margin:6px 0"><a href="mailto:${esc(B.email)}">✉️ ${esc(B.email)}</a></p>`+(ok?`<p style="margin:6px 0" dir="ltr"><a href="tel:+${ph}">📞 +${ph}</a></p><p style="margin:6px 0"><a href="https://wa.me/${ph}" target="_blank" rel="noopener">💬 WhatsApp</a></p>`:"")}
 function legal(k){const Bz=CONFIG.business,f=x=>x.replace(/\{name\}/g,Bz.name).replace(/\{email\}/g,Bz.email).replace(/\{site\}/g,location.origin);
@@ -612,6 +612,14 @@ en:{adv:"Advertise",dash:"My account",intro:"Create a free advertiser account to
 fr:{adv:"Annoncer",dash:"Mon compte",intro:"Créez un compte annonceur gratuit pour publier votre logement, restaurant, transport ou activité. Votre annonce apparaît sur le site après validation.",login:"Connexion",user:"Identifiant",signup:"Créer un compte",email:"E-mail",pass:"Mot de passe (6 caractères min.)",reset:"Mot de passe oublié ?",resetok:"E-mail de réinitialisation envoyé.",lo:"Déconnexion",newl:"Nouvelle annonce",mine:"Mes annonces",bks:"Réservations",service:"Service",city:"Ville",title:"Titre",addr:"Adresse / quartier",price:"Prix (par nuit ou trajet, 0 si aucun)",photos:"Photos (6 max)",desc:"Description",amen:"Équipements et services",pub:"Publier",pubok:"Publié ! Votre annonce est en ligne.",nol:"Vous n'avez pas encore d'annonce.",del:"Supprimer",pause:"Mettre en pause",resume:"Réactiver",editp:"Modifier le prix",paused:"En pause",nobk:"Aucune réservation.",err:"Erreur : ",need:"Ajoutez un titre et au moins une photo.",wait:"Publication…",cancel:"Annuler et libérer les dates",nofb:"La plateforme n'est pas encore configurée."},
 ar:{adv:"أعلن معنا",dash:"حسابي",intro:"أنشئ حساب معلن مجانياً لعرض عقارك أو مطعمك أو خدمة النقل أو نشاطك. يظهر إعلانك في الموقع بعد موافقة الإدارة.",login:"تسجيل الدخول",user:"اسم المستخدم",signup:"إنشاء حساب",email:"البريد الإلكتروني",pass:"كلمة السر (6 أحرف على الأقل)",reset:"نسيت كلمة السر؟",resetok:"أُرسل بريد إعادة تعيين كلمة السر.",lo:"تسجيل الخروج",newl:"إعلان جديد",mine:"إعلاناتي",bks:"الحجوزات",service:"الخدمة",city:"المدينة",title:"العنوان",addr:"العنوان / الحي",price:"الثمن (لليلة أو الرحلة، 0 إن لم يوجد)",photos:"الصور (6 كحد أقصى)",desc:"الوصف",amen:"المرافق والخدمات",pub:"نشر",pubok:"تم النشر! إعلانك الآن ظاهر في الموقع.",nol:"ليس لديك إعلانات بعد.",del:"حذف",pause:"إيقاف مؤقت",resume:"استئناف",editp:"تعديل الثمن",paused:"موقوف",nobk:"لا توجد حجوزات بعد.",err:"خطأ: ",need:"أضف عنواناً وصورة واحدة على الأقل.",wait:"جارٍ النشر…",cancel:"إلغاء وتحرير التواريخ",nofb:"المنصة غير مهيأة بعد."}};
 const a=k=>(D[L]&&D[L][k])||D.en[k];
+const T_ACC={
+en:{myacc:"My account",pname:"Name",pemail:"Email",dz:"Danger zone",delacc:"Delete my account",delwarn:"Deleting your account permanently removes your profile, all your listings and their photos. This cannot be undone.",delsend:"Send confirmation code",delinfo:"We sent a code to {e}. Enter it to confirm the deletion.",delgo:"Delete permanently",delno:"Cancel",deldone:"Your account was deleted.",e_delreq:"Confirmation failed or expired. Request a new code.",adminno:"The administrator account cannot be deleted here."},
+fr:{myacc:"Mon compte",pname:"Nom",pemail:"E-mail",dz:"Zone sensible",delacc:"Supprimer mon compte",delwarn:"La suppression de votre compte efface définitivement votre profil, toutes vos annonces et leurs photos. Cette action est irréversible.",delsend:"Envoyer le code de confirmation",delinfo:"Nous avons envoyé un code à {e}. Saisissez-le pour confirmer la suppression.",delgo:"Supprimer définitivement",delno:"Annuler",deldone:"Votre compte a été supprimé.",e_delreq:"Confirmation échouée ou expirée. Demandez un nouveau code.",adminno:"Le compte administrateur ne peut pas être supprimé ici."},
+es:{myacc:"Mi cuenta",pname:"Nombre",pemail:"Correo",dz:"Zona de riesgo",delacc:"Eliminar mi cuenta",delwarn:"Eliminar tu cuenta borra de forma permanente tu perfil, todos tus anuncios y sus fotos. No se puede deshacer.",delsend:"Enviar código de confirmación",delinfo:"Enviamos un código a {e}. Introdúcelo para confirmar la eliminación.",delgo:"Eliminar definitivamente",delno:"Cancelar",deldone:"Tu cuenta fue eliminada.",e_delreq:"La confirmación falló o caducó. Solicita un código nuevo.",adminno:"La cuenta de administrador no se puede eliminar aquí."},
+de:{myacc:"Mein Konto",pname:"Name",pemail:"E-Mail",dz:"Gefahrenbereich",delacc:"Mein Konto löschen",delwarn:"Beim Löschen werden dein Profil, alle Anzeigen und deren Fotos endgültig entfernt. Das kann nicht rückgängig gemacht werden.",delsend:"Bestätigungscode senden",delinfo:"Wir haben einen Code an {e} gesendet. Gib ihn zur Bestätigung ein.",delgo:"Endgültig löschen",delno:"Abbrechen",deldone:"Dein Konto wurde gelöscht.",e_delreq:"Bestätigung fehlgeschlagen oder abgelaufen. Fordere einen neuen Code an.",adminno:"Das Administratorkonto kann hier nicht gelöscht werden."},
+it:{myacc:"Il mio account",pname:"Nome",pemail:"Email",dz:"Zona pericolosa",delacc:"Elimina il mio account",delwarn:"L'eliminazione cancella definitivamente il tuo profilo, tutti i tuoi annunci e le relative foto. Non si può annullare.",delsend:"Invia codice di conferma",delinfo:"Abbiamo inviato un codice a {e}. Inseriscilo per confermare l'eliminazione.",delgo:"Elimina definitivamente",delno:"Annulla",deldone:"Il tuo account è stato eliminato.",e_delreq:"Conferma non riuscita o scaduta. Richiedi un nuovo codice.",adminno:"L'account amministratore non può essere eliminato da qui."},
+ar:{myacc:"حسابي",pname:"الاسم",pemail:"البريد الإلكتروني",dz:"منطقة حساسة",delacc:"حذف حسابي",delwarn:"حذف الحساب يمسح نهائياً ملفك الشخصي وجميع إعلاناتك وصورها، ولا يمكن التراجع عنه.",delsend:"إرسال رمز التأكيد",delinfo:"أرسلنا رمزاً إلى {e}. أدخله لتأكيد الحذف.",delgo:"حذف نهائي",delno:"إلغاء",deldone:"تم حذف حسابك.",e_delreq:"فشل التأكيد أو انتهت صلاحية الرمز. اطلب رمزاً جديداً.",adminno:"لا يمكن حذف حساب المدير من هنا."}};
+for(const l in T_ACC)Object.assign(D[l]||(D[l]={}),T_ACC[l]);
 const AM={wifi:["Wi-Fi","Wi-Fi","واي فاي"],pool:["Pool","Piscine","مسبح"],parking:["Parking","Parking","موقف سيارات"],ac:["Air conditioning","Climatisation","تكييف"],breakfast:["Breakfast","Petit-déjeuner","فطور"],kitchen:["Kitchen","Cuisine","مطبخ"],seaview:["Sea view","Vue mer","إطلالة بحرية"],pets:["Pets allowed","Animaux acceptés","يسمح بالحيوانات"],airport:["Airport pickup","Transfert aéroport","استقبال من المطار"],halal:["Halal food","Cuisine halal","طعام حلال"]};
 const am=k=>(AM[k]||[k])[L=="fr"?1:L=="ar"?2:0];
 const chips0=i=>(i.am&&i.am.filter(k=>AM[k]).length)?`<div class="chips">${i.am.filter(k=>AM[k]).map(k=>`<span>${esc(am(k))}</span>`).join("")}</div>`:"";
@@ -708,7 +716,7 @@ const su=ses&&ses.user,u=su?{uid:su.id,email:su.email,displayName:(su.user_metad
 if(ev=="TOKEN_REFRESHED"&&USER&&u&&USER.uid==u.uid)return;
 USER=u;ADMIN=isAdmin(u);if(!u){PROFILE=null;EDIT=null}
 loadOwn().then(()=>{checkNew();watchOwn()});
-if(u&&!ADMIN)db.from("profiles").select("*").eq("id",u.uid).maybeSingle().then(x=>{if(x.data){PROFILE=x.data;if($("#adv").open)advRender()}})},0)});
+if(u&&!ADMIN)db.from("profiles").select("*").eq("id",u.uid).maybeSingle().then(x=>{if(x.data){PROFILE=x.data;acctBtn();if($("#adv").open)advRender()}})},0)});
 }
 /* shrink photos in the browser: max 1200px, WebP/JPEG (≈100–250 KB instead of several MB) */
 async function shrinkImg(f,MX=1200,Q=.78){
@@ -722,6 +730,7 @@ return f}
 /* Storage cleanup: delete a listing's photo files when the listing (or a photo) is removed */
 const stPath=u=>{const m=/\/storage\/v1\/object\/public\/listings\/(.+)$/.exec(String(u||""));if(!m)return null;try{return decodeURIComponent(m[1])}catch(e){return null}};
 const itemFiles=i=>[...new Set([...((i&&i.imgs)||[]),i&&i.img,i&&i.thumb].map(stPath).filter(Boolean))];
+async function ownFiles(){const out=[];try{for(let o=0;o<2000;o+=100){const r=await db.storage.from("listings").list(USER.uid,{limit:100,offset:o});if(r.error||!r.data||!r.data.length)break;r.data.forEach(f=>{if(f.name&&f.id)out.push(USER.uid+"/"+f.name)});if(r.data.length<100)break}}catch(e){}return out}
 const rmFiles=async ps=>{if(!db||!ps||!ps.length)return;try{await db.storage.from("listings").remove(ps)}catch(e){console.warn("storage cleanup",e)}};
 async function upImg(f,MX,pre){
 if(!FBOK)return URL.createObjectURL(f);
@@ -783,6 +792,7 @@ if(/email_not_confirmed|not confirmed/i.test(c))return a("e_confirm");
 if(/otp_expired|expired|token/i.test(c))return a("e_badcode");
 if(/provider_disabled|signups? (not allowed|disabled)/i.test(c))return a("e_off");
 return a("err")+(x&&x.message||c)}
+let DELOTP=false,FLASH="";
 function advRender(){
 const box=$("#advb2"),hd=$("#advh"),logo='<span class="logo">Dari<i>vo</i></span>';
 if(!USER){
@@ -791,11 +801,12 @@ hd.innerHTML=`${logo}<h2>${a(rs?"reset":su?"signup":"login")}</h2><p>${a(rs?"res
 if(FBOK&&OTP){const rsk=OTP.kind=="reset";
 box.innerHTML=`<p class="note">${esc(a("codesent").replace("{e}",OTP.email))}</p><form id="af" class="fg" novalidate><label class="w">${a("code")}<input id="ao" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]*" style="letter-spacing:.4em;font-size:1.3rem;text-align:center"></label>${rsk?`<label class="w">${a("newpass")}<span class="pw"><input id="anp" type="password" autocomplete="new-password"><button type="button" class="eye" data-eye="anp" aria-pressed="false" title="${a("showpw")}" aria-label="${a("showpw")}">${EYE_OFF}</button></span></label>`:""}<button class="go wide w" data-do="verify" type="submit">${rsk?a("resetpass"):a("verify")}</button></form><p style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap"><button type="button" class="map" data-do="resend">${a("resend")}</button><button type="button" class="map" data-do="otpback">${a("chgemail")}</button></p><div id="am2" role="status" style="margin-top:10px;font-weight:600;color:#c0392b"></div>`;return}
 box.innerHTML=`${FBOK?"":`<div class="note">${esc(a("demo"))}</div>`}${rs?"":`<div class="seg"><button class="tab" aria-selected="${!su}" data-do="mode" data-m="login">${a("login")}</button><button class="tab" aria-selected="${su}" data-do="mode" data-m="signup">${a("signup")}</button></div>`}<form id="af" class="fg" novalidate>${su?`<label class="w">${a("uname")}<input id="an" maxlength="30" autocomplete="name"></label>`:""}<label class="w">${a("email")}<input id="ae" type="email" autocomplete="email" autocapitalize="none" inputmode="email"></label>${su?`<label>${a("city")}<select id="ac">${cityOpts("agadir")}</select></label><label>${a("service")}<select id="ak">${catOpts("apartments")}</select></label>`:""}${rs?"":`<label class="w">${a("pass")}<span class="pw"><input id="ap2" type="password" autocomplete="${su?"new-password":"current-password"}"><button type="button" class="eye" data-eye="ap2" aria-pressed="false" title="${a("showpw")}" aria-label="${a("showpw")}">${EYE_OFF}</button></span></label>`}<button class="go wide w" data-do="${rs?"reset":su?"signup":"login"}" type="submit">${a(rs?"sendreset":su?"signup":"login")}</button></form>${MODE=="login"?`<p style="margin-top:12px"><button type="button" class="map" data-do="mode" data-m="reset">${a("reset")}</button></p>`:""}${rs?`<p style="margin-top:12px"><button type="button" class="map" data-do="mode" data-m="login">${a("backlogin")}</button></p>`:""}<div id="am2" role="status" style="margin-top:10px;font-weight:600;color:#c0392b"></div>`;
+if(FLASH){const fe=$("#am2");fe.textContent=FLASH;fe.style.color="var(--sea)"}
 return}
 const nm=myName(),pf=PROFILE||{};
 hd.innerHTML=`${logo}<div class="who"><div class="av">${esc((nm.charAt(0)||"?").toUpperCase())}</div><div><h2>${esc(nm)}</h2><p>${ADMIN?a("badmin"):esc([pf.city?cname(pf.city):"",pf.cat?t(pf.cat):""].filter(Boolean).join(" · "))}</p></div></div><button class="out" data-do="out">${a("lo")}</button>`;
 const ed=EDIT?(LIVE||[]).find(x=>x.id==EDIT):null;if(EDIT&&!ed)EDIT=null;
-const tl=[["new",ed?"editing":"newl"],["mine","mine"]];if(ADMIN)tl.push(["rev","revtab"]);
+const tl=[["new",ed?"editing":"newl"],["mine","mine"],["acct","myacc"]];if(ADMIN)tl.push(["rev","revtab"]);
 const tabs=tl.map(x=>`<button class="tab" aria-selected="${TAB==x[0]}" data-do="tab" data-t="${x[0]}">${a(x[1])}${x[0]=="rev"&&pend()?` (${pend()})`:""}</button>`).join("");
 let body="";
 if(TAB=="new"){
@@ -806,6 +817,9 @@ body=`<form class="fg" novalidate><label>${a("service")}<select id="nc">${catOpt
 else if(TAB=="mine"){
 const mine=(LIVE||[]).filter(i=>ADMIN||i.ownerId===USER.uid);
 body=mine.length?mine.map(i=>`<div class="li"><div class="th" style="background:${i.img?`url('${sU(i.thumb||i.img)}') center/cover`:G[i.c]}"></div><div style="flex:1;min-width:0"><b>${esc(i.n)}</b>${stp(i)}${i.paused?` · ${a("paused")}`:""}<small>${t(i.c)} · ${esc(cname(i.city||"agadir"))}${i.p?" · "+money(i.p):""}${ADMIN&&i.ownerName?" · "+esc(i.ownerName):""}</small>${i.status=="rejected"&&i.rejectReason?`<small style="color:#a02a1c">${a("reasonl")}: ${esc(i.rejectReason)}</small>`:""}<div class="row2" style="margin:4px 0 0"><button class="map" data-do="edit" data-id="${esc(i.id)}">${a("edit")}</button><button class="map" data-do="pause" data-id="${esc(i.id)}">${i.paused?a("resume"):a("pause")}</button><button class="map" style="color:#c0392b" data-do="del" data-id="${esc(i.id)}">${a("del")}</button></div></div></div>`).join(""):`<p>${a("nol")}</p>`}
+else if(TAB=="acct"){
+const dz=ADMIN?`<p class="note" style="margin-top:18px">${esc(a("adminno"))}</p>`:DELOTP?`<div class="dz"><h3>${esc(a("dz"))}</h3><p>${esc(a("delinfo").replace("{e}",USER.email||""))}</p><form class="fg" novalidate><label class="w">${a("code")}<input id="dco" inputmode="numeric" autocomplete="one-time-code" maxlength="10" pattern="[0-9]*" style="letter-spacing:.4em;font-size:1.3rem;text-align:center"></label><button class="go wide w" style="background:#c0392b" data-do="delconfirm" type="submit">${a("delgo")}</button></form><p style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap"><button type="button" class="map" data-do="delresend">${a("resend")}</button><button type="button" class="map" data-do="delcancel">${a("delno")}</button></p></div>`:`<div class="dz"><h3>${esc(a("dz"))}</h3><p>${esc(a("delwarn"))}</p><button class="go alt wide" style="color:#c0392b;border-color:#c0392b" data-do="delstart" type="button">${a("delacc")}</button></div>`;
+body=`<form class="fg" novalidate><label class="w">${a("pname")}<input id="pn" maxlength="30" autocomplete="name" value="${esc(ADMIN?CONFIG.adminLogin:nm)}"${ADMIN?" disabled":""}></label><label class="w">${a("pemail")}<input value="${esc(USER.email||"")}" dir="ltr" disabled></label><label>${a("city")}<select id="pci">${cityOpts(pf.city||"agadir")}</select></label><label>${a("service")}<select id="pca">${catOpts(pf.cat||"apartments")}</select></label>${ADMIN?"":`<button class="go wide w" data-do="saveprof" type="submit">${a("save")}</button>`}</form>`+dz}
 else if(TAB=="rev"){
 const pl=(LIVE||[]).filter(i=>i.status==="pending");
 body=pl.length?pl.map(i=>{const d=(i.d&&(i.d[L]||i.d.en||Object.values(i.d).find(Boolean)))||"";return`<div class="li" style="align-items:flex-start"><div class="th" style="background:${i.img?`url('${sU(i.img)}') center/cover`:G[i.c]}"></div><div style="flex:1;min-width:0"><b class="vt" data-v="${esc(i.id)}" tabindex="0">${esc(i.n)}</b>${stp(i)}<small>${t(i.c)} · ${esc(cname(i.city||"agadir"))}${i.p?" · "+money(i.p):""}${i.ownerName?" · "+a("by")+" "+esc(i.ownerName):""}</small>${i.a?`<small>${esc(i.a)}</small>`:""}<p style="font-size:.88rem;margin:4px 0">${esc(d)}</p>${chips(i)}<div class="row2" style="margin:8px 0 0"><button class="go" data-do="approve" data-id="${esc(i.id)}">${a("approve")}</button><button class="go alt" style="color:#c0392b;border-color:#c0392b" data-do="reject" data-id="${esc(i.id)}">${a("reject")}</button></div></div></div>`}).join(""):`<p>${a("nopend")}</p>`}
@@ -816,8 +830,9 @@ $("#adv").addEventListener("click",async e=>{
 const b=e.target.closest("[data-do]");if(!b)return;e.preventDefault();
 const k=b.dataset.do,id=b.dataset.id,m=(x,ok)=>{const el=$("#am2");if(el){el.textContent=x;el.style.color=ok?"var(--sea)":"#c0392b"}};
 try{
+FLASH="";
 if(k=="mode"){MODE=b.dataset.m;advRender();return}
-if(k=="tab"){TAB=b.dataset.t;if(TAB!="new")EDIT=null;advRender();return}
+if(k=="tab"){TAB=b.dataset.t;if(TAB!="new")EDIT=null;DELOTP=false;advRender();return}
 if(k=="reset"){const em=$("#ae").value.trim();
 if(!/^\S+@\S+\.\S+$/.test(em))return m(a("e_email"));
 if(!FBOK)return m(a("resetdemo"),true);
@@ -866,6 +881,37 @@ else{const u=DEMO_USERS[ek];if(!u||u.pass!==pw)return m(a("e_cred"));USER={uid:u
 LIVE=LIVE||DATA.map(x=>({...x,ownerId:"demo"}))}
 }finally{b.disabled=false}
 TAB=su?"new":"mine";EDIT=null;render();advRender();return}
+if(k=="saveprof"){
+const name=($("#pn").value||"").trim(),city=$("#pci").value,cat=$("#pca").value;
+if(name.length<3||name.length>30)return m(a("e_name"));
+if(normName(name)==CONFIG.adminLogin.toLowerCase())return m(a("e_res"));
+b.disabled=true;
+try{if(db){await sbq(db.from("profiles").update({name,city,cat}).eq("id",USER.uid))}
+else{const u=DEMO_USERS[(USER.email||"").toLowerCase()];if(u){u.name=name;u.city=city;u.cat=cat}USER.displayName=name}
+PROFILE={...(PROFILE||{}),name,city,cat}}
+finally{b.disabled=false}
+render();advRender();m(a("saved"),true);return}
+if(k=="delstart"||k=="delresend"){
+if(ADMIN)return m(a("adminno"));
+if(!FBOK){if(confirm(a("delacc")+"?")){delete DEMO_USERS[(USER.email||"").toLowerCase()];LIVE=(LIVE||[]).filter(x=>x.ownerId!==USER.uid);USER=null;ADMIN=false;PROFILE=null;DELOTP=false;MODE="login";TAB="mine";FLASH=a("deldone");render();advRender()}return}
+b.disabled=true;
+try{const r=await db.auth.signInWithOtp({email:USER.email,options:{shouldCreateUser:false}});if(r.error)throw r.error;DELOTP=true}
+finally{b.disabled=false}
+advRender();if(k=="delresend")m(a("resent"),true);return}
+if(k=="delcancel"){DELOTP=false;advRender();return}
+if(k=="delconfirm"){
+if(ADMIN||!FBOK||!DELOTP)return;
+const tok=(($("#dco")||{}).value||"").replace(/\D/g,"");
+if(tok.length<6||tok.length>10)return m(a("e_code"));
+b.disabled=true;
+try{const v=await db.auth.verifyOtp({email:USER.email,token:tok,type:"email"});if(v.error)throw v.error;
+const files=await ownFiles();
+const d=await db.rpc("delete_my_account");
+if(d.error){m(/confirmation/i.test(d.error.message||"")?a("e_delreq"):authErr(d.error));return}
+await rmFiles(files);
+try{await db.auth.signOut()}catch(e){}}
+finally{b.disabled=false}
+DELOTP=false;USER=null;ADMIN=false;PROFILE=null;EDIT=null;MODE="login";TAB="mine";FLASH=a("deldone");reloadPub();render();advRender();return}
 if(k=="out"){MODE="login";EDIT=null;if(db)await db.auth.signOut();else{USER=null;ADMIN=false;PROFILE=null;render();advRender()}return}
 if(k=="publish"){
 const files=[...$("#nph").files].slice(0,6),title=$("#nt").value.trim(),ed=EDIT?(LIVE||[]).find(x=>x.id==EDIT):null;
@@ -931,6 +977,7 @@ contact:sv('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.
 terms:sv('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>'),
 privacy:sv('<path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.5a1.5 1.5 0 0 1 3 0V11"/>'),
 world:sv('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/>')};
+function acctBtn(){try{const b=$("#acb");if(!b)return;const n=USER?myName():"";b.innerHTML=`<span class="acv">${USER?esc((n.charAt(0)||"?").toUpperCase()):MI.login.replace('width="20" height="20"','width="16" height="16"')}</span><span>${esc(a("myacc"))}</span>`;b.setAttribute("aria-label",a("myacc"))}catch(e){}}
 function buildMenu(){const B=CONFIG.business,wa=!B.whatsapp.includes("X"),em=!B.email.includes("example");
 $("#mb").setAttribute("aria-label",mm("menu"));$("#dx").setAttribute("aria-label",mm("close"));$("#drw").setAttribute("aria-label",mm("menu"));
 const it=(act,ic,txt,cur)=>`<button class="di" type="button" data-a="${act}"${cur?` aria-current="true"`:""}><span class="dic">${ic}</span>${esc(txt)}</button>`;
@@ -953,6 +1000,8 @@ else if(k=="cat"){C=tabFor(v);SUB=["rent","sale","explore","act","daily"].includ
 else if(k=="pub"){if(USER){TAB="new";EDIT=null}else MODE="signup";advRender();$("#adv").showModal()}
 else if(k=="login"){if(!USER)MODE="login";advRender();$("#adv").showModal()}
 else if(k=="legal")window.open("/"+L+"/"+v,"_blank","noopener")});
+$("#adv").addEventListener("close",()=>{FLASH=""});
+$("#acb").addEventListener("click",()=>{if(USER){TAB="acct";EDIT=null;DELOTP=false}else MODE="login";advRender();$("#adv").showModal()});
 $("#advb").addEventListener("click",()=>{if(USER){TAB="new";EDIT=null}else MODE="signup";advRender();$("#adv").showModal()});
 $("#drw").addEventListener("change",e=>{if(e.target.id=="lg2"){L=e.target.value;try{localStorage.setItem("lang",L)}catch(x){}drClose(false);render()}});
 

@@ -3,8 +3,8 @@ const SB = process.env.SUPABASE_URL || "https://eofewxkyehcvqtkxbbyy.supabase.co
 const KEY = process.env.SUPABASE_ANON_KEY || "sb_publishable_luhudHRiIZpPVhiopdaBMw_aLR9fm8k";
 const LANGS = ["ar", "fr", "en", "es", "de", "it"];
 const LI = { en: 0, fr: 1, es: 2, de: 3, it: 4, ar: 5 };
-const REAL = ["apartments", "studio", "maison", "villas", "rooms", "hostel", "land"];
-const DAILY_CATS = ["apartments", "villas", "maison", "studio", "rooms", "hostel"];
+const REAL = ["apartments", "studio", "maison", "villas", "hostel", "land"];
+const DAILY_CATS = ["apartments", "villas", "maison", "studio", "hostel"];
 const SALE_CATS = ["apartments", "villas", "maison", "studio", "land"];
 const ACTS = ["surf", "jetski", "yacht"];
 const SVCS = ["delivery", "massage", "tourtransport", "tourguide", "carrental"];
@@ -209,12 +209,10 @@ const CSS = `:root{--ink:#0B2F4A;--sun:#F4A62A;--sea:#0E7C86;--bg:#E9E5D8;--line
 html[lang=ar] body{font-family:"Tajawal",system-ui,sans-serif}a{color:inherit}
 .w{max-width:1100px;margin:auto;padding:0 16px}
 header{background:var(--ink);color:#fff}header .w{display:flex;justify-content:space-between;align-items:center;min-height:60px;gap:12px;flex-wrap:wrap}
-.logo{font-weight:800;font-size:1.6rem;text-decoration:none;color:#fff}.logo i{color:var(--sun);font-style:normal}
+.logo{font-weight:800;font-size:1.25rem;text-decoration:none;color:#fff}.logo i{color:var(--sun);font-style:normal}
 .hl{display:flex;align-items:center;gap:10px}
 .bkr .w{display:flex;justify-content:flex-end;padding-top:10px}
 .bkb{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:var(--ink);text-decoration:none;flex:none}.bkb svg{width:30px;height:30px}html[dir=rtl] .bkb svg{transform:scaleX(-1)}
-.bkb.h{color:#fff;width:36px;height:36px}.bkb.h svg{width:26px;height:26px}.hr{display:flex;align-items:center;gap:10px}
-.lgw{display:flex;align-items:center;gap:8px}.lgw>svg{width:22px;height:22px;color:#fff;flex:none}.lg summary{min-width:124px;justify-content:space-between}
 .lg{position:relative}.lg summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:6px 12px;color:#fff;font-weight:700;font-size:.85rem;user-select:none}.lg summary::-webkit-details-marker{display:none}
 .lg svg{width:18px;height:18px;flex:none}.lg .cv{width:12px;height:12px;transition:transform .15s}.lg[open] .cv{transform:rotate(180deg)}
 .lg .lgm{position:absolute;inset-inline-end:0;top:calc(100% + 6px);background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);padding:6px;min-width:160px;z-index:20;display:flex;flex-direction:column}
@@ -251,23 +249,22 @@ h1{font-size:clamp(1.4rem,4.5vw,2.1rem);line-height:1.2;margin:8px 0}h2{font-siz
 .rvf .btn{border:0;cursor:pointer;font:inherit;font-weight:700}.rvf .btn[disabled]{opacity:.6;cursor:wait}
 .stars{direction:ltr;display:flex;gap:4px}.stars button{background:none;border:0;font-size:2rem;line-height:1;color:#c9c4b3;cursor:pointer;padding:0 2px}.stars button.on{color:var(--sun)}
 .msg{font-size:.92rem;font-weight:700;margin:6px 0}.msg.ok{color:var(--sea)}.msg.er{color:#b3261e}
-.adc{max-width:560px;margin:0 auto;text-align:center}.adc .gw{margin:14px auto}.adc .acts,.adc .chips{justify-content:center}.adc .desc,.adc .rv{text-align:start}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-footer{background:var(--ink);color:#b7c6d3;text-align:center;padding:10px 16px;font-size:.76rem;line-height:1.45;margin-top:20px}footer a{color:#fff}`;
+footer{background:var(--ink);color:#b7c6d3;text-align:center;padding:22px;font-size:.88rem;margin-top:30px}footer a{color:#fff}`;
 
 function shell(o) {
   const l = o.lang, S = o.site, url = S + o.path;
   const alts = o.pathFor ? LANGS.map(x => `<link rel="alternate" hreflang="${x}" href="${S}${o.pathFor(x)}">`).join("")
-    + `<link rel="alternate" hreflang="x-default" href="${S}${o.pathFor("en")}">` : "";
+    + `<link rel="alternate" hreflang="x-default" href="${S}${o.pathFor("fr")}">` : "";
   const img = o.image ? `<meta property="og:image" content="${esc(o.image)}"><meta name="twitter:image" content="${esc(o.image)}">` : "";
   const ld = (o.ld || []).map(x => `<script type="application/ld+json">${JSON.stringify(x).replace(/</g, "\\u003c")}</script>`).join("");
   const fonts = l === "ar" ? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">` : "";
   const LN = { ar: "العربية", fr: "Français", en: "English", es: "Español", de: "Deutsch", it: "Italiano" };
   const GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
   const CHEV = '<svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
-  const sw = o.pathFor ? `<div class="lgw">${GLOBE}<details class="lg"><summary aria-label="${esc(tr("lang", l))}"><span>${LN[l]}</span>${CHEV}</summary><div class="lgm">`
-    + LANGS.map(x => `<a href="${o.pathFor(x)}" hreflang="${x}"${x === l ? ' aria-current="true"' : ""}><span>${LN[x]}</span><span>${x.toUpperCase()}</span></a>`).join("") + `</div></details></div>` : "";
-  const bk = o.back ? `<a class="bkb h" id="bk" href="${esc(o.back)}" aria-label="${esc(tr("back", l))}" title="${esc(tr("back", l))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>` : "";
+  const sw = o.pathFor ? `<details class="lg"><summary aria-label="${esc(tr("lang", l))}">${GLOBE}<span>${l.toUpperCase()}</span>${CHEV}</summary><div class="lgm">`
+    + LANGS.map(x => `<a href="${o.pathFor(x)}" hreflang="${x}"${x === l ? ' aria-current="true"' : ""}><span>${LN[x]}</span><span>${x.toUpperCase()}</span></a>`).join("") + `</div></details>` : "";
+  const bk = o.back ? `<a class="bkb" id="bk" href="${esc(o.back)}" aria-label="${esc(tr("back", l))}" title="${esc(tr("back", l))}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>` : "";
   return `<!DOCTYPE html>
 <html lang="${l}" dir="${l === "ar" ? "rtl" : "ltr"}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -281,9 +278,9 @@ function shell(o) {
 <meta name="twitter:card" content="${o.image ? "summary_large_image" : "summary"}">
 ${fonts}<style>${CSS}</style>${ld}
 </head><body>
-<header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div><div class="hr">${bk}${sw}</div></div></header>
+<header><div class="w"><div class="hl"><a class="logo" href="/">Dari<i>vo</i></a></div>${sw}</div></header>${bk ? `<div class="bkr"><div class="w">${bk}</div></div>` : ""}
 <main class="w">${o.body}</main>
-<footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:2px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:2px">© Darivo · ${esc(tr("tag", l))}</div></footer>
+<footer><div>${TABS.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">${PAGES.map(k => `<a href="/${l}/${k}">${esc(tr(k, l))}</a>`).join(" · ")}</div><div style="margin-top:6px">© Darivo · ${esc(tr("tag", l))}</div></footer>
 <script>document.addEventListener("click",function(e){document.querySelectorAll("details.lg[open]").forEach(function(d){if(!d.contains(e.target))d.removeAttribute("open")})});var bk=document.getElementById("bk");if(bk)bk.addEventListener("click",function(e){try{if(history.length>1&&document.referrer&&new URL(document.referrer).host===location.host){e.preventDefault();history.back()}}catch(x){}});</script>
 </body></html>`;
 }
